@@ -218,6 +218,27 @@ const Preview = forwardRef<PreviewHandle, PreviewProps>(({ code, themeConfig }, 
           );
         }
         
+        // Add hand-drawn filter for handDrawn theme
+        if (themeConfig.bgClass === 'bg-[#fffef9]') {
+          // Inject SVG filter definition for hand-drawn effect with mild distortion
+          const filterDef = `<defs>
+  <filter id="roughen" x="-10%" y="-10%" width="120%" height="120%" filterUnits="objectBoundingBox">
+    <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" result="noise" seed="2"/>
+    <feDisplacementMap in="SourceGraphic" in2="noise" scale="0.8" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+  <filter id="roughen-line" x="-20%" y="-20%" width="140%" height="140%" filterUnits="objectBoundingBox">
+    <feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="1" result="noise" seed="1"/>
+    <feDisplacementMap in="SourceGraphic" in2="noise" scale="0.5" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+</defs>`;
+          // Find existing defs or insert new one
+          if (processedSvg.includes('<defs>')) {
+            processedSvg = processedSvg.replace(/<defs>/, filterDef);
+          } else {
+            processedSvg = processedSvg.replace(/<svg[^>]*>/, match => match + filterDef);
+          }
+        }
+        
         setSvg(processedSvg);
       } catch (err) {
         console.error('Mermaid render error:', err);

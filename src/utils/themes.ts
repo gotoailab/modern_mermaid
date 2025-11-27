@@ -1,6 +1,6 @@
 import type { MermaidConfig } from 'mermaid';
 
-export type ThemeType = 'linearLight' | 'linearDark' | 'notion' | 'cyberpunk' | 'monochrome' | 'ghibli' | 'softPop' | 'darkMinimal' | 'wireframe';
+export type ThemeType = 'linearLight' | 'linearDark' | 'notion' | 'cyberpunk' | 'monochrome' | 'ghibli' | 'softPop' | 'darkMinimal' | 'wireframe' | 'handDrawn';
 
 export interface ThemeConfig {
   name: string;
@@ -821,4 +821,234 @@ export const themes: Record<ThemeType, ThemeConfig> = {
         backgroundSize: '20px 20px'
     }
   },
+    handDrawn: {
+        name: 'Hand Drawn',
+        mermaidConfig: {
+            theme: 'base',
+            themeVariables: {
+                background: '#fffef9', // Warm off-white, like paper
+                primaryColor: '#ffffff',
+                primaryTextColor: '#1a1a1a',
+                primaryBorderColor: '#1a1a1a',
+                lineColor: '#1a1a1a',
+                secondaryColor: '#fff9e6',
+                tertiaryColor: '#ffe8cc',
+                fontFamily: '"Caveat", "Patrick Hand", "Kalam", cursive',
+                fontSize: '18px', // Larger for hand-drawn feel
+            },
+            themeCSS: `
+        /* Hand-drawn sketch style */
+        /* Global text styling */
+        .titleText, .sectionTitle, .taskText, .taskTextOutsideRight, .taskTextOutsideLeft, 
+        .legendText, text.actor, .pieTitleText, text.legend {
+            fill: #1a1a1a !important;
+            font-family: "Caveat", "Patrick Hand", "Kalam", cursive;
+            font-weight: 600;
+        }
+        
+        /* Flowchart nodes - rough hand-drawn style */
+        .node rect, .node circle, .node polygon {
+            fill: #ffffff !important;
+            stroke: #1a1a1a !important;
+            stroke-width: 2.8px !important;
+            rx: 8px !important;
+            ry: 8px !important;
+            /* Simulate hand-drawn with slight irregularity */
+            filter: url(#roughen) drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.15));
+        }
+        
+        .node .label {
+            font-family: "Caveat", "Patrick Hand", "Kalam", cursive;
+            font-weight: 600;
+            font-size: 18px;
+            fill: #1a1a1a !important;
+        }
+        
+        /* Hand-drawn lines for connections */
+        .edgePath .path {
+            stroke: #1a1a1a !important;
+            stroke-width: 2.8px !important;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none !important;
+            filter: url(#roughen-line);
+        }
+        
+        .arrowheadPath {
+            fill: #1a1a1a !important;
+            stroke: #1a1a1a !important;
+            stroke-width: 2px !important;
+        }
+        
+        .edgeLabel {
+            background-color: #fffef9 !important;
+            color: #1a1a1a !important;
+            font-family: "Caveat", "Patrick Hand", "Kalam", cursive;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 4px 8px;
+        }
+        
+        /* Sequence Diagram - Hand-drawn style */
+        .actor {
+            fill: #ffffff !important;
+            stroke: #1a1a1a !important;
+            stroke-width: 2.8px !important;
+            rx: 8px !important;
+            ry: 8px !important;
+            filter: url(#roughen) drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.15));
+        }
+        
+        .actor text {
+            fill: #1a1a1a !important;
+            font-family: "Caveat", "Patrick Hand", "Kalam", cursive;
+            font-weight: 600;
+            font-size: 18px;
+        }
+        
+        .actor-line {
+            stroke: #1a1a1a !important;
+            stroke-width: 2.5px !important;
+            stroke-dasharray: 8 4 !important;
+            stroke-linecap: round;
+            filter: url(#roughen-line);
+        }
+        
+        .activation0, .activation1, .activation2 {
+            fill: #fff9e6 !important;
+            stroke: #1a1a1a !important;
+            stroke-width: 2.8px !important;
+            filter: url(#roughen);
+        }
+        
+        .messageLine0, .messageLine1 {
+            stroke: #1a1a1a !important;
+            stroke-width: 2.8px !important;
+            stroke-linecap: round;
+            filter: url(#roughen-line);
+        }
+        
+        .messageText {
+            fill: #1a1a1a !important;
+            font-family: "Caveat", "Patrick Hand", "Kalam", cursive;
+            font-weight: 600;
+            font-size: 16px;
+        }
+        
+        #arrowhead path, .arrowheadPath {
+            fill: #1a1a1a !important;
+            stroke: #1a1a1a !important;
+        }
+        
+        /* Note boxes - sketchy style */
+        .note {
+            fill: #fffacd !important;
+            stroke: #1a1a1a !important;
+            stroke-width: 2.8px !important;
+            rx: 8px !important;
+            ry: 8px !important;
+            filter: url(#roughen) drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.15));
+        }
+        
+        .noteText {
+            fill: #1a1a1a !important;
+            font-family: "Caveat", "Patrick Hand", "Kalam", cursive;
+            font-weight: 600;
+            font-size: 16px;
+        }
+        
+        /* Loop/Alt/Opt boxes */
+        .labelBox {
+            fill: #ffe8cc !important;
+            stroke: #1a1a1a !important;
+            stroke-width: 2.8px !important;
+            rx: 8px !important;
+            ry: 8px !important;
+            filter: url(#roughen) drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.15));
+        }
+        
+        .labelText, .loopText {
+            fill: #1a1a1a !important;
+            font-family: "Caveat", "Patrick Hand", "Kalam", cursive;
+            font-weight: 700;
+            font-size: 16px;
+        }
+        
+        .loopLine {
+            stroke: #1a1a1a !important;
+            stroke-width: 2.8px !important;
+            stroke-dasharray: 8 4 !important;
+            stroke-linecap: round;
+            filter: url(#roughen-line);
+        }
+        
+        /* Class diagram */
+        .classLabel .label {
+            font-family: "Caveat", "Patrick Hand", "Kalam", cursive;
+            font-weight: 700;
+            fill: #1a1a1a !important;
+        }
+        
+        /* State diagram */
+        .stateLabel .label-text {
+            font-family: "Caveat", "Patrick Hand", "Kalam", cursive;
+            font-weight: 700;
+            fill: #1a1a1a !important;
+        }
+        
+        /* ER Diagram */
+        .er.entityLabel, .er.relationshipLabel {
+            font-family: "Caveat", "Patrick Hand", "Kalam", cursive;
+            font-weight: 700;
+            fill: #1a1a1a !important;
+        }
+        
+        /* Gantt chart */
+        .grid .tick text {
+            font-family: "Caveat", "Patrick Hand", "Kalam", cursive;
+            font-weight: 600;
+            fill: #1a1a1a !important;
+        }
+        
+        /* Pie chart */
+        .slice text {
+            font-family: "Caveat", "Patrick Hand", "Kalam", cursive;
+            font-weight: 700;
+            fill: #1a1a1a !important;
+        }
+        
+        /* Git graph */
+        .commit-label {
+            font-family: "Caveat", "Patrick Hand", "Kalam", cursive;
+            font-weight: 600;
+            fill: #1a1a1a !important;
+        }
+        
+        /* Cluster/subgraph styling */
+        .cluster rect {
+            fill: #fff9e6 !important;
+            stroke: #1a1a1a !important;
+            stroke-width: 2.8px !important;
+            stroke-dasharray: 8 4 !important;
+            rx: 8px !important;
+            ry: 8px !important;
+            filter: url(#roughen) drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.15));
+        }
+        
+        .cluster text {
+            font-family: "Caveat", "Patrick Hand", "Kalam", cursive;
+            font-weight: 700;
+            fill: #1a1a1a !important;
+        }
+      `
+        },
+        bgClass: 'bg-[#fffef9]',
+        bgStyle: {
+            backgroundColor: '#fffef9',
+            backgroundImage: `
+            radial-gradient(circle at 2px 2px, rgba(26, 26, 26, 0.03) 1px, transparent 1px)
+        `,
+            backgroundSize: '30px 30px'
+        }
+    },
 };
