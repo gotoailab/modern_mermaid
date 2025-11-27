@@ -50,7 +50,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({ position, onClose, onSelectCo
           </h3>
           <button
             onClick={onClose}
-            className="text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+            className="text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 transition-colors cursor-pointer"
           >
             <X className="w-4 h-4" />
           </button>
@@ -64,7 +64,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({ position, onClose, onSelectCo
               <button
                 key={color.value}
                 onClick={() => handleColorSelect(color.value)}
-                className="group relative w-full aspect-square rounded-md border-2 border-gray-200 dark:border-gray-600 hover:border-gray-400 dark:hover:border-gray-500 transition-all hover:scale-110"
+                className="group relative w-full aspect-square rounded-md border-2 border-gray-200 dark:border-gray-600 hover:border-gray-400 dark:hover:border-gray-500 transition-all hover:scale-110 cursor-pointer"
                 style={{ backgroundColor: color.value }}
                 title={color.name}
               >
@@ -95,7 +95,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({ position, onClose, onSelectCo
             />
             <button
               onClick={() => handleColorSelect(customColor)}
-              className="px-4 py-2 bg-indigo-600 dark:bg-indigo-500 text-white text-sm font-medium rounded hover:bg-indigo-700 dark:hover:bg-indigo-600 transition-colors"
+              className="px-4 py-2 bg-indigo-600 dark:bg-indigo-500 text-white text-sm font-medium rounded hover:bg-indigo-700 dark:hover:bg-indigo-600 transition-colors cursor-pointer"
             >
               {t.apply || '应用'}
             </button>

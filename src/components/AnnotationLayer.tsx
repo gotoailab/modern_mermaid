@@ -376,7 +376,7 @@ const AnnotationLayer: React.FC<AnnotationLayerProps> = ({
                 y: rect.top
               });
             }}
-            className="px-2 py-1 bg-white-600 hover:bg-white-700 text-black rounded text-xs flex items-center gap-1 shadow-lg border border-gray-200 dark:border-gray-700"
+            className="px-2 py-1 bg-white-600 hover:text-indigo-600 hover:bg-indigo-50 text-black rounded text-xs flex items-center gap-1 shadow-lg border border-gray-200 dark:border-gray-700 cursor-pointer"
             title="修改颜色"
           >
             <Palette size={12} />
@@ -389,7 +389,7 @@ const AnnotationLayer: React.FC<AnnotationLayerProps> = ({
                 setEditingTextId(annotation.id);
                 setEditingText(annotation.text);
               }}
-              className="px-2 py-1 bg-white-600 hover:bg-white-700 text-black rounded text-xs flex items-center gap-1 shadow-lg border border-gray-200 dark:border-gray-700"
+              className="px-2 py-1 bg-white-600 hover:text-indigo-600 hover:bg-indigo-50 text-black rounded text-xs flex items-center gap-1 shadow-lg border border-gray-200 dark:border-gray-700 cursor-pointer"
             >
               <Edit2 size={12} />
             </button>
@@ -401,7 +401,7 @@ const AnnotationLayer: React.FC<AnnotationLayerProps> = ({
               onDeleteAnnotation(selectedAnnotationId);
               onSelectAnnotation(null);
             }}
-            className="px-2 py-1 bg-white-600 hover:bg-white-700 text-black rounded text-xs flex items-center gap-1 shadow-lg border border-gray-200 dark:border-gray-700"
+            className="px-2 py-1 bg-white-600 hover:text-red-600 hover:bg-red-50 text-black rounded text-xs flex items-center gap-1 shadow-lg border border-gray-200 dark:border-gray-700 cursor-pointer"
           >
             <X size={12} />
           </button>

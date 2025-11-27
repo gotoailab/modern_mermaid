@@ -58,7 +58,7 @@ const Toolbar: React.FC<ToolbarProps> = ({
       <div className="relative">
         <button
           onClick={() => setIsThemeOpen(!isThemeOpen)}
-          className="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm transition-all"
+          className="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm transition-all cursor-pointer"
         >
           <Palette className="w-4 h-4" />
           <span>{themes[currentTheme].name}</span>
@@ -75,7 +75,7 @@ const Toolbar: React.FC<ToolbarProps> = ({
                     onThemeChange(themeKey);
                     setIsThemeOpen(false);
                   }}
-                  className={`block w-full text-left px-4 py-2 text-sm ${
+                  className={`block w-full text-left px-4 py-2 text-sm cursor-pointer ${
                     currentTheme === themeKey 
                       ? 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-400' 
                       : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700'
@@ -105,7 +105,7 @@ const Toolbar: React.FC<ToolbarProps> = ({
       <div className="relative">
         <button
           onClick={() => setIsAnnotationOpen(!isAnnotationOpen)}
-          className="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm transition-all"
+          className="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm transition-all cursor-pointer"
           title={t.annotations || '标注工具'}
         >
           <currentToolConfig.icon className="w-4 h-4" />
@@ -132,7 +132,7 @@ const Toolbar: React.FC<ToolbarProps> = ({
                       onSelectTool(tool.id);
                       setIsAnnotationOpen(false);
                     }}
-                    className={`flex items-center gap-2 w-full text-left px-4 py-2 text-sm ${
+                    className={`flex items-center gap-2 w-full text-left px-4 py-2 text-sm cursor-pointer ${
                       isSelected 
                         ? 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-400' 
                         : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700'
@@ -152,7 +152,7 @@ const Toolbar: React.FC<ToolbarProps> = ({
                       onClearAnnotations();
                       setIsAnnotationOpen(false);
                     }}
-                    className="flex items-center gap-2 w-full text-left px-4 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20"
+                    className="flex items-center gap-2 w-full text-left px-4 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 cursor-pointer"
                   >
                     <Trash2 className="w-4 h-4" />
                     <span>{t.clearAll || '清空'}</span>
@@ -168,7 +168,7 @@ const Toolbar: React.FC<ToolbarProps> = ({
       <div className="relative">
         <button
           onClick={() => setIsDownloadOpen(!isDownloadOpen)}
-          className="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-white bg-indigo-600 dark:bg-indigo-500 hover:bg-indigo-700 dark:hover:bg-indigo-600 border border-transparent rounded-md shadow-sm transition-all"
+          className="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-white bg-indigo-600 dark:bg-indigo-500 hover:bg-indigo-700 dark:hover:bg-indigo-600 border border-transparent rounded-md shadow-sm transition-all cursor-pointer"
         >
           <Download className="w-4 h-4" />
           <span>{t.export}</span>
@@ -180,7 +180,7 @@ const Toolbar: React.FC<ToolbarProps> = ({
            <div className="absolute right-0 mt-2 w-56 bg-white dark:bg-gray-800 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 dark:ring-gray-700 z-[70] py-1 max-h-80 overflow-y-auto">
              <button
                onClick={() => { onDownload(false); setIsDownloadOpen(false); }}
-               className="flex items-center gap-3 w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700"
+               className="flex items-center gap-3 w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer"
              >
                <Image className="w-4 h-4 text-gray-500 dark:text-gray-400" />
                <div>
@@ -190,7 +190,7 @@ const Toolbar: React.FC<ToolbarProps> = ({
              </button>
              <button
                onClick={() => { onDownload(true); setIsDownloadOpen(false); }}
-               className="flex items-center gap-3 w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700"
+               className="flex items-center gap-3 w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer"
              >
                <FileImage className="w-4 h-4 text-gray-500 dark:text-gray-400" />
                <div>

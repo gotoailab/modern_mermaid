@@ -25,14 +25,14 @@ const AnnotationColorPicker: React.FC<AnnotationColorPickerProps> = ({
 
   // 常用标注颜色
   const presetColors = [
-    { value: '#EF4444', name: t.red || '红色' },
-    { value: '#F97316', name: t.orange || '橙色' },
-    { value: '#EAB308', name: t.yellow || '黄色' },
+    { value: '#ec6f6f', name: t.red || '红色' },
+    { value: '#f99157', name: t.orange || '橙色' },
+    { value: '#f9c74f', name: t.yellow || '黄色' },
     { value: '#22C55E', name: t.green || '绿色' },
-    { value: '#3B82F6', name: t.blue || '蓝色' },
-    { value: '#8B5CF6', name: t.purple || '紫色' },
-    { value: '#EC4899', name: t.pink || '粉色' },
-    { value: '#6B7280', name: t.gray || '灰色' },
+    { value: '#5c9ee6', name: t.blue || '蓝色' },
+    { value: '#b56fbe', name: t.purple || '紫色' },
+    { value: '#f8c1b0', name: t.pink || '粉色' },
+    { value: '#c2c2c2', name: t.gray || '灰色' },
   ];
 
   return (
@@ -63,7 +63,7 @@ const AnnotationColorPicker: React.FC<AnnotationColorPickerProps> = ({
             <button
               key={color.value}
               onClick={() => handleSelectColor(color.value)}
-              className={`w-8 h-8 rounded-md border-2 transition-all hover:scale-110 ${
+              className={`w-8 h-8 rounded-md border-2 transition-all hover:scale-110 cursor-pointer ${
                 currentColor === color.value 
                   ? 'border-gray-900 dark:border-gray-100 ring-2 ring-offset-2 ring-indigo-500' 
                   : 'border-gray-200 dark:border-gray-600 hover:border-gray-400 dark:hover:border-gray-500'
@@ -91,7 +91,7 @@ const AnnotationColorPicker: React.FC<AnnotationColorPickerProps> = ({
           />
           <button
             onClick={() => handleSelectColor(customColor)}
-            className="px-3 py-1 bg-indigo-600 dark:bg-indigo-500 text-white text-sm font-medium rounded hover:bg-indigo-700 dark:hover:bg-indigo-600 transition-colors"
+            className="px-3 py-1 bg-indigo-600 dark:bg-indigo-500 text-white text-sm font-medium rounded hover:bg-indigo-700 dark:hover:bg-indigo-600 transition-colors cursor-pointer"
           >
             ✓
           </button>

@@ -18,7 +18,7 @@ const Header = () => {
       <div className="flex items-center gap-3">
         <button
           onClick={toggleDarkMode}
-          className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+          className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors cursor-pointer"
           aria-label="Toggle dark mode"
         >
           {isDarkMode ? (

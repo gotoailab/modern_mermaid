@@ -856,28 +856,28 @@ const Preview = forwardRef<PreviewHandle, PreviewProps>(({ code, themeConfig, cu
        <div className="absolute top-4 left-4 flex flex-col gap-2 z-20">
          <button
            onClick={handleZoomIn}
-          className="p-2 bg-white/90 dark:bg-gray-800/90 hover:bg-white dark:hover:bg-gray-800 rounded-lg shadow-md transition-colors"
+          className="p-2 bg-white/90 dark:bg-gray-800/90 hover:bg-white dark:hover:bg-gray-800 rounded-lg shadow-md transition-colors cursor-pointer"
            title={t.zoomIn}
          >
           <ZoomIn size={20} className="text-gray-700 dark:text-gray-300" />
          </button>
          <button
            onClick={handleZoomOut}
-          className="p-2 bg-white/90 dark:bg-gray-800/90 hover:bg-white dark:hover:bg-gray-800 rounded-lg shadow-md transition-colors"
+          className="p-2 bg-white/90 dark:bg-gray-800/90 hover:bg-white dark:hover:bg-gray-800 rounded-lg shadow-md transition-colors cursor-pointer"
            title={t.zoomOut}
          >
           <ZoomOut size={20} className="text-gray-700 dark:text-gray-300" />
          </button>
          <button
            onClick={handleResetZoom}
-          className="p-2 bg-white/90 dark:bg-gray-800/90 hover:bg-white dark:hover:bg-gray-800 rounded-lg shadow-md transition-colors"
+          className="p-2 bg-white/90 dark:bg-gray-800/90 hover:bg-white dark:hover:bg-gray-800 rounded-lg shadow-md transition-colors cursor-pointer"
            title={t.resetView}
          >
           <Target size={20} className="text-gray-700 dark:text-gray-300" />
         </button>
         <button
           onClick={onToggleFullscreen}
-          className="p-2 bg-white/90 dark:bg-gray-800/90 hover:bg-white dark:hover:bg-gray-800 rounded-lg shadow-md transition-colors"
+          className="p-2 bg-white/90 dark:bg-gray-800/90 hover:bg-white dark:hover:bg-gray-800 rounded-lg shadow-md transition-colors cursor-pointer"
           title={isFullscreen ? t.exitFullscreen || '退出全屏' : t.enterFullscreen || '进入全屏'}
         >
           <Maximize2 size={20} className="text-gray-700 dark:text-gray-300" />

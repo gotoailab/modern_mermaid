@@ -52,7 +52,7 @@ const ExampleSelector: React.FC<ExampleSelectorProps> = ({ onSelectExample }) =>
     <div className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm transition-all max-w-xs"
+        className="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm transition-all max-w-xs cursor-pointer"
         title={t.selectExample}
       >
         <FileText className="w-4 h-4 flex-shrink-0" />
@@ -68,7 +68,7 @@ const ExampleSelector: React.FC<ExampleSelectorProps> = ({ onSelectExample }) =>
               <div key={category}>
                 <button
                   onClick={() => handleCategoryClick(category)}
-                  className="w-full text-left px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 flex items-center justify-between"
+                  className="w-full text-left px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 flex items-center justify-between cursor-pointer"
                 >
                   <span>{getCategoryName(category, language)}</span>
                   <ChevronDown 
@@ -84,7 +84,7 @@ const ExampleSelector: React.FC<ExampleSelectorProps> = ({ onSelectExample }) =>
                       <button
                         key={example.id}
                         onClick={() => handleExampleClick(category, index)}
-                        className="w-full text-left px-8 py-2 text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-gray-100"
+                        className="w-full text-left px-8 py-2 text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-gray-100 cursor-pointer"
                       >
                         {example.name[language]}
                       </button>
