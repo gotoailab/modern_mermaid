@@ -21,3 +21,14 @@ body {
   padding: 0;
   min-height: 100vh;
 }
+
+/* 隐藏 Mermaid 渲染的错误信息 */
+.mermaid-error,
+.error,
+[id^="mermaid-"] .error,
+[class*="error-text"],
+[class*="error-icon"],
+text[class*="error"],
+g[class*="error"] {
+  display: none !important;
+}

@@ -24,6 +24,7 @@ export interface PreviewHandle {
 mermaid.initialize({
   startOnLoad: false,
   securityLevel: 'loose',
+  suppressErrorRendering: true, // 隐藏错误渲染到 DOM
 });
 
 const Preview = forwardRef<PreviewHandle, PreviewProps>(({ code, themeConfig, customBackground, customFont, onCodeChange }, ref) => {
@@ -445,6 +446,7 @@ const Preview = forwardRef<PreviewHandle, PreviewProps>(({ code, themeConfig, cu
 
         mermaid.initialize({
             startOnLoad: false,
+            suppressErrorRendering: true,
             ...configWithFont,
         });
 

@@ -19,6 +19,7 @@ export const exampleCategories = {
   gantt: 'gantt',
   pie: 'pie',
   git: 'git',
+  chart: 'chart',
 } as const;
 
 export type ExampleCategory = keyof typeof exampleCategories;
@@ -895,6 +896,177 @@ export const examples: Record<ExampleCategory, Example[]> = {
     checkout main
     merge hotfix
     commit id: "リリースv1.0.1"`,
+        'es': `gitGraph
+    commit id: "Commit inicial"
+    branch develop
+    checkout develop
+    commit id: "Añadir función A"
+    commit id: "Añadir función B"
+    checkout main
+    merge develop
+    commit id: "Lanzamiento v1.0"
+    branch hotfix
+    commit id: "Corregir error crítico"
+    checkout main
+    merge hotfix
+    commit id: "Lanzamiento v1.0.1"`,
+        'pt': `gitGraph
+    commit id: "Commit inicial"
+    branch develop
+    checkout develop
+    commit id: "Adicionar função A"
+    commit id: "Adicionar função B"
+    checkout main
+    merge develop
+    commit id: "Lançamento v1.0"
+    branch hotfix
+    commit id: "Corrigir bug crítico"
+    checkout main
+    merge hotfix
+    commit id: "Lançamento v1.0.1"`,
+      },
+    },
+  ],
+  chart: [
+    {
+      id: 'chart-line',
+      name: {
+        'en': 'Line Chart - Sales Trend',
+        'zh-CN': '折线图 - 销售趋势',
+        'zh-TW': '折線圖 - 銷售趨勢',
+        'ja': '折れ線グラフ - 売上トレンド',
+        'es': 'Gráfico de Líneas - Tendencia de Ventas',
+        'pt': 'Gráfico de Linhas - Tendência de Vendas',
+      },
+      code: {
+        'en': `xychart-beta
+    title "Monthly Sales Trend"
+    x-axis [jan, feb, mar, apr, may, jun, jul, aug, sep, oct, nov, dec]
+    y-axis "Revenue ($K)" 0 --> 120
+    line [30, 45, 55, 48, 70, 85, 78, 92, 88, 95, 105, 120]`,
+        'zh-CN': `xychart-beta
+    title "月度销售趋势"
+    x-axis ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"]
+    y-axis "销售额 (千美元)" 0 --> 120
+    line [30, 45, 55, 48, 70, 85, 78, 92, 88, 95, 105, 120]`,
+        'zh-TW': `xychart-beta
+    title "月度銷售趨勢"
+    x-axis ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"]
+    y-axis "銷售額 (千美元)" 0 --> 120
+    line [30, 45, 55, 48, 70, 85, 78, 92, 88, 95, 105, 120]`,
+        'ja': `xychart-beta
+    title "月次売上トレンド"
+    x-axis ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"]
+    y-axis "売上 (千米ドル)" 0 --> 120
+    line [30, 45, 55, 48, 70, 85, 78, 92, 88, 95, 105, 120]`,
+        'es': `xychart-beta
+    title "Tendencia de Ventas Mensuales"
+    x-axis [ene, feb, mar, abr, may, jun, jul, ago, sep, oct, nov, dic]
+    y-axis "Ventas ($K)" 0 --> 120
+    line [30, 45, 55, 48, 70, 85, 78, 92, 88, 95, 105, 120]`,
+        'pt': `xychart-beta
+    title "Tendência de Vendas Mensais"
+    x-axis [jan, fev, mar, abr, mai, jun, jul, ago, set, out, nov, dez]
+    y-axis "Vendas ($K)" 0 --> 120
+    line [30, 45, 55, 48, 70, 85, 78, 92, 88, 95, 105, 120]`,
+      },
+    },
+    {
+      id: 'chart-bar',
+      name: {
+        'en': 'Bar Chart - Quarterly Revenue',
+        'zh-CN': '柱状图 - 季度收入',
+        'zh-TW': '柱狀圖 - 季度收入',
+        'ja': '棒グラフ - 四半期収益',
+        'es': 'Gráfico de Barras - Ingresos Trimestrales',
+        'pt': 'Gráfico de Barras - Receita Trimestral',
+      },
+      code: {
+        'en': `xychart-beta
+    title "Quarterly Revenue Comparison"
+    x-axis [Q1, Q2, Q3, Q4]
+    y-axis "Revenue ($M)" 0 --> 150
+    bar [65, 95, 120, 140]`,
+        'zh-CN': `xychart-beta
+    title "季度收入对比"
+    x-axis ["第一季度", "第二季度", "第三季度", "第四季度"]
+    y-axis "收入 (百万美元)" 0 --> 150
+    bar [65, 95, 120, 140]`,
+        'zh-TW': `xychart-beta
+    title "季度收入對比"
+    x-axis ["第一季度", "第二季度", "第三季度", "第四季度"]
+    y-axis "收入 (百萬美元)" 0 --> 150
+    bar [65, 95, 120, 140]`,
+        'ja': `xychart-beta
+    title "四半期収益比較"
+    x-axis [Q1, Q2, Q3, Q4]
+    y-axis "収益 (百万米ドル)" 0 --> 150
+    bar [65, 95, 120, 140]`,
+        'es': `xychart-beta
+    title "Comparación de Ingresos Trimestrales"
+    x-axis [T1, T2, T3, T4]
+    y-axis "Ingresos ($M)" 0 --> 150
+    bar [65, 95, 120, 140]`,
+        'pt': `xychart-beta
+    title "Comparação de Receita Trimestral"
+    x-axis [T1, T2, T3, T4]
+    y-axis "Receita ($M)" 0 --> 150
+    bar [65, 95, 120, 140]`,
+      },
+    },
+    {
+      id: 'chart-multi',
+      name: {
+        'en': 'Multi-Series Chart - Product Comparison',
+        'zh-CN': '多系列图表 - 产品对比',
+        'zh-TW': '多系列圖表 - 產品對比',
+        'ja': '複数系列グラフ - 製品比較',
+        'es': 'Gráfico Multi-Series - Comparación de Productos',
+        'pt': 'Gráfico Multi-Séries - Comparação de Produtos',
+      },
+      code: {
+        'en': `xychart-beta
+    title "Product Sales Comparison"
+    x-axis [jan, feb, mar, apr, may, jun]
+    y-axis "Sales Units" 0 --> 200
+    line "Product A" [50, 80, 120, 100, 150, 170]
+    line "Product B" [30, 60, 90, 110, 130, 145]
+    bar "Product C" [40, 70, 85, 95, 105, 115]`,
+        'zh-CN': `xychart-beta
+    title "产品销量对比"
+    x-axis ["1月", "2月", "3月", "4月", "5月", "6月"]
+    y-axis "销量" 0 --> 200
+    line "产品A" [50, 80, 120, 100, 150, 170]
+    line "产品B" [30, 60, 90, 110, 130, 145]
+    bar "产品C" [40, 70, 85, 95, 105, 115]`,
+        'zh-TW': `xychart-beta
+    title "產品銷量對比"
+    x-axis ["1月", "2月", "3月", "4月", "5月", "6月"]
+    y-axis "銷量" 0 --> 200
+    line "產品A" [50, 80, 120, 100, 150, 170]
+    line "產品B" [30, 60, 90, 110, 130, 145]
+    bar "產品C" [40, 70, 85, 95, 105, 115]`,
+        'ja': `xychart-beta
+    title "製品売上比較"
+    x-axis ["1月", "2月", "3月", "4月", "5月", "6月"]
+    y-axis "販売数" 0 --> 200
+    line "製品A" [50, 80, 120, 100, 150, 170]
+    line "製品B" [30, 60, 90, 110, 130, 145]
+    bar "製品C" [40, 70, 85, 95, 105, 115]`,
+        'es': `xychart-beta
+    title "Comparación de Ventas de Productos"
+    x-axis [ene, feb, mar, abr, may, jun]
+    y-axis "Unidades Vendidas" 0 --> 200
+    line "Producto A" [50, 80, 120, 100, 150, 170]
+    line "Producto B" [30, 60, 90, 110, 130, 145]
+    bar "Producto C" [40, 70, 85, 95, 105, 115]`,
+        'pt': `xychart-beta
+    title "Comparação de Vendas de Produtos"
+    x-axis [jan, fev, mar, abr, mai, jun]
+    y-axis "Unidades Vendidas" 0 --> 200
+    line "Produto A" [50, 80, 120, 100, 150, 170]
+    line "Produto B" [30, 60, 90, 110, 130, 145]
+    bar "Produto C" [40, 70, 85, 95, 105, 115]`,
       },
     },
   ],
@@ -907,48 +1079,72 @@ export const getCategoryName = (category: ExampleCategory, lang: Language): stri
       'zh-CN': '流程图',
       'zh-TW': '流程圖',
       'ja': 'フローチャート',
+      'es': 'Diagrama de Flujo',
+      'pt': 'Fluxograma',
     },
     sequence: {
       'en': 'Sequence Diagram',
       'zh-CN': '时序图',
       'zh-TW': '時序圖',
       'ja': 'シーケンス図',
+      'es': 'Diagrama de Secuencia',
+      'pt': 'Diagrama de Sequência',
     },
     class: {
       'en': 'Class Diagram',
       'zh-CN': '类图',
       'zh-TW': '類別圖',
       'ja': 'クラス図',
+      'es': 'Diagrama de Clases',
+      'pt': 'Diagrama de Classes',
     },
     state: {
       'en': 'State Diagram',
       'zh-CN': '状态图',
       'zh-TW': '狀態圖',
       'ja': 'ステート図',
+      'es': 'Diagrama de Estados',
+      'pt': 'Diagrama de Estados',
     },
     er: {
       'en': 'ER Diagram',
       'zh-CN': '实体关系图',
       'zh-TW': '實體關係圖',
       'ja': 'ER図',
+      'es': 'Diagrama ER',
+      'pt': 'Diagrama ER',
     },
     gantt: {
       'en': 'Gantt Chart',
       'zh-CN': '甘特图',
       'zh-TW': '甘特圖',
       'ja': 'ガントチャート',
+      'es': 'Diagrama de Gantt',
+      'pt': 'Gráfico de Gantt',
     },
     pie: {
       'en': 'Pie Chart',
       'zh-CN': '饼图',
       'zh-TW': '圓餅圖',
       'ja': '円グラフ',
+      'es': 'Gráfico Circular',
+      'pt': 'Gráfico de Pizza',
     },
     git: {
       'en': 'Git Graph',
       'zh-CN': 'Git 图',
       'zh-TW': 'Git 圖',
       'ja': 'Git グラフ',
+      'es': 'Gráfico Git',
+      'pt': 'Gráfico Git',
+    },
+    chart: {
+      'en': 'Line & Bar Charts',
+      'zh-CN': '折线图与柱状图',
+      'zh-TW': '折線圖與柱狀圖',
+      'ja': '折れ線・棒グラフ',
+      'es': 'Gráficos de Líneas y Barras',
+      'pt': 'Gráficos de Linhas e Barras',
     },
   };
   

@@ -388,7 +388,7 @@ export const themes: Record<ThemeType, ThemeConfig> = {
         /* Message text - softer color */
         .messageText {
             fill: #8B7355 !important;
-            font-family: "Noto Serif SC", "Noto Sans SC", serif;
+            font-family: "Open Sans", "Noto Sans SC", sans-serif;
             font-weight: 500;
         }
         /* Sequence diagram arrows - match message line color */
@@ -406,7 +406,7 @@ export const themes: Record<ThemeType, ThemeConfig> = {
         }
         .noteText {
             fill: #8B7355 !important;
-            font-family: "Noto Serif SC", "Noto Sans SC", serif;
+            font-family: "Open Sans", "Noto Sans SC", sans-serif;
             font-weight: 500;
         }
         /* Loop/Alt/Opt boxes */
@@ -419,7 +419,7 @@ export const themes: Record<ThemeType, ThemeConfig> = {
         }
         .labelText, .loopText {
             fill: #6B5B4F !important;
-            font-family: "Noto Serif SC", "Noto Sans SC", serif;
+            font-family: "Open Sans", "Noto Sans SC", sans-serif;
             font-weight: 600;
         }
         .loopLine {
