@@ -66,6 +66,18 @@ const Toolbar: React.FC<ToolbarProps> = ({
         )}
       </div>
 
+      {/* Background Selector */}
+      <BackgroundSelector
+        selectedId={selectedBackground}
+        onSelectBackground={onBackgroundChange}
+      />
+
+      {/* Font Selector */}
+      <FontSelector
+        selectedId={selectedFont}
+        onSelectFont={onFontChange}
+      />
+
       {/* Download Button */}
       <div className="relative">
         <button
@@ -103,19 +115,7 @@ const Toolbar: React.FC<ToolbarProps> = ({
            </div>
          </>
         )}
-      </div>
-
-      {/* Background Selector */}
-      <BackgroundSelector 
-        selectedId={selectedBackground} 
-        onSelectBackground={onBackgroundChange} 
-      />
-
-      {/* Font Selector */}
-      <FontSelector 
-        selectedId={selectedFont} 
-        onSelectFont={onFontChange} 
-      />
+      </div>      
     </div>
   );
 };

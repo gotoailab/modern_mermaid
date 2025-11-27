@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Palette } from 'lucide-react';
+import { Wallpaper } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { backgrounds, type BackgroundStyle } from '../utils/backgrounds';
 
@@ -21,7 +21,7 @@ const BackgroundSelector: React.FC<BackgroundSelectorProps> = ({ selectedId, onS
         className="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 border border-gray-300 rounded-md shadow-sm transition-all"
         title={t.selectBackground}
       >
-        <Palette className="w-4 h-4" />
+        <Wallpaper className="w-4 h-4" />
         <span className="hidden sm:inline">{selectedBg.name[language]}</span>
       </button>
 

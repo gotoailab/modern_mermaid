@@ -59,12 +59,24 @@ const Preview = forwardRef<PreviewHandle, PreviewProps>(({ code, themeConfig, cu
     setPosition({ x: 0, y: 0 });
   };
 
-  // 滚轮缩放
-  const handleWheel = (e: React.WheelEvent) => {
-    e.preventDefault();
-    const delta = e.deltaY > 0 ? -0.1 : 0.1;
-    setScale(prev => Math.max(0.5, Math.min(5, prev + delta)));
-  };
+  // 滚轮缩放 - 使用 useEffect 添加原生事件监听器
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const handleWheel = (e: WheelEvent) => {
+      e.preventDefault();
+      const delta = e.deltaY > 0 ? -0.1 : 0.1;
+      setScale(prev => Math.max(0.5, Math.min(5, prev + delta)));
+    };
+
+    // 添加事件监听器，设置 passive: false 以允许 preventDefault
+    container.addEventListener('wheel', handleWheel, { passive: false });
+
+    return () => {
+      container.removeEventListener('wheel', handleWheel);
+    };
+  }, []);
 
   // 拖动开始
   const handleMouseDown = (e: React.MouseEvent) => {
@@ -311,7 +323,6 @@ const Preview = forwardRef<PreviewHandle, PreviewProps>(({ code, themeConfig, cu
         className={`flex-1 overflow-hidden flex relative transition-colors duration-300 ${actualBg}`} 
         style={actualBgStyle}
         ref={containerRef}
-        onWheel={handleWheel}
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
