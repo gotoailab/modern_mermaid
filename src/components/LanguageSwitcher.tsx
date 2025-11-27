@@ -29,7 +29,7 @@ const LanguageSwitcher: React.FC = () => {
       {isOpen && (
         <>
           <div className="fixed inset-0 z-10" onClick={() => setIsOpen(false)} />
-          <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 z-20 py-1">
+          <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 z-20 py-1 max-h-80 overflow-y-auto">
             {languages.map((lang) => (
               <button
                 key={lang.code}

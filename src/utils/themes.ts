@@ -448,17 +448,23 @@ export const themes: Record<ThemeType, ThemeConfig> = {
       themeVariables: {
         background: '#EFF1F5',
         primaryColor: '#73D1C8', // Teal
-        primaryTextColor: '#ffffff',
+          primaryTextColor: '#2D3748', // Dark grey for better visibility
         primaryBorderColor: '#73D1C8', // Use teal for borders/lifelines
         secondaryColor: '#FCD34D', // Yellow
         secondaryTextColor: '#4B5563',
         tertiaryColor: '#5D6D7E', // Grey
-        tertiaryTextColor: '#ffffff',
+          tertiaryTextColor: '#2D3748', // Dark grey for better visibility
         lineColor: '#566573', // Dark Grey Lines
         fontFamily: '"JetBrains Mono", "Noto Sans SC", monospace',
         fontSize: '15px',
       },
       themeCSS: `
+        /* Global text styling - ensure titles and legends are dark */
+        .titleText, .sectionTitle, .taskText, .taskTextOutsideRight, .taskTextOutsideLeft,
+        .legendText, text.actor, .pieTitleText, text.legend, text.loopText {
+            fill: #2D3748 !important;
+        }
+
         /* Flowchart Node Styling - Increased Shadow */
         .node rect, .node circle, .node polygon {
             stroke: none !important;
@@ -578,6 +584,32 @@ export const themes: Record<ThemeType, ThemeConfig> = {
             stroke-width: 3px !important;
             stroke-dasharray: 8 5;
             stroke-linecap: round;
+        }
+
+        /* Ensure all diagram types have dark text for titles and legends */
+        /* Gantt chart */
+        .grid .tick text {
+            fill: #2D3748 !important;
+        }
+        /* Pie chart */
+        .slice text {
+            fill: #2D3748 !important;
+        }
+        /* Git graph */
+        .commit-label {
+            fill: #2D3748 !important;
+        }
+        /* ER Diagram */
+        .er.entityLabel, .er.relationshipLabel {
+            fill: #2D3748 !important;
+        }
+        /* State Diagram */
+        .stateLabel .label-text {
+            fill: #2D3748 !important;
+        }
+        /* Class Diagram */
+        .classLabel .label {
+            fill: #2D3748 !important;
         }
       `
     },

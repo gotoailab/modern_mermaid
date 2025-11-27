@@ -10,6 +10,12 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+html {
+  /* 保持稳定的滚动条空间，避免内容宽度变化 */
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
+}
+
 body {
   margin: 0;
   padding: 0;
