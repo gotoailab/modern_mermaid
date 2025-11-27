@@ -120,14 +120,8 @@ const Preview = forwardRef<PreviewHandle, PreviewProps>(({ code, themeConfig, cu
     return { x: svgX, y: svgY };
   };
 
-  // 标注工具 - 开始绘制或选择
-  const handleAnnotationMouseDown = (e: React.MouseEvent<SVGSVGElement>) => {
-    // 如果是选择模式且点击的是 SVG 背景（不是标注元素），取消选择
-    if (selectedTool === 'select' && e.target === e.currentTarget) {
-      setSelectedAnnotationId(null);
-      return;
-    }
-
+  // 标注工具 - 开始绘制
+  const handleAnnotationMouseDown = (e: React.MouseEvent) => {
     if (!selectedTool || selectedTool === 'select') return;
 
     const coords = screenToSVGCoords(e.clientX, e.clientY);
@@ -159,7 +153,7 @@ const Preview = forwardRef<PreviewHandle, PreviewProps>(({ code, themeConfig, cu
   };
 
   // 标注工具 - 绘制中
-  const handleAnnotationMouseMove = (e: React.MouseEvent<SVGSVGElement>) => {
+  const handleAnnotationMouseMove = (e: React.MouseEvent) => {
     if (!isDrawing || !drawStart) return;
 
     const coords = screenToSVGCoords(e.clientX, e.clientY);
@@ -169,7 +163,7 @@ const Preview = forwardRef<PreviewHandle, PreviewProps>(({ code, themeConfig, cu
   };
 
   // 标注工具 - 完成绘制
-  const handleAnnotationMouseUp = (e: React.MouseEvent<SVGSVGElement>) => {
+  const handleAnnotationMouseUp = (e: React.MouseEvent) => {
     if (!isDrawing || !drawStart || !selectedTool || selectedTool === 'select') {
       setIsDrawing(false);
       setDrawStart(null);
@@ -347,6 +341,11 @@ const Preview = forwardRef<PreviewHandle, PreviewProps>(({ code, themeConfig, cu
   const handleContextMenu = (e: React.MouseEvent) => {
     e.preventDefault();
     
+    // 取消标注选择（如果有）
+    if (selectedAnnotationId) {
+      setSelectedAnnotationId(null);
+    }
+
     const target = e.target as HTMLElement;
     
     // 查找被点击的节点元素
@@ -883,6 +882,12 @@ const Preview = forwardRef<PreviewHandle, PreviewProps>(({ code, themeConfig, cu
            ref={contentRef}
            className="p-12"
            onContextMenu={handleContextMenu}
+          onClick={() => {
+            // 点击 Mermaid 图表时取消标注选择
+            if (selectedAnnotationId && selectedTool === 'select') {
+              setSelectedAnnotationId(null);
+            }
+          }}
            style={{
              transform: `translate(${position.x}px, ${position.y}px) scale(${scale})`,
              transformOrigin: 'center',
@@ -892,18 +897,50 @@ const Preview = forwardRef<PreviewHandle, PreviewProps>(({ code, themeConfig, cu
            dangerouslySetInnerHTML={{ __html: svg }} 
          />
 
+        {/* 取消选择的点击层 - 只捕获左键点击 */}
+        {selectedTool === 'select' && selectedAnnotationId && (
+          <div
+            className="absolute inset-0 w-full h-full"
+            style={{ pointerEvents: 'auto', cursor: 'default' }}
+            onClick={(e) => {
+              // 只处理直接点击此层的事件
+              if (e.target === e.currentTarget) {
+                setSelectedAnnotationId(null);
+              }
+            }}
+            onMouseDown={(e) => {
+              // 只处理左键
+              if (e.button === 0 && e.target === e.currentTarget) {
+                // 不阻止事件传播，让画布拖动仍然可以工作
+              }
+            }}
+          />
+        )}
+
         {/* 标注覆盖层 */}
         <svg
           ref={svgOverlayRef}
           className="absolute inset-0 w-full h-full"
           style={{
             cursor: selectedTool && selectedTool !== 'select' ? 'crosshair' : 'inherit',
-            pointerEvents: selectedTool && selectedTool !== 'select' ? 'auto' : 'none',
+            pointerEvents: 'none',
           }}
-          onMouseDown={handleAnnotationMouseDown}
-          onMouseMove={handleAnnotationMouseMove}
-          onMouseUp={handleAnnotationMouseUp}
         >
+          {/* 背景捕获层 - 只在绘制模式下捕获事件 */}
+          <rect
+            x="0"
+            y="0"
+            width="100%"
+            height="100%"
+            fill="transparent"
+            style={{
+              pointerEvents: selectedTool && selectedTool !== 'select' ? 'auto' : 'none',
+            }}
+            onMouseDown={handleAnnotationMouseDown}
+            onMouseMove={handleAnnotationMouseMove}
+            onMouseUp={handleAnnotationMouseUp}
+          />
+
           <g
             transform={`translate(${containerRef.current ? containerRef.current.offsetWidth / 2 : 0}, ${containerRef.current ? containerRef.current.offsetHeight / 2 : 0})`}
           >
