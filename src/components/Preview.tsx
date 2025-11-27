@@ -8,6 +8,7 @@ import type { FontOption } from '../utils/fonts';
 import { useLanguage } from '../contexts/LanguageContext';
 import ColorPicker from './ColorPicker';
 import AnnotationLayer from './AnnotationLayer';
+import AnnotationColorPicker from './AnnotationColorPicker';
 import type { Annotation, AnnotationType, Point } from '../types/annotation';
 
 interface PreviewProps {
@@ -57,6 +58,8 @@ const Preview = forwardRef<PreviewHandle, PreviewProps>(({ code, themeConfig, cu
   const [drawStart, setDrawStart] = useState<Point | null>(null);
   const [currentMousePos, setCurrentMousePos] = useState<Point | null>(null);
   const [selectedAnnotationId, setSelectedAnnotationId] = useState<string | null>(null);
+  const [showAnnotationColorPicker, setShowAnnotationColorPicker] = useState(false);
+  const [annotationColorPickerPos, setAnnotationColorPickerPos] = useState({ x: 0, y: 0 });
   const svgOverlayRef = useRef<SVGSVGElement>(null);
 
   // Determine actual background and font to use
@@ -309,6 +312,20 @@ const Preview = forwardRef<PreviewHandle, PreviewProps>(({ code, themeConfig, cu
   // 删除标注
   const handleDeleteAnnotation = (id: string) => {
     setAnnotations(prev => prev.filter(a => a.id !== id));
+  };
+
+  // 显示标注颜色选择器
+  const handleShowAnnotationColorPicker = (position: { x: number; y: number }) => {
+    setAnnotationColorPickerPos(position);
+    setShowAnnotationColorPicker(true);
+  };
+
+  // 应用标注颜色
+  const handleApplyAnnotationColor = (color: string) => {
+    if (selectedAnnotationId) {
+      handleUpdateAnnotation(selectedAnnotationId, { color });
+      setShowAnnotationColorPicker(false);
+    }
   };
 
   // 拖动开始
@@ -955,6 +972,7 @@ const Preview = forwardRef<PreviewHandle, PreviewProps>(({ code, themeConfig, cu
                 position={position}
                 selectedAnnotationId={selectedAnnotationId}
                 onSelectAnnotation={setSelectedAnnotationId}
+                onShowColorPicker={handleShowAnnotationColorPicker}
               />
 
               {/* 绘制中的实时预览 */}
@@ -1058,7 +1076,7 @@ const Preview = forwardRef<PreviewHandle, PreviewProps>(({ code, themeConfig, cu
         </svg>
        </div>
        
-       {/* 颜色选择器 */}
+      {/* 节点颜色选择器 */}
        {showColorPicker && (
          <ColorPicker
            position={colorPickerPos}
@@ -1067,6 +1085,16 @@ const Preview = forwardRef<PreviewHandle, PreviewProps>(({ code, themeConfig, cu
            onSelectColor={handleApplyColor}
          />
        )}
+
+      {/* 标注颜色选择器 */}
+      {showAnnotationColorPicker && selectedAnnotationId && (
+        <AnnotationColorPicker
+          position={annotationColorPickerPos}
+          currentColor={annotations.find(a => a.id === selectedAnnotationId)?.color || themeConfig.annotationColors.primary}
+          onSelectColor={handleApplyAnnotationColor}
+          onClose={() => setShowAnnotationColorPicker(false)}
+        />
+      )}
     </div>
   );
 });

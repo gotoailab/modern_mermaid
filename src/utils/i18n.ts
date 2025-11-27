@@ -73,6 +73,10 @@ export interface Translation {
   purple: string;
   pink: string;
   gray: string;
+  
+  // Fullscreen
+  enterFullscreen: string;
+  exitFullscreen: string;
 }
 
 export const translations: Record<Language, Translation> = {
@@ -149,6 +153,10 @@ export const translations: Record<Language, Translation> = {
     clearAll: 'Clear All',
     clearAnnotations: 'Clear Annotations',
     confirmClearAnnotations: 'Are you sure you want to clear all annotations?',
+    
+    // Fullscreen
+    enterFullscreen: 'Enter Fullscreen',
+    exitFullscreen: 'Exit Fullscreen',
   },
   'zh-CN': {
     // Header
@@ -223,6 +231,10 @@ export const translations: Record<Language, Translation> = {
     clearAll: '清空',
     clearAnnotations: '清空标注',
     confirmClearAnnotations: '确定要清空所有标注吗？',
+    
+    // Fullscreen
+    enterFullscreen: '进入全屏',
+    exitFullscreen: '退出全屏',
   },
   'zh-TW': {
     // Header
@@ -297,6 +309,10 @@ export const translations: Record<Language, Translation> = {
     clearAll: '清空',
     clearAnnotations: '清空標註',
     confirmClearAnnotations: '確定要清空所有標註嗎？',
+    
+    // Fullscreen
+    enterFullscreen: '進入全屏',
+    exitFullscreen: '退出全屏',
   },
   'ja': {
     // Header
@@ -519,6 +535,10 @@ export const translations: Record<Language, Translation> = {
     clearAll: 'Limpar tudo',
     clearAnnotations: 'Limpar anotações',
     confirmClearAnnotations: 'Tem certeza de que deseja limpar todas as anotações?',
+    
+    // Fullscreen
+    enterFullscreen: 'Tela cheia',
+    exitFullscreen: 'Sair da tela cheia',
   },
 };
 

@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { X, Edit2 } from 'lucide-react';
+import { X, Edit2, Palette } from 'lucide-react';
 import type { Annotation, Point, AnnotationType } from '../types/annotation';
 
 interface AnnotationLayerProps {
@@ -11,6 +11,7 @@ interface AnnotationLayerProps {
   position: Point;
   selectedAnnotationId: string | null;
   onSelectAnnotation: (id: string | null) => void;
+  onShowColorPicker: (position: { x: number; y: number }) => void;
 }
 
 const AnnotationLayer: React.FC<AnnotationLayerProps> = ({
@@ -21,7 +22,8 @@ const AnnotationLayer: React.FC<AnnotationLayerProps> = ({
   scale,
   position,
   selectedAnnotationId,
-  onSelectAnnotation
+  onSelectAnnotation,
+  onShowColorPicker
 }) => {
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState<Point>({ x: 0, y: 0 });
@@ -358,13 +360,29 @@ const AnnotationLayer: React.FC<AnnotationLayerProps> = ({
 
     return (
       <foreignObject
-        x={buttonX - 40}
+        x={buttonX - 60}
         y={buttonY - 15}
-        width="80"
+        width="120"
         height="30"
         style={{ pointerEvents: 'auto' }}
       >
         <div className="flex gap-1 justify-center">
+          {/* 颜色选择按钮 */}
+          <button
+            onClick={(e) => {
+              const rect = (e.target as HTMLElement).getBoundingClientRect();
+              onShowColorPicker({
+                x: rect.left + rect.width / 2,
+                y: rect.top
+              });
+            }}
+            className="px-2 py-1 bg-purple-600 hover:bg-purple-700 text-white rounded text-xs flex items-center gap-1 shadow-lg"
+            title="修改颜色"
+          >
+            <Palette size={12} />
+          </button>
+          
+          {/* 编辑按钮（仅文字） */}
           {annotation.type === 'text' && (
             <button
               onClick={() => {
@@ -376,6 +394,8 @@ const AnnotationLayer: React.FC<AnnotationLayerProps> = ({
               <Edit2 size={12} />
             </button>
           )}
+          
+          {/* 删除按钮 */}
           <button
             onClick={() => {
               onDeleteAnnotation(selectedAnnotationId);

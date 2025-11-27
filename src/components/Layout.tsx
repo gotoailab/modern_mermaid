@@ -5,13 +5,14 @@ import type { PreviewHandle } from './Preview';
 import Header from './Header';
 import Toolbar from './Toolbar';
 import ExampleSelector from './ExampleSelector';
+import ResizableDivider from './ResizableDivider';
 import { themes } from '../utils/themes';
 import type { ThemeType } from '../utils/themes';
 import { backgrounds, type BackgroundStyle } from '../utils/backgrounds';
 import { fonts, type FontOption } from '../utils/fonts';
 import type { AnnotationType } from '../types/annotation';
 import { useLanguage } from '../contexts/LanguageContext';
-import { Trash2, RefreshCw } from 'lucide-react';
+import { Trash2, RefreshCw, Maximize2 } from 'lucide-react';
 
 const Layout: React.FC = () => {
   const defaultCode = `graph TD
@@ -25,6 +26,8 @@ const Layout: React.FC = () => {
   const [selectedFont, setSelectedFont] = useState<FontOption>(fonts[0]);
   const [selectedTool, setSelectedTool] = useState<AnnotationType | 'select' | null>('select');
   const [annotationCount, setAnnotationCount] = useState<number>(0);
+  const [leftPanelWidth, setLeftPanelWidth] = useState<number>(50); // 默认 50%
+  const [isFullscreen, setIsFullscreen] = useState(false);
   const previewRef = useRef<PreviewHandle>(null);
   const { t } = useLanguage();
 
@@ -72,6 +75,26 @@ const Layout: React.FC = () => {
     setAnnotationCount(count);
   };
 
+  const handleResize = (width: number) => {
+    setLeftPanelWidth(width);
+  };
+
+  const handleToggleFullscreen = () => {
+    setIsFullscreen(!isFullscreen);
+  };
+
+  // ESC 键退出全屏
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isFullscreen) {
+        setIsFullscreen(false);
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [isFullscreen]);
+
   // Reset background and font when theme changes
   useEffect(() => {
     setSelectedBackground(backgrounds[0]); // Reset to default
@@ -80,10 +103,14 @@ const Layout: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 flex flex-col font-sans transition-colors duration-200">
-      <Header />
-      <main className="flex-1 flex flex-col md:flex-row overflow-hidden h-[calc(100vh-64px)]">
+      {!isFullscreen && <Header />}
+      <main className={`flex-1 flex flex-col md:flex-row overflow-hidden ${isFullscreen ? 'h-screen' : 'h-[calc(100vh-64px)]'}`}>
         {/* Left Pane: Editor */}
-        <div className="w-full md:w-1/2 border-r border-gray-200 dark:border-gray-700 flex flex-col bg-white dark:bg-gray-800 shadow-sm z-10">
+        {!isFullscreen && (
+          <div 
+            className="border-r border-gray-200 dark:border-gray-700 flex flex-col bg-white dark:bg-gray-800 shadow-sm z-10"
+            style={{ width: `${leftPanelWidth}%` }}
+          >
            <div className="p-4 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 font-semibold text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wider flex items-center justify-between">
              <div className="flex items-center gap-3">
                <span>{t.editor}</span>
@@ -111,10 +138,17 @@ const Layout: React.FC = () => {
            </div>
            <Editor code={code} onChange={setCode} />
         </div>
+        )}
+        
+        {/* 可拖动分割线 */}
+        {!isFullscreen && <ResizableDivider onResize={handleResize} />}
         
         {/* Right Pane: Preview */}
-        <div className="w-full md:w-1/2 bg-gray-50 dark:bg-gray-900 flex flex-col relative">
-           <div className="absolute top-4 right-4 z-10">
+        <div 
+          className="bg-gray-50 dark:bg-gray-900 flex flex-col relative"
+          style={{ width: isFullscreen ? '100%' : `${100 - leftPanelWidth}%` }}
+        >
+           <div className="absolute top-4 right-4 z-10 flex items-start gap-2">
               <Toolbar 
                 currentTheme={currentTheme} 
                 onThemeChange={setCurrentTheme}
@@ -128,6 +162,15 @@ const Layout: React.FC = () => {
                 onClearAnnotations={handleClearAnnotations}
                 annotationCount={annotationCount}
               />
+              
+              {/* 全屏按钮 */}
+              <button
+                onClick={handleToggleFullscreen}
+                className="p-3 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                title={isFullscreen ? t.exitFullscreen || '退出全屏' : t.enterFullscreen || '进入全屏'}
+              >
+                <Maximize2 className="w-5 h-5 text-gray-700 dark:text-gray-300" />
+              </button>
            </div>
            <Preview 
              ref={previewRef} 
