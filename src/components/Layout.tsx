@@ -10,13 +10,15 @@ import type { ThemeType } from '../utils/themes';
 import { backgrounds, type BackgroundStyle } from '../utils/backgrounds';
 import { fonts, type FontOption } from '../utils/fonts';
 import { useLanguage } from '../contexts/LanguageContext';
+import { Trash2, RefreshCw } from 'lucide-react';
 
 const Layout: React.FC = () => {
-  const [code, setCode] = useState<string>(`graph TD
+  const defaultCode = `graph TD
   A[Start] --> B{Is it working?}
   B -- Yes --> C[Great!]
-  B -- No --> D[Debug]`);
+  B -- No --> D[Debug]`;
   
+  const [code, setCode] = useState<string>(defaultCode);
   const [currentTheme, setCurrentTheme] = useState<ThemeType>('linearLight');
   const [selectedBackground, setSelectedBackground] = useState<BackgroundStyle>(backgrounds[0]);
   const [selectedFont, setSelectedFont] = useState<FontOption>(fonts[0]);
@@ -37,6 +39,18 @@ const Layout: React.FC = () => {
     setSelectedFont(font);
   };
 
+  // 清空编辑器
+  const handleClearEditor = () => {
+    if (confirm(t.confirmClear)) {
+      setCode('');
+    }
+  };
+
+  // 刷新编辑器（恢复到默认示例）
+  const handleRefreshEditor = () => {
+    setCode(defaultCode);
+  };
+
   // Reset background and font when theme changes
   useEffect(() => {
     setSelectedBackground(backgrounds[0]); // Reset to default
@@ -53,6 +67,24 @@ const Layout: React.FC = () => {
              <div className="flex items-center gap-3">
                <span>{t.editor}</span>
                <ExampleSelector onSelectExample={setCode} />
+               
+               {/* 清空和刷新按钮 */}
+               <div className="flex items-center gap-2">
+                 <button
+                   onClick={handleRefreshEditor}
+                   className="p-1.5 text-gray-500 hover:text-indigo-600 hover:bg-indigo-50 rounded transition-colors"
+                   title={t.refreshEditor}
+                 >
+                   <RefreshCw className="w-4 h-4" />
+                 </button>
+                 <button
+                   onClick={handleClearEditor}
+                   className="p-1.5 text-gray-500 hover:text-red-600 hover:bg-red-50 rounded transition-colors"
+                   title={t.clearEditor}
+                 >
+                   <Trash2 className="w-4 h-4" />
+                 </button>
+               </div>
              </div>
              <span className="text-[10px] bg-gray-100 px-2 py-1 rounded text-gray-400">{t.editorSubtitle}</span>
            </div>

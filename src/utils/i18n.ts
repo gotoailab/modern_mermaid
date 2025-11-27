@@ -1,4 +1,4 @@
-export type Language = 'en' | 'zh-CN' | 'zh-TW' | 'ja';
+export type Language = 'en' | 'zh-CN' | 'zh-TW' | 'ja' | 'es' | 'pt';
 
 export interface Translation {
   // Header
@@ -8,6 +8,9 @@ export interface Translation {
   // Editor
   editor: string;
   editorSubtitle: string;
+  clearEditor: string;
+  refreshEditor: string;
+  confirmClear: string;
   
   // Preview
   preview: string;
@@ -69,6 +72,9 @@ export const translations: Record<Language, Translation> = {
     // Editor
     editor: 'Editor',
     editorSubtitle: 'Mermaid Syntax',
+    clearEditor: 'Clear',
+    refreshEditor: 'Refresh',
+    confirmClear: 'Are you sure you want to clear the editor?',
     
     // Preview
     preview: 'Preview',
@@ -128,6 +134,9 @@ export const translations: Record<Language, Translation> = {
     // Editor
     editor: '编辑器',
     editorSubtitle: 'Mermaid 语法',
+    clearEditor: '清空',
+    refreshEditor: '刷新',
+    confirmClear: '确定要清空编辑器吗？',
     
     // Preview
     preview: '预览',
@@ -187,6 +196,9 @@ export const translations: Record<Language, Translation> = {
     // Editor
     editor: '編輯器',
     editorSubtitle: 'Mermaid 語法',
+    clearEditor: '清空',
+    refreshEditor: '刷新',
+    confirmClear: '確定要清空編輯器嗎？',
     
     // Preview
     preview: '預覽',
@@ -246,6 +258,9 @@ export const translations: Record<Language, Translation> = {
     // Editor
     editor: 'エディター',
     editorSubtitle: 'Mermaid 構文',
+    clearEditor: 'クリア',
+    refreshEditor: '更新',
+    confirmClear: 'エディターをクリアしてもよろしいですか？',
     
     // Preview
     preview: 'プレビュー',
@@ -296,6 +311,130 @@ export const translations: Record<Language, Translation> = {
     purple: '紫',
     pink: 'ピンク',
     gray: 'グレー',
+  },
+  'es': {
+    // Header
+    appTitle: 'Mermaid Avanzado',
+    share: 'Compartir',
+    
+    // Editor
+    editor: 'Editor',
+    editorSubtitle: 'Sintaxis de Mermaid',
+    clearEditor: 'Limpiar',
+    refreshEditor: 'Actualizar',
+    confirmClear: '¿Está seguro de que desea limpiar el editor?',
+    
+    // Preview
+    preview: 'Vista previa',
+    zoomIn: 'Acercar',
+    zoomOut: 'Alejar',
+    resetView: 'Restablecer vista',
+    dragToMove: 'Arrastrar para mover',
+    wheelToZoom: 'Rueda para zoom',
+    scrollZoom: 'Desplazar para zoom',
+    dragMove: 'Arrastrar para mover',
+    
+    // Toolbar
+    theme: 'Tema',
+    export: 'Exportar',
+    exportDesc: 'Exportar el diagrama como imagen',
+    withBackground: 'Con fondo',
+    withBackgroundDesc: 'JPG - Incluye color de fondo',
+    transparent: 'Fondo transparente',
+    transparentDesc: 'PNG - Fondo transparente',
+    
+    // Language
+    language: 'Idioma',
+    languageName: 'Español',
+    
+    // Examples
+    examples: 'Ejemplos',
+    selectExample: 'Seleccionar ejemplo',
+    loadExample: 'Cargar ejemplo',
+    
+    // Background
+    background: 'Fondo',
+    selectBackground: 'Seleccionar fondo',
+    
+    // Font
+    font: 'Fuente',
+    selectFont: 'Seleccionar fuente',
+    
+    // Color Picker
+    changeNodeColor: 'Cambiar color del nodo',
+    presetColors: 'Colores predefinidos',
+    customColor: 'Color personalizado',
+    apply: 'Aplicar',
+    red: 'Rojo',
+    orange: 'Naranja',
+    yellow: 'Amarillo',
+    green: 'Verde',
+    blue: 'Azul',
+    purple: 'Púrpura',
+    pink: 'Rosa',
+    gray: 'Gris',
+  },
+  'pt': {
+    // Header
+    appTitle: 'Mermaid Avançado',
+    share: 'Compartilhar',
+    
+    // Editor
+    editor: 'Editor',
+    editorSubtitle: 'Sintaxe Mermaid',
+    clearEditor: 'Limpar',
+    refreshEditor: 'Atualizar',
+    confirmClear: 'Tem certeza de que deseja limpar o editor?',
+    
+    // Preview
+    preview: 'Visualização',
+    zoomIn: 'Aumentar zoom',
+    zoomOut: 'Diminuir zoom',
+    resetView: 'Redefinir visualização',
+    dragToMove: 'Arrastar para mover',
+    wheelToZoom: 'Roda para zoom',
+    scrollZoom: 'Rolar para zoom',
+    dragMove: 'Arrastar para mover',
+    
+    // Toolbar
+    theme: 'Tema',
+    export: 'Exportar',
+    exportDesc: 'Exportar o diagrama como imagem',
+    withBackground: 'Com fundo',
+    withBackgroundDesc: 'JPG - Inclui cor de fundo',
+    transparent: 'Fundo transparente',
+    transparentDesc: 'PNG - Fundo transparente',
+    
+    // Language
+    language: 'Idioma',
+    languageName: 'Português',
+    
+    // Examples
+    examples: 'Exemplos',
+    selectExample: 'Selecionar exemplo',
+    loadExample: 'Carregar exemplo',
+    
+    // Background
+    background: 'Fundo',
+    selectBackground: 'Selecionar fundo',
+    
+    // Font
+    font: 'Fonte',
+    selectFont: 'Selecionar fonte',
+    
+    // Color Picker
+    changeNodeColor: 'Alterar cor do nó',
+    presetColors: 'Cores predefinidas',
+    customColor: 'Cor personalizada',
+    apply: 'Aplicar',
+    red: 'Vermelho',
+    orange: 'Laranja',
+    yellow: 'Amarelo',
+    green: 'Verde',
+    blue: 'Azul',
+    purple: 'Roxo',
+    pink: 'Rosa',
+    gray: 'Cinza',
   },
 };
 
