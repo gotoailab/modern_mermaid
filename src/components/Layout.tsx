@@ -78,6 +78,7 @@ const Layout: React.FC = () => {
              themeConfig={themes[currentTheme]}
              customBackground={selectedBackground}
              customFont={selectedFont}
+             onCodeChange={setCode}
            />
         </div>
       </main>

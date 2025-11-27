@@ -44,6 +44,20 @@ export interface Translation {
   // Font
   font: string;
   selectFont: string;
+  
+  // Color Picker
+  changeNodeColor: string;
+  presetColors: string;
+  customColor: string;
+  apply: string;
+  red: string;
+  orange: string;
+  yellow: string;
+  green: string;
+  blue: string;
+  purple: string;
+  pink: string;
+  gray: string;
 }
 
 export const translations: Record<Language, Translation> = {
@@ -91,6 +105,20 @@ export const translations: Record<Language, Translation> = {
     // Font
     font: 'Font',
     selectFont: 'Select Font',
+    
+    // Color Picker
+    changeNodeColor: 'Change Node Color',
+    presetColors: 'Preset Colors',
+    customColor: 'Custom Color',
+    apply: 'Apply',
+    red: 'Red',
+    orange: 'Orange',
+    yellow: 'Yellow',
+    green: 'Green',
+    blue: 'Blue',
+    purple: 'Purple',
+    pink: 'Pink',
+    gray: 'Gray',
   },
   'zh-CN': {
     // Header
@@ -136,6 +164,20 @@ export const translations: Record<Language, Translation> = {
     // Font
     font: '字体',
     selectFont: '选择字体',
+    
+    // Color Picker
+    changeNodeColor: '修改节点颜色',
+    presetColors: '预设颜色',
+    customColor: '自定义颜色',
+    apply: '应用',
+    red: '红色',
+    orange: '橙色',
+    yellow: '黄色',
+    green: '绿色',
+    blue: '蓝色',
+    purple: '紫色',
+    pink: '粉色',
+    gray: '灰色',
   },
   'zh-TW': {
     // Header
@@ -181,6 +223,20 @@ export const translations: Record<Language, Translation> = {
     // Font
     font: '字體',
     selectFont: '選擇字體',
+    
+    // Color Picker
+    changeNodeColor: '修改節點顏色',
+    presetColors: '預設顏色',
+    customColor: '自定義顏色',
+    apply: '應用',
+    red: '紅色',
+    orange: '橙色',
+    yellow: '黃色',
+    green: '綠色',
+    blue: '藍色',
+    purple: '紫色',
+    pink: '粉色',
+    gray: '灰色',
   },
   'ja': {
     // Header
@@ -226,6 +282,20 @@ export const translations: Record<Language, Translation> = {
     // Font
     font: 'フォント',
     selectFont: 'フォントを選択',
+    
+    // Color Picker
+    changeNodeColor: 'ノードの色を変更',
+    presetColors: 'プリセット色',
+    customColor: 'カスタム色',
+    apply: '適用',
+    red: '赤',
+    orange: 'オレンジ',
+    yellow: '黄色',
+    green: '緑',
+    blue: '青',
+    purple: '紫',
+    pink: 'ピンク',
+    gray: 'グレー',
   },
 };
 

@@ -6,12 +6,14 @@ import type { ThemeConfig } from '../utils/themes';
 import type { BackgroundStyle } from '../utils/backgrounds';
 import type { FontOption } from '../utils/fonts';
 import { useLanguage } from '../contexts/LanguageContext';
+import ColorPicker from './ColorPicker';
 
 interface PreviewProps {
   code: string;
   themeConfig: ThemeConfig;
   customBackground?: BackgroundStyle;
   customFont?: FontOption;
+  onCodeChange?: (code: string) => void;
 }
 
 export interface PreviewHandle {
@@ -24,7 +26,7 @@ mermaid.initialize({
   securityLevel: 'loose',
 });
 
-const Preview = forwardRef<PreviewHandle, PreviewProps>(({ code, themeConfig, customBackground, customFont }, ref) => {
+const Preview = forwardRef<PreviewHandle, PreviewProps>(({ code, themeConfig, customBackground, customFont, onCodeChange }, ref) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const [svg, setSvg] = useState<string>('');
@@ -32,6 +34,11 @@ const Preview = forwardRef<PreviewHandle, PreviewProps>(({ code, themeConfig, cu
   const [loading, setLoading] = useState(false);
   const [exporting, setExporting] = useState(false); // 导出Loading状态
   const { t } = useLanguage();
+  
+  // 颜色选择器状态
+  const [showColorPicker, setShowColorPicker] = useState(false);
+  const [colorPickerPos, setColorPickerPos] = useState({ x: 0, y: 0 });
+  const [selectedNodeId, setSelectedNodeId] = useState<string>('');
   
   // Determine actual background and font to use
   const actualBg = customBackground?.id === 'default' ? themeConfig.bgClass : (customBackground?.bgClass || themeConfig.bgClass);
@@ -101,6 +108,125 @@ const Preview = forwardRef<PreviewHandle, PreviewProps>(({ code, themeConfig, cu
   // 拖动结束
   const handleMouseUp = () => {
     setIsDragging(false);
+  };
+
+  // 处理右键点击
+  const handleContextMenu = (e: React.MouseEvent) => {
+    e.preventDefault();
+    
+    if (!onCodeChange) return; // 如果没有提供 onCodeChange，不显示颜色选择器
+    
+    const target = e.target as HTMLElement;
+    
+    // 查找被点击的节点元素
+    let nodeElement: HTMLElement | null = target;
+    let nodeId = '';
+    
+    // 向上遍历找到包含节点 ID 的元素
+    while (nodeElement && nodeElement !== contentRef.current) {
+      // 也检查 flowchart 节点 - 通常是 <g> 元素，id 类似 "flowchart-A-123"
+      if (nodeElement.tagName === 'g' && nodeElement.id) {
+        // 尝试多种模式匹配
+        let match = nodeElement.id.match(/flowchart-([A-Za-z0-9_]+)-\d+/);
+        if (!match) {
+          match = nodeElement.id.match(/^([A-Za-z0-9_]+)-\d+$/);
+        }
+        if (match) {
+          nodeId = match[1];
+          break;
+        }
+      }
+      
+      // 检查是否是节点元素（通常有 id 属性或特定的 class）
+      if (nodeElement.classList.contains('node') || 
+          nodeElement.classList.contains('actor') ||
+          nodeElement.classList.contains('task') ||
+          nodeElement.classList.contains('section')) {
+        const rawId = nodeElement.id || nodeElement.getAttribute('data-id') || '';
+        if (rawId) {
+          // 提取真实的节点ID（去掉前缀和后缀）
+          const match = rawId.match(/flowchart-([A-Za-z0-9_]+)-\d+/) || 
+                       rawId.match(/^([A-Za-z0-9_]+)-\d+$/) ||
+                       rawId.match(/^([A-Za-z0-9_]+)$/);
+          nodeId = match ? match[1] : rawId;
+          if (nodeId) break;
+        }
+      }
+      
+      nodeElement = nodeElement.parentElement;
+    }
+    
+    if (nodeId) {
+      console.log('Selected node ID:', nodeId); // 调试日志
+      setSelectedNodeId(nodeId);
+      setColorPickerPos({ x: e.clientX, y: e.clientY });
+      setShowColorPicker(true);
+    }
+  };
+
+  // 生成边框颜色（比填充色深一些）
+  const darkenColor = (hexColor: string): string => {
+    // 移除 # 号
+    const hex = hexColor.replace('#', '');
+    
+    // 转换为 RGB
+    const r = parseInt(hex.substring(0, 2), 16);
+    const g = parseInt(hex.substring(2, 4), 16);
+    const b = parseInt(hex.substring(4, 6), 16);
+    
+    // 降低亮度（乘以0.6使其变深）
+    const newR = Math.floor(r * 0.6);
+    const newG = Math.floor(g * 0.6);
+    const newB = Math.floor(b * 0.6);
+    
+    // 转换回 hex
+    return `#${newR.toString(16).padStart(2, '0')}${newG.toString(16).padStart(2, '0')}${newB.toString(16).padStart(2, '0')}`;
+  };
+
+  // 应用颜色到节点
+  const handleApplyColor = (color: string) => {
+    if (!onCodeChange || !selectedNodeId) return;
+    
+    const lines = code.split('\n');
+    let modified = false;
+    let newCode = '';
+    
+    // 查找是否已经存在该节点的 style 定义
+    const styleRegex = new RegExp(`^\\s*style\\s+${selectedNodeId}\\s+`, 'i');
+    let styleLineIndex = -1;
+    
+    for (let i = 0; i < lines.length; i++) {
+      if (styleRegex.test(lines[i])) {
+        styleLineIndex = i;
+        break;
+      }
+    }
+    
+    // 为填充色生成更深的边框色
+    const strokeColor = darkenColor(color);
+    const styleDefinition = `style ${selectedNodeId} fill:${color},stroke:${strokeColor},stroke-width:2px`;
+    
+    if (styleLineIndex >= 0) {
+      // 更新现有的 style 行
+      lines[styleLineIndex] = `  ${styleDefinition}`;
+      modified = true;
+    } else {
+      // 在代码末尾添加新的 style 行
+      // 找到最后一个非空行
+      let lastNonEmptyIndex = lines.length - 1;
+      while (lastNonEmptyIndex >= 0 && lines[lastNonEmptyIndex].trim() === '') {
+        lastNonEmptyIndex--;
+      }
+      
+      // 在最后插入 style 定义
+      lines.splice(lastNonEmptyIndex + 1, 0, `  ${styleDefinition}`);
+      modified = true;
+    }
+    
+    if (modified) {
+      newCode = lines.join('\n');
+      onCodeChange(newCode);
+    }
   };
 
   useImperativeHandle(ref, () => ({
@@ -416,6 +542,7 @@ const Preview = forwardRef<PreviewHandle, PreviewProps>(({ code, themeConfig, cu
          <div 
            ref={contentRef}
            className="p-12"
+           onContextMenu={handleContextMenu}
            style={{
              transform: `translate(${position.x}px, ${position.y}px) scale(${scale})`,
              transformOrigin: 'center',
@@ -425,6 +552,16 @@ const Preview = forwardRef<PreviewHandle, PreviewProps>(({ code, themeConfig, cu
            dangerouslySetInnerHTML={{ __html: svg }} 
          />
        </div>
+       
+       {/* 颜色选择器 */}
+       {showColorPicker && (
+         <ColorPicker
+           position={colorPickerPos}
+           nodeId={selectedNodeId}
+           onClose={() => setShowColorPicker(false)}
+           onSelectColor={handleApplyColor}
+         />
+       )}
     </div>
   );
 });
