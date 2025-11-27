@@ -1168,8 +1168,8 @@ export const themes: Record<ThemeType, ThemeConfig> = {
                 lineColor: '#1a1a1a',
                 secondaryColor: '#fff9e6',
                 tertiaryColor: '#ffe8cc',
-                fontFamily: '"Caveat", "Patrick Hand", "Kalam", cursive',
-                fontSize: '18px', // Larger for hand-drawn feel
+                fontFamily: '"Excalifont", "Xiaolai", cursive',
+                fontSize: '18px', // Optimized for hand-drawn feel
             },
             themeCSS: `
         /* Hand-drawn sketch style */
@@ -1177,7 +1177,7 @@ export const themes: Record<ThemeType, ThemeConfig> = {
         .titleText, .sectionTitle, .taskText, .taskTextOutsideRight, .taskTextOutsideLeft, 
         .legendText, text.actor, .pieTitleText, text.legend {
             fill: #1a1a1a !important;
-            font-family: "Caveat", "Patrick Hand", "Kalam", cursive;
+            font-family: "Excalifont", "Xiaolai", cursive;
             font-weight: 600;
         }
         
@@ -1193,7 +1193,7 @@ export const themes: Record<ThemeType, ThemeConfig> = {
         }
         
         .node .label {
-            font-family: "Caveat", "Patrick Hand", "Kalam", cursive;
+            font-family: "Excalifont", "Xiaolai", cursive;
             font-weight: 600;
             font-size: 18px;
             fill: #1a1a1a !important;
@@ -1218,7 +1218,7 @@ export const themes: Record<ThemeType, ThemeConfig> = {
         .edgeLabel {
             background-color: #fffef9 !important;
             color: #1a1a1a !important;
-            font-family: "Caveat", "Patrick Hand", "Kalam", cursive;
+            font-family: "Excalifont", "Xiaolai", cursive;
             font-size: 16px;
             font-weight: 600;
             padding: 4px 8px;
@@ -1236,7 +1236,7 @@ export const themes: Record<ThemeType, ThemeConfig> = {
         
         .actor text {
             fill: #1a1a1a !important;
-            font-family: "Caveat", "Patrick Hand", "Kalam", cursive;
+            font-family: "Excalifont", "Xiaolai", cursive;
             font-weight: 600;
             font-size: 18px;
         }
@@ -1265,7 +1265,7 @@ export const themes: Record<ThemeType, ThemeConfig> = {
         
         .messageText {
             fill: #1a1a1a !important;
-            font-family: "Caveat", "Patrick Hand", "Kalam", cursive;
+            font-family: "Excalifont", "Xiaolai", cursive;
             font-weight: 600;
             font-size: 16px;
         }
@@ -1287,7 +1287,7 @@ export const themes: Record<ThemeType, ThemeConfig> = {
         
         .noteText {
             fill: #1a1a1a !important;
-            font-family: "Caveat", "Patrick Hand", "Kalam", cursive;
+            font-family: "Excalifont", "Xiaolai", cursive;
             font-weight: 600;
             font-size: 16px;
         }
@@ -1304,7 +1304,7 @@ export const themes: Record<ThemeType, ThemeConfig> = {
         
         .labelText, .loopText {
             fill: #1a1a1a !important;
-            font-family: "Caveat", "Patrick Hand", "Kalam", cursive;
+            font-family: "Excalifont", "Xiaolai", cursive;
             font-weight: 700;
             font-size: 16px;
         }
@@ -1319,42 +1319,42 @@ export const themes: Record<ThemeType, ThemeConfig> = {
         
         /* Class diagram */
         .classLabel .label {
-            font-family: "Caveat", "Patrick Hand", "Kalam", cursive;
+            font-family: "Excalifont", "Xiaolai", cursive;
             font-weight: 700;
             fill: #1a1a1a !important;
         }
         
         /* State diagram */
         .stateLabel .label-text {
-            font-family: "Caveat", "Patrick Hand", "Kalam", cursive;
+            font-family: "Excalifont", "Xiaolai", cursive;
             font-weight: 700;
             fill: #1a1a1a !important;
         }
         
         /* ER Diagram */
         .er.entityLabel, .er.relationshipLabel {
-            font-family: "Caveat", "Patrick Hand", "Kalam", cursive;
+            font-family: "Excalifont", "Xiaolai", cursive;
             font-weight: 700;
             fill: #1a1a1a !important;
         }
         
         /* Gantt chart */
         .grid .tick text {
-            font-family: "Caveat", "Patrick Hand", "Kalam", cursive;
+            font-family: "Excalifont", "Xiaolai", cursive;
             font-weight: 600;
             fill: #1a1a1a !important;
         }
         
         /* Pie chart */
         .slice text {
-            font-family: "Caveat", "Patrick Hand", "Kalam", cursive;
+            font-family: "Excalifont", "Xiaolai", cursive;
             font-weight: 700;
             fill: #1a1a1a !important;
         }
         
         /* Git graph */
         .commit-label {
-            font-family: "Caveat", "Patrick Hand", "Kalam", cursive;
+            font-family: "Excalifont", "Xiaolai", cursive;
             font-weight: 600;
             fill: #1a1a1a !important;
         }
@@ -1371,7 +1371,7 @@ export const themes: Record<ThemeType, ThemeConfig> = {
         }
         
         .cluster text {
-            font-family: "Caveat", "Patrick Hand", "Kalam", cursive;
+            font-family: "Excalifont", "Xiaolai", cursive;
             font-weight: 700;
             fill: #1a1a1a !important;
         }
@@ -1427,19 +1427,19 @@ export const themes: Record<ThemeType, ThemeConfig> = {
         .chart-title text {
             fill: #1a1a1a !important; 
             font-weight: 700 !important;
-            font-size: 22px !important;
-            font-family: "Caveat", "Patrick Hand", "Kalam", cursive;
+            font-size: 20px !important;
+            font-family: "Excalifont", "Xiaolai", cursive;
         }
         .left-axis .title text, .bottom-axis .title text {
             fill: #1a1a1a !important; 
             font-size: 16px !important;
-            font-family: "Caveat", "Patrick Hand", "Kalam", cursive;
+            font-family: "Excalifont", "Xiaolai", cursive;
             font-weight: 600;
         }
         .legend text {
             fill: #1a1a1a !important; 
             font-size: 14px !important;
-            font-family: "Caveat", "Patrick Hand", "Kalam", cursive;
+            font-family: "Excalifont", "Xiaolai", cursive;
             font-weight: 600;
         }
       `

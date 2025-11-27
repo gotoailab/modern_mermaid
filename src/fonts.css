@@ -1,0 +1,61 @@
+/* Custom Hand-drawn Fonts */
+
+/* Excalifont - Hand-drawn English font from Excalidraw */
+@font-face {
+  font-family: 'Excalifont';
+  src: url('https://quick.go-admin.cn/ai/mordern_mermaid/fonts/Excalifont-Regular-a88b72a24fb54c9f94e3b5fdaa7481c9.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Xiaolai - Hand-drawn Chinese font (小赖字体) */
+/* 使用字体分片技术，优化加载性能 */
+@font-face {
+  font-family: 'Xiaolai';
+  src: url('https://quick.go-admin.cn/ai/mordern_mermaid/fonts/Xiaolai-Regular-0facdf1ea213ba40261022f5d5ed4493.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Xiaolai';
+  src: url('https://quick.go-admin.cn/ai/mordern_mermaid/fonts/Xiaolai-Regular-353f33792a8f60dc69323ddf635a269e.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Xiaolai';
+  src: url('https://quick.go-admin.cn/ai/mordern_mermaid/fonts/Xiaolai-Regular-f8ee5d36068a42b51d0e4a1116cfcec1.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Xiaolai';
+  src: url('https://quick.go-admin.cn/ai/mordern_mermaid/fonts/Xiaolai-Regular-79d494361ae093b69e74ee9dbe65bfd4.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Xiaolai';
+  src: url('https://quick.go-admin.cn/ai/mordern_mermaid/fonts/Xiaolai-Regular-74e2263a91439c25b91d5132ce9f4d62.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Xiaolai';
+  src: url('https://quick.go-admin.cn/ai/mordern_mermaid/fonts/Xiaolai-Regular-145aa02cdd91946e67dc934e1acffe75.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
