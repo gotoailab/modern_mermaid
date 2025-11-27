@@ -299,6 +299,7 @@ export const themes: Record<ThemeType, ThemeConfig> = {
         .node rect, .node circle { stroke-width: 2px; fill: #fff; }
         .edgePath .path { stroke-width: 2px; }
         .cluster rect { stroke-width: 2px; fill: #fff; }
+        .node rect, .node circle, .node ellipse, .node polygon, .node path { stroke-width: 2px !important; }
       `
     },
     bgClass: 'bg-white',

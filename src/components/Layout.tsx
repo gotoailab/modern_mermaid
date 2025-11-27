@@ -4,8 +4,10 @@ import Preview from './Preview';
 import type { PreviewHandle } from './Preview';
 import Header from './Header';
 import Toolbar from './Toolbar';
+import ExampleSelector from './ExampleSelector';
 import { themes } from '../utils/themes';
 import type { ThemeType } from '../utils/themes';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Layout: React.FC = () => {
   const [code, setCode] = useState<string>(`graph TD
@@ -15,6 +17,7 @@ const Layout: React.FC = () => {
   
   const [currentTheme, setCurrentTheme] = useState<ThemeType>('linearLight');
   const previewRef = useRef<PreviewHandle>(null);
+  const { t } = useLanguage();
 
   const handleDownload = (transparent: boolean) => {
     if (previewRef.current) {
@@ -29,8 +32,11 @@ const Layout: React.FC = () => {
         {/* Left Pane: Editor */}
         <div className="w-full md:w-1/2 border-r border-gray-200 flex flex-col bg-white shadow-sm z-10">
            <div className="p-4 border-b border-gray-200 bg-white font-semibold text-xs text-gray-500 uppercase tracking-wider flex items-center justify-between">
-             <span>Editor</span>
-             <span className="text-[10px] bg-gray-100 px-2 py-1 rounded text-gray-400">Mermaid Syntax</span>
+             <div className="flex items-center gap-3">
+               <span>{t.editor}</span>
+               <ExampleSelector onSelectExample={setCode} />
+             </div>
+             <span className="text-[10px] bg-gray-100 px-2 py-1 rounded text-gray-400">{t.editorSubtitle}</span>
            </div>
            <Editor code={code} onChange={setCode} />
         </div>

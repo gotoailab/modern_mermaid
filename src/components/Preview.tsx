@@ -3,6 +3,7 @@ import mermaid from 'mermaid';
 import { toPng, toJpeg } from 'html-to-image';
 import { ZoomIn, ZoomOut, Maximize2, Move } from 'lucide-react';
 import type { ThemeConfig } from '../utils/themes';
+import { useLanguage } from '../contexts/LanguageContext';
 
 interface PreviewProps {
   code: string;
@@ -26,6 +27,7 @@ const Preview = forwardRef<PreviewHandle, PreviewProps>(({ code, themeConfig }, 
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [exporting, setExporting] = useState(false); // 导出Loading状态
+  const { t } = useLanguage();
   
   // 缩放和平移状态
   const [scale, setScale] = useState(1.2); // 默认放大到120%
@@ -262,8 +264,8 @@ const Preview = forwardRef<PreviewHandle, PreviewProps>(({ code, themeConfig }, 
            <div className="absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-sm z-30">
                <div className="bg-white rounded-lg shadow-2xl p-6 flex flex-col items-center gap-4">
                    <div className="animate-spin rounded-full h-12 w-12 border-4 border-indigo-200 border-t-indigo-600"></div>
-                   <div className="text-gray-700 font-medium">正在导出图片...</div>
-                   <div className="text-gray-500 text-sm">生成高清图片中，请稍候</div>
+                   <div className="text-gray-700 font-medium">{t.export}...</div>
+                   <div className="text-gray-500 text-sm">{t.export}</div>
                </div>
            </div>
        )}
@@ -273,25 +275,25 @@ const Preview = forwardRef<PreviewHandle, PreviewProps>(({ code, themeConfig }, 
          <button
            onClick={handleZoomIn}
            className="p-2 bg-white/90 hover:bg-white rounded-lg shadow-md transition-colors"
-           title="放大 (Zoom In)"
+           title={t.zoomIn}
          >
            <ZoomIn size={20} className="text-gray-700" />
          </button>
          <button
            onClick={handleZoomOut}
            className="p-2 bg-white/90 hover:bg-white rounded-lg shadow-md transition-colors"
-           title="缩小 (Zoom Out)"
+           title={t.zoomOut}
          >
            <ZoomOut size={20} className="text-gray-700" />
          </button>
          <button
            onClick={handleResetZoom}
            className="p-2 bg-white/90 hover:bg-white rounded-lg shadow-md transition-colors"
-           title="重置视图 (Reset View)"
+           title={t.resetView}
          >
            <Maximize2 size={20} className="text-gray-700" />
          </button>
-         <div className="p-2 bg-white/90 rounded-lg shadow-md flex items-center justify-center">
+         <div className="p-2 bg-white/90 rounded-lg shadow-md flex items-center justify-center" title={t.dragToMove}>
            <Move size={16} className="text-gray-500" />
          </div>
        </div>
@@ -303,7 +305,7 @@ const Preview = forwardRef<PreviewHandle, PreviewProps>(({ code, themeConfig }, 
        
        {/* 提示信息 */}
        <div className="absolute bottom-4 right-4 px-3 py-1 bg-white/90 rounded-lg shadow-md text-xs text-gray-600 z-20">
-         滚轮缩放 | 拖动移动
+         {t.scrollZoom} | {t.dragMove}
        </div>
        
        {/* SVG 内容容器 */}
