@@ -1,12 +1,12 @@
 import { Bot, Github } from 'lucide-react';
-import { useLanguage } from '../contexts/LanguageContext';
+// import { useLanguage } from '../contexts/LanguageContext';
 import LanguageSwitcher from './LanguageSwitcher';
 
 const Header = () => {
-  const { t } = useLanguage();
+  // const { t } = useLanguage();
 
   return (
-    <header className="h-16 bg-white border-b border-gray-200 px-6 flex items-center justify-between z-10">
+    <header className="h-16 bg-white border-b border-gray-200 px-6 flex items-center justify-between relative z-50">
       <div className="flex items-center gap-2">
         <div className="bg-indigo-600 p-2 rounded-lg">
           <Bot className="w-6 h-6 text-white" />

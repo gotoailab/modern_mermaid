@@ -27,8 +27,8 @@ const BackgroundSelector: React.FC<BackgroundSelectorProps> = ({ selectedId, onS
 
       {isOpen && (
         <>
-          <div className="fixed inset-0 z-30" onClick={() => setIsOpen(false)} />
-          <div className="absolute right-0 mt-2 w-64 bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 z-40 py-1 max-h-80 overflow-y-auto">
+          <div className="fixed inset-0 z-[60]" onClick={() => setIsOpen(false)} />
+          <div className="absolute right-0 mt-2 w-64 bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 z-[70] py-1 max-h-80 overflow-y-auto">
             {backgrounds.map((bg) => (
               <button
                 key={bg.id}

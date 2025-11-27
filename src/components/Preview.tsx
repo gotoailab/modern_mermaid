@@ -215,7 +215,18 @@ const Preview = forwardRef<PreviewHandle, PreviewProps>(({ code, themeConfig, cu
           themeVariables: {
             ...themeConfig.mermaidConfig.themeVariables,
             fontFamily: actualFont,
-          }
+          },
+          themeCSS: `
+            ${themeConfig.mermaidConfig.themeCSS || ''}
+            /* Custom font override */
+            * { 
+              font-family: ${actualFont} !important; 
+            }
+            .node .label, .edgeLabel, .messageText, .noteText, .labelText, .loopText, 
+            .actor text, .taskText, .sectionTitle, .titleText, text {
+              font-family: ${actualFont} !important;
+            }
+          `
         } : themeConfig.mermaidConfig;
 
         mermaid.initialize({
@@ -258,6 +269,24 @@ const Preview = forwardRef<PreviewHandle, PreviewProps>(({ code, themeConfig, cu
             processedSvg = processedSvg.replace(/<defs>/, filterDef);
           } else {
             processedSvg = processedSvg.replace(/<svg[^>]*>/, match => match + filterDef);
+          }
+        }
+        
+        // Apply custom font via style injection
+        if (actualFont) {
+          const fontStyle = `<style>
+  text, .label, .messageText, .noteText, .labelText, .loopText, .taskText, 
+  .sectionTitle, .titleText, .legendText, tspan {
+    font-family: ${actualFont} !important;
+  }
+</style>`;
+          // Inject style after defs or at the beginning
+          if (processedSvg.includes('</defs>')) {
+            processedSvg = processedSvg.replace(/<\/defs>/, `</defs>${fontStyle}`);
+          } else if (processedSvg.includes('<defs>')) {
+            processedSvg = processedSvg.replace(/<\/defs>/, `</defs>${fontStyle}`);
+          } else {
+            processedSvg = processedSvg.replace(/<svg[^>]*>/, match => match + fontStyle);
           }
         }
         

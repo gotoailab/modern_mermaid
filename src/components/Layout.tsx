@@ -61,7 +61,7 @@ const Layout: React.FC = () => {
         
         {/* Right Pane: Preview */}
         <div className="w-full md:w-1/2 bg-gray-50 flex flex-col relative">
-           <div className="absolute top-4 right-4 z-20">
+           <div className="absolute top-4 right-4 z-10">
               <Toolbar 
                 currentTheme={currentTheme} 
                 onThemeChange={setCurrentTheme}
