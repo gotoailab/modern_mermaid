@@ -21,7 +21,7 @@ const LanguageSwitcher: React.FC = () => {
     <div className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 border border-gray-300 rounded-md shadow-sm transition-all"
+        className="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm transition-all"
         title={t.language}
       >
         <Languages className="w-4 h-4" />
@@ -31,7 +31,7 @@ const LanguageSwitcher: React.FC = () => {
       {isOpen && (
         <>
           <div className="fixed inset-0 z-[100]" onClick={() => setIsOpen(false)} />
-          <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 z-[110] py-1 max-h-80 overflow-y-auto">
+          <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 dark:ring-gray-700 z-[110] py-1 max-h-80 overflow-y-auto">
             {languages.map((lang) => (
               <button
                 key={lang.code}
@@ -41,12 +41,12 @@ const LanguageSwitcher: React.FC = () => {
                 }}
                 className={`block w-full text-left px-4 py-2 text-sm ${
                   language === lang.code
-                    ? 'bg-indigo-50 text-indigo-700'
-                    : 'text-gray-700 hover:bg-gray-50'
+                    ? 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-400'
+                    : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700'
                 }`}
               >
                 <div className="font-medium">{lang.nativeName}</div>
-                <div className="text-xs text-gray-500">{lang.name}</div>
+                <div className="text-xs text-gray-500 dark:text-gray-400">{lang.name}</div>
               </button>
             ))}
           </div>

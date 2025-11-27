@@ -58,12 +58,12 @@ const Layout: React.FC = () => {
   }, [currentTheme]);
 
   return (
-    <div className="min-h-screen bg-gray-50 text-gray-900 flex flex-col font-sans">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 flex flex-col font-sans transition-colors duration-200">
       <Header />
       <main className="flex-1 flex flex-col md:flex-row overflow-hidden h-[calc(100vh-64px)]">
         {/* Left Pane: Editor */}
-        <div className="w-full md:w-1/2 border-r border-gray-200 flex flex-col bg-white shadow-sm z-10">
-           <div className="p-4 border-b border-gray-200 bg-white font-semibold text-xs text-gray-500 uppercase tracking-wider flex items-center justify-between">
+        <div className="w-full md:w-1/2 border-r border-gray-200 dark:border-gray-700 flex flex-col bg-white dark:bg-gray-800 shadow-sm z-10">
+           <div className="p-4 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 font-semibold text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wider flex items-center justify-between">
              <div className="flex items-center gap-3">
                <span>{t.editor}</span>
                <ExampleSelector onSelectExample={setCode} />
@@ -72,27 +72,27 @@ const Layout: React.FC = () => {
                <div className="flex items-center gap-2">
                  <button
                    onClick={handleRefreshEditor}
-                   className="p-1.5 text-gray-500 hover:text-indigo-600 hover:bg-indigo-50 rounded transition-colors"
+                   className="p-1.5 text-gray-500 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 rounded transition-colors"
                    title={t.refreshEditor}
                  >
                    <RefreshCw className="w-4 h-4" />
                  </button>
                  <button
                    onClick={handleClearEditor}
-                   className="p-1.5 text-gray-500 hover:text-red-600 hover:bg-red-50 rounded transition-colors"
+                   className="p-1.5 text-gray-500 dark:text-gray-400 hover:text-red-600 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/30 rounded transition-colors"
                    title={t.clearEditor}
                  >
                    <Trash2 className="w-4 h-4" />
                  </button>
                </div>
              </div>
-             <span className="text-[10px] bg-gray-100 px-2 py-1 rounded text-gray-400">{t.editorSubtitle}</span>
+             <span className="text-[10px] bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded text-gray-400 dark:text-gray-500">{t.editorSubtitle}</span>
            </div>
            <Editor code={code} onChange={setCode} />
         </div>
         
         {/* Right Pane: Preview */}
-        <div className="w-full md:w-1/2 bg-gray-50 flex flex-col relative">
+        <div className="w-full md:w-1/2 bg-gray-50 dark:bg-gray-900 flex flex-col relative">
            <div className="absolute top-4 right-4 z-10">
               <Toolbar 
                 currentTheme={currentTheme} 

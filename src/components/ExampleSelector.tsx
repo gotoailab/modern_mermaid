@@ -52,7 +52,7 @@ const ExampleSelector: React.FC<ExampleSelectorProps> = ({ onSelectExample }) =>
     <div className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 border border-gray-300 rounded-md shadow-sm transition-all max-w-xs"
+        className="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm transition-all max-w-xs"
         title={t.selectExample}
       >
         <FileText className="w-4 h-4 flex-shrink-0" />
@@ -63,12 +63,12 @@ const ExampleSelector: React.FC<ExampleSelectorProps> = ({ onSelectExample }) =>
       {isOpen && (
         <>
           <div className="fixed inset-0 z-[60]" onClick={() => { setIsOpen(false); setSelectedCategory(null); }} />
-          <div className="absolute left-0 mt-2 w-80 bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 z-[70] py-1 max-h-96 overflow-y-auto">
+          <div className="absolute left-0 mt-2 w-80 bg-white dark:bg-gray-800 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 dark:ring-gray-700 z-[70] py-1 max-h-96 overflow-y-auto">
             {categories.map((category) => (
               <div key={category}>
                 <button
                   onClick={() => handleCategoryClick(category)}
-                  className="w-full text-left px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 flex items-center justify-between"
+                  className="w-full text-left px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 flex items-center justify-between"
                 >
                   <span>{getCategoryName(category, language)}</span>
                   <ChevronDown 
@@ -79,12 +79,12 @@ const ExampleSelector: React.FC<ExampleSelectorProps> = ({ onSelectExample }) =>
                 </button>
                 
                 {selectedCategory === category && (
-                  <div className="bg-gray-50">
+                  <div className="bg-gray-50 dark:bg-gray-900">
                     {examples[category].map((example, index) => (
                       <button
                         key={example.id}
                         onClick={() => handleExampleClick(category, index)}
-                        className="w-full text-left px-8 py-2 text-sm text-gray-600 hover:bg-gray-100 hover:text-gray-900"
+                        className="w-full text-left px-8 py-2 text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-gray-100"
                       >
                         {example.name[language]}
                       </button>

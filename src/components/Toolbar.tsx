@@ -37,7 +37,7 @@ const Toolbar: React.FC<ToolbarProps> = ({
       <div className="relative">
         <button
           onClick={() => setIsThemeOpen(!isThemeOpen)}
-          className="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 border border-gray-300 rounded-md shadow-sm transition-all"
+          className="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm transition-all"
         >
           <Palette className="w-4 h-4" />
           <span>{themes[currentTheme].name}</span>
@@ -46,7 +46,7 @@ const Toolbar: React.FC<ToolbarProps> = ({
         {isThemeOpen && (
           <>
             <div className="fixed inset-0 z-[60]" onClick={() => setIsThemeOpen(false)} />
-            <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 z-[70] py-1 max-h-80 overflow-y-auto">
+            <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 dark:ring-gray-700 z-[70] py-1 max-h-80 overflow-y-auto">
               {(Object.keys(themes) as ThemeType[]).map((themeKey) => (
                 <button
                   key={themeKey}
@@ -55,7 +55,9 @@ const Toolbar: React.FC<ToolbarProps> = ({
                     setIsThemeOpen(false);
                   }}
                   className={`block w-full text-left px-4 py-2 text-sm ${
-                    currentTheme === themeKey ? 'bg-indigo-50 text-indigo-700' : 'text-gray-700 hover:bg-gray-50'
+                    currentTheme === themeKey 
+                      ? 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-400' 
+                      : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700'
                   }`}
                 >
                   {themes[themeKey].name}
@@ -82,7 +84,7 @@ const Toolbar: React.FC<ToolbarProps> = ({
       <div className="relative">
         <button
           onClick={() => setIsDownloadOpen(!isDownloadOpen)}
-          className="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 border border-transparent rounded-md shadow-sm transition-all"
+          className="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-white bg-indigo-600 dark:bg-indigo-500 hover:bg-indigo-700 dark:hover:bg-indigo-600 border border-transparent rounded-md shadow-sm transition-all"
         >
           <Download className="w-4 h-4" />
           <span>{t.export}</span>
@@ -91,25 +93,25 @@ const Toolbar: React.FC<ToolbarProps> = ({
         {isDownloadOpen && (
            <>
            <div className="fixed inset-0 z-[60]" onClick={() => setIsDownloadOpen(false)} />
-           <div className="absolute right-0 mt-2 w-56 bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 z-[70] py-1 max-h-80 overflow-y-auto">
+           <div className="absolute right-0 mt-2 w-56 bg-white dark:bg-gray-800 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 dark:ring-gray-700 z-[70] py-1 max-h-80 overflow-y-auto">
              <button
                onClick={() => { onDownload(false); setIsDownloadOpen(false); }}
-               className="flex items-center gap-3 w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+               className="flex items-center gap-3 w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700"
              >
-               <Image className="w-4 h-4 text-gray-500" />
+               <Image className="w-4 h-4 text-gray-500 dark:text-gray-400" />
                <div>
                  <span className="block font-medium">{t.withBackground}</span>
-                 <span className="block text-xs text-gray-500">{t.withBackgroundDesc}</span>
+                 <span className="block text-xs text-gray-500 dark:text-gray-400">{t.withBackgroundDesc}</span>
                </div>
              </button>
              <button
                onClick={() => { onDownload(true); setIsDownloadOpen(false); }}
-               className="flex items-center gap-3 w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+               className="flex items-center gap-3 w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700"
              >
-               <FileImage className="w-4 h-4 text-gray-500" />
+               <FileImage className="w-4 h-4 text-gray-500 dark:text-gray-400" />
                <div>
                  <span className="block font-medium">{t.transparent}</span>
-                 <span className="block text-xs text-gray-500">{t.transparentDesc}</span>
+                 <span className="block text-xs text-gray-500 dark:text-gray-400">{t.transparentDesc}</span>
                </div>
              </button>
            </div>
