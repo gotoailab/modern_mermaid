@@ -84,7 +84,7 @@
 
 <table>
   <tr>
-    <td width="33%"><img src="docs/images/screenshot-brutalis.png" alt="brutalis"/><br/><b>Brutalis</b></td>
+    <td width="33%"><img src="docs/images/screenshot-brutalist.png" alt="brutalist"/><br/><b>Brutalist</b></td>
     <td width="33%"><img src="docs/images/screenshot-cyberpunk.png" alt="cyberpunk"/><br/><b>Cyberpunk</b></td>
     <td width="33%"><img src="docs/images/screenshot-ghibli.png" alt="ghibli"/><br/><b>Ghibli</b></td>
   </tr>
