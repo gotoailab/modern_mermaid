@@ -1,6 +1,6 @@
 import type { MermaidConfig } from 'mermaid';
 
-export type ThemeType = 'linearLight' | 'linearDark' | 'notion' | 'ghibli' | 'spotless' | 'brutalist' | 'glassmorphism' | 'softPop' | 'cyberpunk' | 'monochrome' | 'darkMinimal' | 'wireframe' | 'handDrawn' | 'grafana';
+export type ThemeType = 'linearLight' | 'linearDark' | 'notion' | 'ghibli' | 'spotless' | 'brutalist' | 'glassmorphism' | 'memphis' | 'softPop' | 'cyberpunk' | 'monochrome' | 'darkMinimal' | 'wireframe' | 'handDrawn' | 'grafana';
 
 export interface ThemeConfig {
   name: string;
@@ -2833,5 +2833,426 @@ export const themes: Record<ThemeType, ThemeConfig> = {
       `,
             backgroundSize: '24px 24px'
         }
+  },
+  memphis: {
+    name: 'Memphis',
+    annotationColors: {
+      primary: '#FF6B6B', // Memphis red
+      secondary: '#FECA57', // Memphis yellow
+      text: '#000000', // Black
+    },
+    mermaidConfig: {
+      theme: 'base',
+      themeVariables: {
+        background: '#FFFFFF',
+        primaryColor: '#FF6B6B', // Red
+        primaryTextColor: '#000000',
+        primaryBorderColor: '#000000',
+        lineColor: '#000000',
+        secondaryColor: '#FECA57', // Yellow
+        tertiaryColor: '#48DBFB', // Blue
+        fontFamily: '"Comic Sans MS", "Arial Black", "Noto Sans SC", cursive, sans-serif',
+        fontSize: '16px',
+      },
+      themeCSS: `
+        /* Memphis - 80s Pop Art Style */
+        
+        /* Flowchart nodes - Bold colors with thick black borders */
+        .node rect, .node polygon {
+          fill: #FF6B6B !important;
+          stroke: #000000 !important;
+          stroke-width: 4px !important;
+          rx: 8px !important;
+          ry: 8px !important;
+          filter: drop-shadow(5px 5px 0px #000000);
+        }
+        
+        .node circle {
+          fill: #FF6B6B !important;
+          stroke: #000000 !important;
+          stroke-width: 4px !important;
+          filter: drop-shadow(1px 1px 0px #000000);
+        }
+        
+        .node .label {
+          font-family: "Comic Sans MS", "Arial Black", "Noto Sans SC", cursive, sans-serif;
+          font-weight: 900;
+          fill: #000000 !important;
+          font-size: 16px;
+        }
+        
+        /* Alternate node colors - Memphis style */
+        .node:nth-child(2n) rect,
+        .node:nth-child(2n) circle,
+        .node:nth-child(2n) polygon {
+          fill: #FECA57 !important;
+        }
+        
+        .node:nth-child(3n) rect,
+        .node:nth-child(3n) circle,
+        .node:nth-child(3n) polygon {
+          fill: #48DBFB !important;
+        }
+        
+        .node:nth-child(5n) rect,
+        .node:nth-child(5n) circle,
+        .node:nth-child(5n) polygon {
+          fill: #FF9FF3 !important;
+        }
+        
+        /* Connection lines - Bold black */
+        .edgePath .path {
+          stroke: #000000 !important;
+          stroke-width: 4px !important;
+          stroke-linecap: round;
+        }
+        
+        .arrowheadPath {
+          fill: #000000 !important;
+          stroke: #000000 !important;
+          stroke-width: 2px !important;
+        }
+        
+        .edgeLabel {
+          color: #000000 !important;
+          font-family: "Comic Sans MS", "Arial Black", "Noto Sans SC", cursive, sans-serif;
+          font-size: 14px;
+          font-weight: 900;
+        }
+        
+        .edgeLabel rect {
+          fill: #FFFFFF !important;
+          stroke: #000000 !important;
+          stroke-width: 3px !important;
+          rx: 4px !important;
+          filter: drop-shadow(3px 3px 0px #000000);
+        }
+        
+        /* Sequence Diagram - Memphis style */
+        .actor {
+          fill: #FF6B6B !important;
+          stroke: #000000 !important;
+          stroke-width: 4px !important;
+          rx: 8px !important;
+          ry: 8px !important;
+          filter: drop-shadow(5px 5px 0px #000000);
+        }
+        
+        .actor:nth-child(2n) {
+          fill: #FECA57 !important;
+        }
+        
+        .actor:nth-child(3n) {
+          fill: #48DBFB !important;
+        }
+        
+        .actor text {
+          fill: #000000 !important;
+          font-family: "Comic Sans MS", "Arial Black", "Noto Sans SC", cursive, sans-serif;
+          font-weight: 900;
+        }
+        
+        .actor-line {
+          stroke: #000000 !important;
+          stroke-width: 3px !important;
+          stroke-dasharray: 8 4 !important;
+        }
+        
+        .activation0, .activation1, .activation2 {
+          fill: #FF9FF3 !important;
+          stroke: #000000 !important;
+          stroke-width: 4px !important;
+          filter: drop-shadow(4px 4px 0px #000000);
+        }
+        
+        .messageLine0, .messageLine1 {
+          stroke: #000000 !important;
+          stroke-width: 4px !important;
+          stroke-linecap: round;
+        }
+        
+        .messageText {
+          fill: #000000 !important;
+          font-family: "Comic Sans MS", "Arial Black", "Noto Sans SC", cursive, sans-serif;
+          font-weight: 900;
+          font-size: 14px;
+        }
+        
+        #arrowhead path, .arrowheadPath {
+          fill: #000000 !important;
+          stroke: #000000 !important;
+        }
+        
+        /* Note boxes - Bright yellow */
+        .note {
+          fill: #FECA57 !important;
+          stroke: #000000 !important;
+          stroke-width: 4px !important;
+          rx: 8px !important;
+          ry: 8px !important;
+          filter: drop-shadow(5px 5px 0px #000000);
+        }
+        
+        .noteText {
+          fill: #000000 !important;
+          font-family: "Comic Sans MS", "Arial Black", "Noto Sans SC", cursive, sans-serif;
+          font-weight: 900;
+        }
+        
+        /* Loop/Alt/Opt boxes - Pink */
+        .labelBox {
+          fill: #FF9FF3 !important;
+          stroke: #000000 !important;
+          stroke-width: 4px !important;
+          rx: 8px !important;
+          ry: 8px !important;
+          filter: drop-shadow(5px 5px 0px #000000);
+        }
+        
+        .labelText, .loopText {
+          fill: #000000 !important;
+          font-family: "Comic Sans MS", "Arial Black", "Noto Sans SC", cursive, sans-serif;
+          font-weight: 900;
+        }
+        
+        .loopLine {
+          stroke: #000000 !important;
+          stroke-width: 4px !important;
+        }
+        
+        /* Cluster/Subgraph styling - Blue */
+        .cluster rect {
+          fill: #48DBFB !important;
+          stroke: #000000 !important;
+          stroke-width: 4px !important;
+          rx: 8px !important;
+          ry: 8px !important;
+          filter: drop-shadow(6px 6px 0px #000000);
+        }
+        
+        .cluster text {
+          fill: #000000 !important;
+          font-family: "Comic Sans MS", "Arial Black", "Noto Sans SC", cursive, sans-serif;
+          font-weight: 900;
+        }
+        
+        /* State diagram */
+        .statediagram-state rect,
+        .statediagram-state .state-inner {
+          fill: #FF6B6B !important;
+          stroke: #000000 !important;
+          stroke-width: 4px !important;
+          rx: 8px !important;
+          filter: drop-shadow(5px 5px 0px #000000);
+        }
+        
+        .statediagram-state:nth-child(2n) rect,
+        .statediagram-state:nth-child(2n) .state-inner {
+          fill: #FECA57 !important;
+        }
+        
+        .statediagram-state:nth-child(3n) rect,
+        .statediagram-state:nth-child(3n) .state-inner {
+          fill: #48DBFB !important;
+        }
+        
+        .stateLabel text {
+          fill: #000000 !important;
+          font-family: "Comic Sans MS", "Arial Black", "Noto Sans SC", cursive, sans-serif;
+          font-weight: 900;
+        }
+        
+        .transition {
+          stroke: #000000 !important;
+          stroke-width: 4px !important;
+        }
+        
+        /* Class Diagram */
+        .classGroup rect {
+          fill: #FF6B6B !important;
+          stroke: #000000 !important;
+          stroke-width: 4px !important;
+          rx: 8px !important;
+          filter: drop-shadow(5px 5px 0px #000000);
+        }
+        
+        .classLabel .label {
+          fill: #000000 !important;
+          font-family: "Comic Sans MS", "Arial Black", "Noto Sans SC", cursive, sans-serif;
+          font-weight: 900;
+        }
+        
+        .relationshipLine {
+          stroke: #000000 !important;
+          stroke-width: 4px !important;
+        }
+        
+        /* ER Diagram */
+        .er.entityBox {
+          fill: #48DBFB !important;
+          stroke: #000000 !important;
+          stroke-width: 4px !important;
+          rx: 8px !important;
+          filter: drop-shadow(5px 5px 0px #000000);
+        }
+        
+        .er.entityLabel,
+        .er.relationshipLabel {
+          fill: #000000 !important;
+          font-family: "Comic Sans MS", "Arial Black", "Noto Sans SC", cursive, sans-serif;
+          font-weight: 900;
+        }
+        
+        .er .relationshipLine {
+          stroke: #000000 !important;
+          stroke-width: 4px !important;
+        }
+        
+        /* Gantt Chart */
+        .titleText {
+          fill: #000000 !important;
+          font-family: "Comic Sans MS", "Arial Black", "Noto Sans SC", cursive, sans-serif;
+          font-weight: 900;
+          font-size: 20px;
+        }
+        
+        .sectionTitle {
+          fill: #000000 !important;
+          font-family: "Comic Sans MS", "Arial Black", "Noto Sans SC", cursive, sans-serif;
+          font-weight: 900;
+        }
+        
+        .taskText, .taskTextOutsideRight, .taskTextOutsideLeft {
+          fill: #000000 !important;
+          font-family: "Comic Sans MS", "Arial Black", "Noto Sans SC", cursive, sans-serif;
+          font-weight: 900;
+        }
+        
+        .task0 {
+          fill: #FF6B6B !important;
+          stroke: #000000 !important;
+          stroke-width: 4px !important;
+        }
+        
+        .task1 {
+          fill: #FECA57 !important;
+          stroke: #000000 !important;
+          stroke-width: 4px !important;
+        }
+        
+        .task2 {
+          fill: #48DBFB !important;
+          stroke: #000000 !important;
+          stroke-width: 4px !important;
+        }
+        
+        .task3 {
+          fill: #FF9FF3 !important;
+          stroke: #000000 !important;
+          stroke-width: 4px !important;
+        }
+        
+        /* Pie Chart */
+        .pieCircle {
+          stroke: #000000 !important;
+          stroke-width: 4px !important;
+        }
+        
+        .pieTitleText {
+          fill: #000000 !important;
+          font-family: "Comic Sans MS", "Arial Black", "Noto Sans SC", cursive, sans-serif;
+          font-weight: 900;
+          font-size: 20px;
+        }
+        
+        .slice {
+          stroke: #000000 !important;
+          stroke-width: 4px !important;
+        }
+        
+        .legendText {
+          fill: #000000 !important;
+          font-family: "Comic Sans MS", "Arial Black", "Noto Sans SC", cursive, sans-serif;
+          font-weight: 900;
+        }
+        
+        /* XYChart styles - Memphis bright colors */
+        .line-plot-0 path {
+          stroke: #FF6B6B !important;
+          stroke-width: 5px !important;
+          stroke-linecap: round;
+        }
+        .line-plot-1 path {
+          stroke: #FECA57 !important;
+          stroke-width: 5px !important;
+          stroke-linecap: round;
+        }
+        .line-plot-2 path {
+          stroke: #48DBFB !important;
+          stroke-width: 5px !important;
+          stroke-linecap: round;
+        }
+        .bar-plot-0 rect {
+          fill: #FF6B6B !important;
+          stroke: #000000 !important;
+          stroke-width: 4px !important;
+          filter: drop-shadow(4px 4px 0px #000000);
+        }
+        .bar-plot-1 rect {
+          fill: #FECA57 !important;
+          stroke: #000000 !important;
+          stroke-width: 4px !important;
+          filter: drop-shadow(4px 4px 0px #000000);
+        }
+        .bar-plot-2 rect {
+          fill: #48DBFB !important;
+          stroke: #000000 !important;
+          stroke-width: 4px !important;
+          filter: drop-shadow(4px 4px 0px #000000);
+        }
+        .ticks path {
+          stroke: #000000 !important;
+          stroke-width: 2px !important;
+        }
+        .chart-title text {
+          fill: #000000 !important;
+          font-weight: 900 !important;
+          font-size: 22px !important;
+          font-family: "Comic Sans MS", "Arial Black", "Noto Sans SC", cursive, sans-serif;
+        }
+        .left-axis .label text, .bottom-axis .label text {
+          fill: #000000 !important;
+          font-size: 14px !important;
+          font-family: "Comic Sans MS", "Arial Black", "Noto Sans SC", cursive, sans-serif;
+          font-weight: 900;
+        }
+        .left-axis .title text, .bottom-axis .title text {
+          fill: #000000 !important;
+          font-size: 16px !important;
+          font-family: "Comic Sans MS", "Arial Black", "Noto Sans SC", cursive, sans-serif;
+          font-weight: 900;
+        }
+        .legend text {
+          fill: #000000 !important;
+          font-size: 14px !important;
+          font-family: "Comic Sans MS", "Arial Black", "Noto Sans SC", cursive, sans-serif;
+          font-weight: 900;
+        }
+      `
+    },
+    bgClass: 'bg-white',
+    bgStyle: {
+      backgroundColor: '#FEFEFE',
+      backgroundImage: `
+        linear-gradient(45deg, rgba(255, 107, 107, 0.3) 25%, transparent 25%, transparent 75%, rgba(255, 107, 107, 0.3) 75%, rgba(255, 107, 107, 0.3)),
+        linear-gradient(45deg, rgba(255, 107, 107, 0.3) 25%, transparent 25%, transparent 75%, rgba(255, 107, 107, 0.3) 75%, rgba(255, 107, 107, 0.3)),
+        linear-gradient(45deg, transparent 25%, rgba(254, 202, 87, 0.08) 25%, rgba(254, 202, 87, 0.08) 50%, transparent 50%, transparent),
+        linear-gradient(-45deg, rgba(72, 219, 251, 0.06) 25%, transparent 25%, transparent 75%, rgba(72, 219, 251, 0.06) 75%, rgba(72, 219, 251, 0.06)),
+        linear-gradient(90deg, rgba(255, 159, 243, 0.04) 1px, transparent 1px),
+        linear-gradient(rgba(255, 159, 243, 0.04) 1px, transparent 1px)
+      `,
+      backgroundSize: '50px 50px, 50px 50px, 25px 25px, 25px 25px, 10px 10px, 10px 10px',
+      backgroundPosition: '0px 0px, 25px 25px, 25px 0px, 0px 12.5px, 0px 0px, 0px 0px',
+    }
   },
 };
