@@ -1,6 +1,6 @@
 import type { MermaidConfig } from 'mermaid';
 
-export type ThemeType = 'linearLight' | 'linearDark' | 'notion' | 'ghibli' | 'spotless' | 'brutalist' | 'glassmorphism' | 'memphis' | 'softPop' | 'cyberpunk' | 'monochrome' | 'darkMinimal' | 'wireframe' | 'handDrawn' | 'grafana' | 'noir' | 'material' | 'aurora';
+export type ThemeType = 'linearLight' | 'linearDark' | 'notion' | 'ghibli' | 'spotless' | 'brutalist' | 'glassmorphism' | 'memphis' | 'softPop' | 'cyberpunk' | 'monochrome' | 'darkMinimal' | 'wireframe' | 'handDrawn' | 'grafana' | 'noir' | 'material' | 'aurora' | 'win95';
 
 export interface ThemeConfig {
   name: string;
@@ -4827,4 +4827,590 @@ export const themes: Record<ThemeType, ThemeConfig> = {
       `,
     }
   },
+  win95: {
+    name: 'Windows 95',
+    annotationColors: {
+      primary: '#000080', // Windows Blue
+      secondary: '#008080', // Windows Teal
+      text: '#000000', // Black
+    },
+    mermaidConfig: {
+      theme: 'base',
+      themeVariables: {
+        background: '#008080', // Classic teal desktop
+        primaryColor: '#c0c0c0', // Win95 gray
+        primaryTextColor: '#000000', // Black text
+        primaryBorderColor: '#808080', // Gray border
+        lineColor: '#000000', // Black lines
+        secondaryColor: '#c0c0c0',
+        tertiaryColor: '#c0c0c0',
+        fontFamily: '"MS Sans Serif", "Microsoft YaHei", Tahoma, sans-serif',
+        fontSize: '13px',
+      },
+      themeCSS: `
+        /* Windows 95/98 - Retro 3D interface style */
+        
+        /* Flowchart nodes - Classic Win95 3D button */
+        .node rect, .node polygon {
+          fill: #c0c0c0 !important;
+          stroke: #ffffff !important;
+          stroke-width: 2px !important;
+          rx: 0px !important;
+          ry: 0px !important;
+          /* Classic Win95 3D border effect */
+          filter: 
+            drop-shadow(2px 0 0 #ffffff)
+            drop-shadow(0 2px 0 #ffffff)
+            drop-shadow(-2px 0 0 #000000)
+            drop-shadow(0 -2px 0 #000000)
+            drop-shadow(3px 3px 0 #808080);
+        }
+        
+        .node circle {
+          fill: #c0c0c0 !important;
+          stroke: #ffffff !important;
+          stroke-width: 2px !important;
+          filter: 
+            drop-shadow(1px 1px 0 #808080);
+        }
+
+        g line.actor-line, g path.actor-line {
+          stroke: #030303 !important;
+          stroke-width: 2px !important;
+          stroke-dasharray: 4 2 !important;
+        }
+        
+        .node .label {
+          font-family: "MS Sans Serif", "Microsoft YaHei", Tahoma, sans-serif;
+          font-weight: 400;
+          fill: #000000 !important;
+          font-size: 13px;
+        }
+        
+        /* Connection lines - Simple black lines */
+        .edgePath .path {
+          stroke: #000000 !important;
+          stroke-width: 2px !important;
+        }
+        
+        .arrowheadPath {
+          fill: #000000 !important;
+          stroke: #000000 !important;
+        }
+        
+        .edgeLabel {
+          color: #000000 !important;
+        }
+        
+        .edgeLabel rect {
+          fill: #c0c0c0 !important;
+          stroke: #000000 !important;
+          stroke-width: 1px !important;
+          rx: 0px !important;
+          /* Win95 3D inset border effect */
+          filter: 
+            drop-shadow(1px 0 0 #808080)
+            drop-shadow(0 1px 0 #808080)
+            drop-shadow(-1px 0 0 #ffffff)
+            drop-shadow(0 -1px 0 #ffffff);
+        }
+        
+        .edgeLabel .label,
+        .edgeLabel text {
+          fill: #000000 !important;
+          font-family: "MS Sans Serif", "Microsoft YaHei", Tahoma, sans-serif;
+          font-size: 12px;
+          font-weight: 400;
+        }
+        
+        /* Sequence Diagram - Win95 window style */
+        .actor rect,
+        g.actor rect,
+        rect.actor {
+          fill: #c0c0c0 !important;
+          stroke: #ffffff !important;
+          stroke-width: 2px !important;
+          rx: 0px !important;
+          ry: 0px !important;
+          filter: 
+            drop-shadow(2px 0 0 #ffffff)
+            drop-shadow(0 2px 0 #ffffff)
+            drop-shadow(-2px 0 0 #000000)
+            drop-shadow(0 -2px 0 #000000)
+            drop-shadow(3px 3px 0 #808080) !important;
+        }
+        
+        .actor {
+          fill: #c0c0c0 !important;
+          stroke: #ffffff !important;
+        }
+        
+        g.actor {
+          filter: 
+            drop-shadow(2px 0 0 #ffffff)
+            drop-shadow(0 2px 0 #ffffff)
+            drop-shadow(-2px 0 0 #000000)
+            drop-shadow(0 -2px 0 #000000)
+            drop-shadow(3px 3px 0 #808080);
+        }
+        
+        .actor text {
+          fill: #000000 !important;
+          font-family: "MS Sans Serif", "Microsoft YaHei", Tahoma, sans-serif;
+          font-weight: 400;
+        }
+        
+        .actor-line {
+          stroke: #808080 !important;
+          stroke-width: 1px !important;
+          stroke-dasharray: 4 2 !important;
+        }
+        
+        .activation0, .activation1, .activation2,
+        rect.activation0, rect.activation1, rect.activation2 {
+          fill: #c0c0c0 !important;
+          stroke: #808080 !important;
+          stroke-width: 2px !important;
+          filter: 
+            drop-shadow(1px 1px 0 #808080) !important;
+        }
+        
+        .messageLine0, .messageLine1 {
+          stroke: #000000 !important;
+          stroke-width: 2px !important;
+        }
+        
+        .messageText {
+          fill: #000000 !important;
+          font-family: "MS Sans Serif", "Microsoft YaHei", Tahoma, sans-serif;
+          font-weight: 400;
+          font-size: 12px;
+        }
+        
+        #arrowhead path, .arrowheadPath {
+          fill: #000000 !important;
+          stroke: #000000 !important;
+        }
+        
+        /* Note boxes - Yellow sticky note style */
+        .note,
+        rect.note,
+        g.note rect {
+          fill: #ffff99 !important;
+          stroke: #ffffff !important;
+          stroke-width: 2px !important;
+          rx: 0px !important;
+          ry: 0px !important;
+          filter: 
+            drop-shadow(2px 0 0 #ffffff)
+            drop-shadow(0 2px 0 #ffffff)
+            drop-shadow(-2px 0 0 #808080)
+            drop-shadow(0 -2px 0 #808080)
+            drop-shadow(3px 3px 0 #666666) !important;
+        }
+        
+        .noteText,
+        text.noteText {
+          fill: #000000 !important;
+          font-family: "MS Sans Serif", "Microsoft YaHei", Tahoma, sans-serif;
+          font-weight: 400;
+        }
+        
+        /* Loop/Alt/Opt boxes - Classic window style */
+        .labelBox,
+        rect.labelBox {
+          fill: #000080 !important;
+          stroke: #ffffff !important;
+          stroke-width: 2px !important;
+          rx: 0px !important;
+          ry: 0px !important;
+          filter: 
+            drop-shadow(2px 0 0 #ffffff)
+            drop-shadow(0 2px 0 #ffffff)
+            drop-shadow(-2px 0 0 #000000)
+            drop-shadow(0 -2px 0 #000000)
+            drop-shadow(3px 3px 0 #808080) !important;
+        }
+        
+        .labelText, .loopText,
+        text.labelText, text.loopText {
+          fill: #ffffff !important;
+          font-family: "MS Sans Serif", "Microsoft YaHei", Tahoma, sans-serif;
+          font-weight: 700;
+        }
+        
+        .loopLine,
+        path.loopLine {
+          stroke: #000080 !important;
+          stroke-width: 3px !important;
+        }
+        
+        .node.statediagram-state:has(.label-container) {
+          filter: drop-shadow(2px 0 0 #ffffff) drop-shadow(0 2px 0 #ffffff) drop-shadow(-2px 0 0 #000000) drop-shadow(0 -2px 0 #000000) drop-shadow(3px 3px 0 #808080);
+        }
+
+        /* Cluster/Subgraph styling - Window frame */
+        .cluster rect {
+          fill: #c0c0c0 !important;
+          stroke: #ffffff !important;
+          stroke-width: 2px !important;
+          rx: 0px !important;
+          ry: 0px !important;
+          filter: 
+            drop-shadow(2px 0 0 #ffffff)
+            drop-shadow(0 2px 0 #ffffff)
+            drop-shadow(-2px 0 0 #000000)
+            drop-shadow(0 -2px 0 #000000)
+            drop-shadow(3px 3px 0 #808080);
+        }
+        
+        .cluster text {
+          fill: #000000 !important;
+          font-family: "MS Sans Serif", "Microsoft YaHei", Tahoma, sans-serif;
+          font-weight: 700;
+        }
+        
+        /* Class Diagram - Win95 cards */
+        .classGroup rect,
+        g.classGroup rect,
+        g[id*="classid"] rect,
+        g[id^="classid"] rect,
+        svg[aria-roledescription="classDiagram"] g.classGroup rect {
+          fill: #c0c0c0 !important;
+          stroke: #ffffff !important;
+          stroke-width: 2px !important;
+          rx: 0px !important;
+          ry: 0px !important;
+          filter: 
+            drop-shadow(2px 0 0 #ffffff)
+            drop-shadow(0 2px 0 #ffffff)
+            drop-shadow(-2px 0 0 #000000)
+            drop-shadow(0 -2px 0 #000000)
+            drop-shadow(3px 3px 0 #808080) !important;
+        }
+        
+        .classLabel .label,
+        .classLabel text,
+        .class-label text {
+          fill: #000000 !important;
+          font-family: "MS Sans Serif", "Microsoft YaHei", Tahoma, sans-serif;
+          font-weight: 400;
+        }
+        
+        .relationshipLine,
+        .relation {
+          stroke: #000000 !important;
+          stroke-width: 2px !important;
+        }
+        
+        .divider {
+          stroke: #808080 !important;
+          stroke-width: 1px !important;
+        }
+        
+        /* State diagram - Win95 buttons */
+        g[id*="state-"] rect,
+        g[id^="state-"] rect,
+        g.stateGroup rect,
+        .statediagram-state rect,
+        .statediagram-state .state-inner,
+        g[class*="state"] rect,
+        svg[aria-roledescription="statediagram"] g rect:not(circle):not([id*="start"]):not([id*="end"]) {
+          fill: #c0c0c0 !important;
+          stroke: #ffffff !important;
+          stroke-width: 2px !important;
+          rx: 0px !important;
+          ry: 0px !important;
+          filter: 
+            drop-shadow(2px 0 0 #ffffff)
+            drop-shadow(0 2px 0 #ffffff)
+            drop-shadow(-2px 0 0 #000000)
+            drop-shadow(0 -2px 0 #000000)
+            drop-shadow(3px 3px 0 #808080) !important;
+        }
+        
+        .start-state circle,
+        .end-state circle,
+        circle[id*="start"],
+        circle[id*="end"] {
+          fill: #000080 !important;
+          stroke: #ffffff !important;
+          stroke-width: 2px !important;
+          filter: drop-shadow(2px 2px 0 #808080);
+        }
+        
+        .statediagram-state circle {
+          stroke: #ffffff !important;
+          stroke-width: 2px !important;
+        }
+
+        .edgeLabel p {
+          background-color: #9c9c9c !important;
+        }
+
+        .node.default:has(.attribute-type), .node.default:has(.annotation-group) {
+          filter: drop-shadow(2px 0 0 #ffffff) drop-shadow(0 2px 0 #ffffff) drop-shadow(-2px 0 0 #000000) drop-shadow(0 -2px 0 #000000) drop-shadow(3px 3px 0 #808080);
+        }
+        
+        .stateLabel text,
+        .statediagram-state text,
+        .state-note text {
+          fill: #000000 !important;
+          font-family: "MS Sans Serif", "Microsoft YaHei", Tahoma, sans-serif;
+          font-weight: 400;
+        }
+        
+        .transition,
+        path.transition {
+          stroke: #000000 !important;
+          stroke-width: 2px !important;
+        }
+        
+        g.stateGroup.statediagram-cluster rect {
+          fill: #c0c0c0 !important;
+          rx: 0px !important;
+          ry: 0px !important;
+        }
+        
+        /* ER Diagram - Win95 entities */
+        .er.entityBox,
+        .entityBox,
+        g[id*="entity-"] rect,
+        g[id^="entity"] rect,
+        svg[aria-roledescription="er"] .entityBox,
+        svg[aria-roledescription="er"] g rect {
+          fill: #c0c0c0 !important;
+          stroke: #ffffff !important;
+          stroke-width: 2px !important;
+          rx: 0px !important;
+          ry: 0px !important;
+          filter: 
+            drop-shadow(2px 0 0 #ffffff)
+            drop-shadow(0 2px 0 #ffffff)
+            drop-shadow(-2px 0 0 #000000)
+            drop-shadow(0 -2px 0 #000000)
+            drop-shadow(3px 3px 0 #808080) !important;
+        }
+        
+        .er.relationshipLabelBox,
+        .relationshipLabelBox {
+          fill: #c0c0c0 !important;
+          stroke: #808080 !important;
+          stroke-width: 1px !important;
+          rx: 0px !important;
+          ry: 0px !important;
+        }
+        
+        .er.entityLabel,
+        .er.relationshipLabel,
+        .entityLabel text,
+        .relationshipLabel {
+          fill: #000000 !important;
+          font-family: "MS Sans Serif", "Microsoft YaHei", Tahoma, sans-serif;
+          font-weight: 400;
+        }
+        
+        .er .relationshipLine,
+        .relationshipLine {
+          stroke: #000000 !important;
+          stroke-width: 2px !important;
+        }
+        
+        .er .attributeBoxEven,
+        .er .attributeBoxOdd {
+          fill: #c0c0c0 !important;
+          stroke: #808080 !important;
+          stroke-width: 1px !important;
+        }
+        
+        /* Gantt chart - Win95 timeline */
+        .titleText,
+        text.titleText {
+          fill: #000000 !important;
+          font-family: "MS Sans Serif", "Microsoft YaHei", Tahoma, sans-serif;
+          font-weight: 700;
+        }
+        
+        .sectionTitle,
+        text.sectionTitle {
+          fill: #000000 !important;
+          font-family: "MS Sans Serif", "Microsoft YaHei", Tahoma, sans-serif;
+          font-weight: 700;
+        }
+        
+        .taskText, 
+        .taskTextOutsideRight, 
+        .taskTextOutsideLeft,
+        text.taskText {
+          fill: #000000 !important;
+          font-family: "MS Sans Serif", "Microsoft YaHei", Tahoma, sans-serif;
+          font-weight: 400;
+        }
+        
+        .task0, .task1, .task2, .task3,
+        rect.task,
+        rect[class*="task"],
+        svg[aria-roledescription="gantt"] rect.task,
+        g.task rect {
+          stroke: #ffffff !important;
+          stroke-width: 2px !important;
+          rx: 0px !important;
+          filter: 
+            drop-shadow(1px 0 0 #ffffff)
+            drop-shadow(0 1px 0 #ffffff)
+            drop-shadow(-1px 0 0 #808080)
+            drop-shadow(0 -1px 0 #808080) !important;
+        }
+        
+        .taskText0, .taskText1, .taskText2, .taskText3 {
+          fill: #000000 !important;
+        }
+        
+        .grid .tick line {
+          stroke: #808080 !important;
+        }
+        
+        .grid path {
+          stroke: #808080 !important;
+          stroke-width: 1px !important;
+        }
+        
+        /* Pie chart - Win95 style */
+        .pieCircle,
+        circle.pieCircle {
+          stroke: #000000 !important;
+          stroke-width: 2px !important;
+        }
+        
+        .pieTitleText,
+        text.pieTitleText {
+          fill: #000000 !important;
+          font-family: "MS Sans Serif", "Microsoft YaHei", Tahoma, sans-serif;
+          font-weight: 700;
+        }
+        
+        .legendText,
+        text.legendText,
+        text.legend {
+          fill: #000000 !important;
+          font-family: "MS Sans Serif", "Microsoft YaHei", Tahoma, sans-serif;
+          font-weight: 400;
+        }
+        
+        .slice,
+        path.slice,
+        svg[aria-roledescription="pie"] path {
+          stroke: #000000 !important;
+          stroke-width: 2px !important;
+        }
+        
+        /* Journey diagram */
+        .section0, .section1, .section2 {
+          fill: #c0c0c0 !important;
+          stroke: #ffffff !important;
+          stroke-width: 2px !important;
+          rx: 0px !important;
+          filter: 
+            drop-shadow(2px 0 0 #ffffff)
+            drop-shadow(0 2px 0 #ffffff)
+            drop-shadow(-2px 0 0 #808080)
+            drop-shadow(0 -2px 0 #808080);
+        }
+        
+        .journey-section rect {
+          rx: 0px !important;
+        }
+        
+        /* Global text styling */
+        text {
+          fill: #000000 !important;
+          font-family: "MS Sans Serif", "Microsoft YaHei", Tahoma, sans-serif;
+        }
+        
+        /* XYChart styles - Win95 data visualization */
+        .line-plot-0 path {
+          stroke: #000080 !important;
+          stroke-width: 3px !important;
+        }
+        .line-plot-1 path {
+          stroke: #800000 !important;
+          stroke-width: 3px !important;
+        }
+        .line-plot-2 path {
+          stroke: #008080 !important;
+          stroke-width: 3px !important;
+        }
+        .bar-plot-0 rect {
+          fill: #0000ff !important;
+          stroke: #000080 !important;
+          stroke-width: 2px !important;
+          rx: 0px !important;
+          filter: 
+            drop-shadow(2px 0 0 #ffffff)
+            drop-shadow(0 2px 0 #ffffff)
+            drop-shadow(-1px 0 0 #000080)
+            drop-shadow(0 -1px 0 #000080);
+        }
+        .bar-plot-1 rect {
+          fill: #ff0000 !important;
+          stroke: #800000 !important;
+          stroke-width: 2px !important;
+          rx: 0px !important;
+          filter: 
+            drop-shadow(2px 0 0 #ffffff)
+            drop-shadow(0 2px 0 #ffffff)
+            drop-shadow(-1px 0 0 #800000)
+            drop-shadow(0 -1px 0 #800000);
+        }
+        .bar-plot-2 rect {
+          fill: #00ffff !important;
+          stroke: #008080 !important;
+          stroke-width: 2px !important;
+          rx: 0px !important;
+          filter: 
+            drop-shadow(2px 0 0 #ffffff)
+            drop-shadow(0 2px 0 #ffffff)
+            drop-shadow(-1px 0 0 #008080)
+            drop-shadow(0 -1px 0 #008080);
+        }
+        .ticks path {
+          stroke: #808080 !important;
+        }
+        .chart-title text {
+          fill: #000000 !important;
+          font-weight: 700 !important;
+          font-size: 14px !important;
+          font-family: "MS Sans Serif", "Microsoft YaHei", Tahoma, sans-serif;
+        }
+        .left-axis .label text, .bottom-axis .label text {
+          fill: #000000 !important;
+          font-size: 12px !important;
+          font-family: "MS Sans Serif", "Microsoft YaHei", Tahoma, sans-serif;
+        }
+        .left-axis .title text, .bottom-axis .title text {
+          fill: #000000 !important;
+          font-size: 13px !important;
+          font-family: "MS Sans Serif", "Microsoft YaHei", Tahoma, sans-serif;
+          font-weight: 700;
+        }
+        .legend text {
+          fill: #000000 !important;
+          font-size: 12px !important;
+          font-family: "MS Sans Serif", "Microsoft YaHei", Tahoma, sans-serif;
+        }
+      `
+    },
+    bgClass: 'bg-[#008080]',
+    bgStyle: {
+      backgroundColor: '#008080',
+      backgroundImage: `
+        linear-gradient(45deg, #008080 25%, transparent 25%),
+        linear-gradient(-45deg, #008080 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #008080 75%),
+        linear-gradient(-45deg, transparent 75%, #008080 75%)
+      `,
+      backgroundSize: '2px 2px',
+      backgroundPosition: '0 0, 0 1px, 1px -1px, -1px 0px',
+    }
+  },  
 };
