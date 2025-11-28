@@ -4,6 +4,8 @@ export interface Translation {
   // Header
   appTitle: string;
   share: string;
+  shareSuccess: string;
+  shareCopied: string;
   
   // Editor
   editor: string;
@@ -104,6 +106,8 @@ export const translations: Record<Language, Translation> = {
     // Header
     appTitle: 'Mermaid Advanced',
     share: 'Share',
+    shareSuccess: 'Share link copied!',
+    shareCopied: 'Link copied to clipboard successfully',
     
     // Editor
     editor: 'Editor',
@@ -202,6 +206,8 @@ export const translations: Record<Language, Translation> = {
     // Header
     appTitle: 'Mermaid 高级版',
     share: '分享',
+    shareSuccess: '分享链接已复制！',
+    shareCopied: '链接已成功复制到剪贴板',
     
     // Editor
     editor: '编辑器',
@@ -300,6 +306,8 @@ export const translations: Record<Language, Translation> = {
     // Header
     appTitle: 'Mermaid 進階版',
     share: '分享',
+    shareSuccess: '分享連結已複製！',
+    shareCopied: '連結已成功複製到剪貼簿',
     
     // Editor
     editor: '編輯器',
@@ -398,6 +406,8 @@ export const translations: Record<Language, Translation> = {
     // Header
     appTitle: 'Mermaid アドバンスト',
     share: '共有',
+    shareSuccess: '共有リンクをコピーしました！',
+    shareCopied: 'リンクがクリップボードにコピーされました',
     
     // Editor
     editor: 'エディター',
@@ -496,6 +506,8 @@ export const translations: Record<Language, Translation> = {
     // Header
     appTitle: 'Mermaid Avanzado',
     share: 'Compartir',
+    shareSuccess: '¡Enlace copiado!',
+    shareCopied: 'Enlace copiado al portapapeles correctamente',
     
     // Editor
     editor: 'Editor',
@@ -594,6 +606,8 @@ export const translations: Record<Language, Translation> = {
     // Header
     appTitle: 'Mermaid Avançado',
     share: 'Compartilhar',
+    shareSuccess: 'Link copiado!',
+    shareCopied: 'Link copiado para a área de transferência com sucesso',
     
     // Editor
     editor: 'Editor',

@@ -7,6 +7,7 @@ import Toolbar from './Toolbar';
 import ExampleSelector from './ExampleSelector';
 import ResizableDivider from './ResizableDivider';
 import ConfirmDialog from './ConfirmDialog';
+import Toast from './Toast';
 import { themes } from '../utils/themes';
 import type { ThemeType } from '../utils/themes';
 import { backgrounds, type BackgroundStyle } from '../utils/backgrounds';
@@ -17,6 +18,7 @@ import { X, RefreshCw } from 'lucide-react';
 import { trackEvent } from './GoogleAnalytics';
 import { AnalyticsEvents } from '../hooks/useAnalytics';
 import { findExampleById } from '../utils/examples';
+import { generateShareURL, parseShareURL } from '../utils/compression';
 
 const Layout: React.FC = () => {
   const defaultCode = `graph TD
@@ -34,6 +36,10 @@ const Layout: React.FC = () => {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [showClearDialog, setShowClearDialog] = useState(false);
   const [loadedFromUrl, setLoadedFromUrl] = useState<boolean>(false); // 追踪是否从 URL 加载
+  const [isInitialLoad, setIsInitialLoad] = useState<boolean>(true); // 追踪是否是初始加载
+  const [customStylesLoaded, setCustomStylesLoaded] = useState<boolean>(false); // 追踪是否加载了自定义背景/字体
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState('');
   const previewRef = useRef<PreviewHandle>(null);
   const { t, language } = useLanguage();
 
@@ -66,6 +72,35 @@ const Layout: React.FC = () => {
     }
   };
 
+  const handleShare = () => {
+    // 生成分享链接
+    const shareURL = generateShareURL({
+      code: code,
+      theme: currentTheme,
+      background: selectedBackground.id,
+      font: selectedFont.id
+    });
+    
+    // 追踪分享操作
+    trackEvent('share_link', {
+      theme: currentTheme,
+      background: selectedBackground.id,
+      font: selectedFont.id,
+      code_length: code.length,
+      compressed_url_length: shareURL.length
+    });
+    
+    // 复制到剪贴板
+    navigator.clipboard.writeText(shareURL).then(() => {
+      setToastMessage(t.shareCopied);
+      setShowToast(true);
+    }).catch((err) => {
+      console.error('Failed to copy share link:', err);
+      // 降级方案：显示链接让用户手动复制
+      prompt(t.share, shareURL);
+    });
+  };
+
   const handleBackgroundChange = (bg: BackgroundStyle) => {
     // 追踪背景更改
     trackEvent(AnalyticsEvents.BACKGROUND_CHANGE, {
@@ -75,6 +110,8 @@ const Layout: React.FC = () => {
     });
     
     setSelectedBackground(bg);
+    // 用户手动更改了背景，允许后续主题切换时重置
+    setCustomStylesLoaded(false);
   };
 
   const handleFontChange = (font: FontOption) => {
@@ -86,6 +123,8 @@ const Layout: React.FC = () => {
     });
     
     setSelectedFont(font);
+    // 用户手动更改了字体，允许后续主题切换时重置
+    setCustomStylesLoaded(false);
   };
 
   // 清空编辑器
@@ -225,48 +264,84 @@ const Layout: React.FC = () => {
     }
   };
 
-  // 初始化：从 URL 参数加载示例和主题
+  // 初始化：从 URL 参数加载示例、主题和分享内容
   useEffect(() => {
     const url = new URL(window.location.href);
-    const exampleId = url.searchParams.get('example');
-    const themeParam = url.searchParams.get('theme');
     
-    // 加载主题
-    if (themeParam) {
-      const validThemes: ThemeType[] = ['linearLight', 'linearDark', 'notion', 'ghibli', 'spotless', 'brutalist', 'glassmorphism', 'memphis', 'softPop', 'cyberpunk', 'monochrome', 'darkMinimal', 'wireframe', 'handDrawn', 'grafana', 'noir', 'material', 'aurora'];
-      if (validThemes.includes(themeParam as ThemeType)) {
-        setCurrentTheme(themeParam as ThemeType);
-        
-        // 追踪从 URL 加载主题
-        trackEvent('theme_loaded_from_url', {
-          theme: themeParam
-        });
-      } else {
-        // 如果主题无效，清除 URL 参数
-        url.searchParams.delete('theme');
-        window.history.replaceState({}, '', url.toString());
+    // 尝试解析分享参数（包含压缩的代码）
+    const shareParams = parseShareURL();
+    
+    if (shareParams) {
+      // 检查是否有自定义背景/字体
+      const hasCustomStyles = !!(shareParams.background || shareParams.font);
+      if (hasCustomStyles) {
+        setCustomStylesLoaded(true);
       }
-    }
-    
-    // 加载示例
-    if (exampleId) {
-      const found = findExampleById(exampleId);
-      if (found) {
-        const exampleCode = found.example.code[language];
-        setCode(exampleCode);
+      
+      // 加载背景（在主题之前）
+      if (shareParams.background) {
+        const bg = backgrounds.find(b => b.id === shareParams.background);
+        if (bg) {
+          setSelectedBackground(bg);
+        }
+      }
+      
+      // 加载字体（在主题之前）
+      if (shareParams.font) {
+        const font = fonts.find(f => f.id === shareParams.font);
+        if (font) {
+          setSelectedFont(font);
+        }
+      }
+      
+      // 加载主题（在背景和字体之后）
+      if (shareParams.theme) {
+        const validThemes: ThemeType[] = ['linearLight', 'linearDark', 'notion', 'ghibli', 'spotless', 'brutalist', 'glassmorphism', 'memphis', 'softPop', 'cyberpunk', 'monochrome', 'darkMinimal', 'wireframe', 'handDrawn', 'grafana', 'noir', 'material', 'aurora'];
+        if (validThemes.includes(shareParams.theme as ThemeType)) {
+          setCurrentTheme(shareParams.theme as ThemeType);
+          
+          // 追踪从 URL 加载主题
+          trackEvent('theme_loaded_from_url', {
+            theme: shareParams.theme,
+            from_share: !!shareParams.code
+          });
+        }
+      }
+      
+      // 标记初始加载完成
+      setIsInitialLoad(false);
+      
+      // 加载代码（从分享链接）
+      if (shareParams.code) {
+        setCode(shareParams.code);
         setLoadedFromUrl(true);
         
-        // 追踪从 URL 加载
-        trackEvent('example_loaded_from_url', {
-          example_id: exampleId,
-          category: found.category,
-          theme: themeParam || currentTheme
+        // 追踪从分享链接加载
+        trackEvent('shared_link_opened', {
+          theme: shareParams.theme || currentTheme,
+          background: shareParams.background,
+          font: shareParams.font,
+          code_length: shareParams.code.length
         });
-      } else {
-        // 如果找不到示例，清除无效的 URL 参数
-        url.searchParams.delete('example');
-        window.history.replaceState({}, '', url.toString());
+      } else if (shareParams.example) {
+        // 加载示例（如果没有代码但有示例 ID）
+        const found = findExampleById(shareParams.example);
+        if (found) {
+          const exampleCode = found.example.code[language];
+          setCode(exampleCode);
+          setLoadedFromUrl(true);
+          
+          // 追踪从 URL 加载示例
+          trackEvent('example_loaded_from_url', {
+            example_id: shareParams.example,
+            category: found.category,
+            theme: shareParams.theme || currentTheme
+          });
+        }
       }
+    } else {
+      // 没有 URL 参数时也要标记初始加载完成
+      setIsInitialLoad(false);
     }
   }, []); // 只在组件挂载时执行一次
 
@@ -282,11 +357,13 @@ const Layout: React.FC = () => {
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, [isFullscreen]);
 
-  // Reset background and font when theme changes
+  // Reset background and font when theme changes (but not on initial load or if custom styles were loaded from URL)
   useEffect(() => {
-    setSelectedBackground(backgrounds[0]); // Reset to default
-    setSelectedFont(fonts[0]); // Reset to default
-  }, [currentTheme]);
+    if (!isInitialLoad && !customStylesLoaded) {
+      setSelectedBackground(backgrounds[0]); // Reset to default
+      setSelectedFont(fonts[0]); // Reset to default
+    }
+  }, [currentTheme, isInitialLoad, customStylesLoaded]);
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 flex flex-col font-sans transition-colors duration-200">
@@ -341,6 +418,7 @@ const Layout: React.FC = () => {
                 onThemeChange={handleThemeChange}
                 onDownload={handleDownload}
                 onCopy={handleCopy}
+                onShare={handleShare}
                 selectedBackground={selectedBackground.id}
                 onBackgroundChange={handleBackgroundChange}
                 selectedFont={selectedFont.id}
@@ -376,6 +454,16 @@ const Layout: React.FC = () => {
         onCancel={() => setShowClearDialog(false)}
         variant="danger"
       />
+
+      {/* Toast 通知 */}
+      {showToast && (
+        <Toast
+          message={toastMessage}
+          onClose={() => setShowToast(false)}
+          duration={3000}
+          type="success"
+        />
+      )}
     </div>
   );
 };

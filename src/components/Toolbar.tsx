@@ -1,5 +1,5 @@
 import React from 'react';
-import { Download, Palette, Image, FileImage, MousePointer, ArrowRight, Type, Square, Circle, Minus, Trash2, Copy } from 'lucide-react';
+import { Download, Palette, Image, FileImage, MousePointer, ArrowRight, Type, Square, Circle, Minus, Trash2, Copy, Share2 } from 'lucide-react';
 import { themes } from '../utils/themes';
 import type { ThemeType } from '../utils/themes';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -14,6 +14,7 @@ interface ToolbarProps {
   onThemeChange: (theme: ThemeType) => void;
   onDownload: (transparent: boolean) => void;
   onCopy: (transparent: boolean) => void;
+  onShare: () => void;
   selectedBackground: string;
   onBackgroundChange: (bg: BackgroundStyle) => void;
   selectedFont: string;
@@ -29,6 +30,7 @@ const Toolbar: React.FC<ToolbarProps> = ({
   onThemeChange, 
   onDownload,
   onCopy,
+  onShare,
   selectedBackground,
   onBackgroundChange,
   selectedFont,
@@ -166,6 +168,16 @@ const Toolbar: React.FC<ToolbarProps> = ({
           </>
         )}
       </div>
+
+      {/* Share Button */}
+      <button
+        onClick={onShare}
+        className="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm transition-all cursor-pointer"
+        title={t.share || '分享'}
+      >
+        <Share2 className="w-4 h-4" />
+        <span className="hidden sm:inline">{t.share || '分享'}</span>
+      </button>
 
       {/* Copy Button */}
       <div className="relative">
