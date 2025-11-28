@@ -1,6 +1,6 @@
 import type { MermaidConfig } from 'mermaid';
 
-export type ThemeType = 'linearLight' | 'linearDark' | 'notion' | 'cyberpunk' | 'monochrome' | 'ghibli' | 'softPop' | 'darkMinimal' | 'wireframe' | 'handDrawn' | 'grafana' | 'spotless' | 'brutalist';
+export type ThemeType = 'linearLight' | 'linearDark' | 'notion' | 'ghibli' | 'spotless' | 'brutalist' | 'glassmorphism' | 'softPop' | 'cyberpunk' | 'monochrome' | 'darkMinimal' | 'wireframe' | 'handDrawn' | 'grafana';
 
 export interface ThemeConfig {
   name: string;
@@ -619,6 +619,1105 @@ export const themes: Record<ThemeType, ThemeConfig> = {
             linear-gradient(-45deg, transparent 75%, rgba(210, 180, 140, 0.03) 75%)
         `,
         backgroundSize: '20px 20px'
+    }
+  },
+  spotless: {
+    name: 'Spotless',
+    annotationColors: {
+      primary: '#2C2416', // Deep brown-black
+      secondary: '#5A4A38', // Medium brown
+      text: '#1a1a1a', // Pure black
+    },
+    mermaidConfig: {
+      theme: 'base',
+      themeVariables: {
+        background: '#EDE8DC', // Cream/beige background
+        primaryColor: '#F5F1E8', // Light cream for nodes
+        primaryTextColor: '#1a1a1a', // Black text
+        primaryBorderColor: '#2C2416', // Dark brown border
+        lineColor: '#2C2416', // Dark brown lines
+        secondaryColor: '#E8DCC8',
+        tertiaryColor: '#DFD3C3',
+        fontFamily: '"Helvetica Neue", "Arial", "Noto Sans SC", sans-serif',
+        fontSize: '15px',
+      },
+      themeCSS: `
+        /* Spotless - Vintage manual/instruction booklet style */
+        
+        /* Flowchart nodes - Clean rectangular boxes like manual diagrams */
+        .node rect, .node circle, .node polygon {
+          fill: #F5F1E8 !important;
+          stroke: #2C2416 !important;
+          stroke-width: 2.5px !important;
+          rx: 2px !important;
+          ry: 2px !important;
+        }
+        
+        .node .label {
+          font-family: "Helvetica Neue", "Arial", "Noto Sans SC", sans-serif;
+          font-weight: 700;
+          fill: #1a1a1a !important;
+          font-size: 15px;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+        }
+        
+        /* Connection lines - Bold and clear like instruction diagrams */
+        .edgePath .path {
+          stroke: #2C2416 !important;
+          stroke-width: 2.5px !important;
+          stroke-linecap: square;
+        }
+        
+        .arrowheadPath {
+          fill: #2C2416 !important;
+          stroke: #2C2416 !important;
+        }
+        
+        .edgeLabel {
+          background-color: #EDE8DC !important;
+          color: #1a1a1a !important;
+          font-family: "Helvetica Neue", "Arial", "Noto Sans SC", sans-serif;
+          font-size: 13px;
+          font-weight: 600;
+          text-transform: uppercase;
+          letter-spacing: 0.3px;
+        }
+        
+        /* Sequence Diagram - Instruction manual style */
+        .actor {
+          fill: #F5F1E8 !important;
+          stroke: #2C2416 !important;
+          stroke-width: 2.5px !important;
+          rx: 2px !important;
+          ry: 2px !important;
+        }
+        
+        .actor text {
+          fill: #1a1a1a !important;
+          font-family: "Helvetica Neue", "Arial", "Noto Sans SC", sans-serif;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+        }
+        
+        .actor-line {
+          stroke: #2C2416 !important;
+          stroke-width: 2px !important;
+          stroke-dasharray: 6 3 !important;
+        }
+        
+        .activation0, .activation1, .activation2 {
+          fill: #E8DCC8 !important;
+          stroke: #2C2416 !important;
+          stroke-width: 2.5px !important;
+        }
+        
+        .messageLine0, .messageLine1 {
+          stroke: #2C2416 !important;
+          stroke-width: 2.5px !important;
+          stroke-linecap: square;
+        }
+        
+        .messageText {
+          fill: #1a1a1a !important;
+          font-family: "Helvetica Neue", "Arial", "Noto Sans SC", sans-serif;
+          font-weight: 600;
+          font-size: 13px;
+        }
+        
+        #arrowhead path, .arrowheadPath {
+          fill: #2C2416 !important;
+          stroke: #2C2416 !important;
+        }
+        
+        /* Note boxes - Warning/attention style */
+        .note {
+          fill: #FFF9E6 !important;
+          stroke: #2C2416 !important;
+          stroke-width: 2.5px !important;
+          rx: 2px !important;
+          ry: 2px !important;
+        }
+        
+        .noteText {
+          fill: #1a1a1a !important;
+          font-family: "Helvetica Neue", "Arial", "Noto Sans SC", sans-serif;
+          font-weight: 600;
+          font-size: 13px;
+        }
+        
+        /* Loop/Alt/Opt boxes */
+        .labelBox {
+          fill: #DFD3C3 !important;
+          stroke: #2C2416 !important;
+          stroke-width: 2.5px !important;
+          rx: 2px !important;
+          ry: 2px !important;
+        }
+        
+        .labelText, .loopText {
+          fill: #1a1a1a !important;
+          font-family: "Helvetica Neue", "Arial", "Noto Sans SC", sans-serif;
+          font-weight: 700;
+          text-transform: uppercase;
+          font-size: 12px;
+          letter-spacing: 0.5px;
+        }
+        
+        .loopLine {
+          stroke: #2C2416 !important;
+          stroke-width: 2.5px !important;
+        }
+        
+        /* Cluster/Subgraph styling */
+        .cluster rect {
+          fill: rgba(223, 211, 195, 0.3) !important;
+          stroke: #2C2416 !important;
+          stroke-width: 2px !important;
+          stroke-dasharray: 8 4 !important;
+          rx: 2px !important;
+          ry: 2px !important;
+        }
+        
+        .cluster text {
+          fill: #1a1a1a !important;
+          font-family: "Helvetica Neue", "Arial", "Noto Sans SC", sans-serif;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+        }
+        
+        /* State diagram */
+        .stateLabel text {
+          fill: #1a1a1a !important;
+          font-family: "Helvetica Neue", "Arial", "Noto Sans SC", sans-serif;
+          font-weight: 700;
+          text-transform: uppercase;
+        }
+        
+        /* Gantt chart */
+        .titleText {
+          fill: #1a1a1a !important;
+          font-family: "Helvetica Neue", "Arial", "Noto Sans SC", sans-serif;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+        }
+        
+        .sectionTitle {
+          fill: #1a1a1a !important;
+          font-family: "Helvetica Neue", "Arial", "Noto Sans SC", sans-serif;
+          font-weight: 700;
+          text-transform: uppercase;
+        }
+        
+        .taskText, .taskTextOutsideRight, .taskTextOutsideLeft {
+          fill: #1a1a1a !important;
+          font-family: "Helvetica Neue", "Arial", "Noto Sans SC", sans-serif;
+          font-weight: 600;
+        }
+        
+        /* XYChart styles - Technical manual data visualization */
+        .line-plot-0 path {
+          stroke: #2C2416 !important;
+          stroke-width: 3px !important;
+          stroke-linecap: square;
+        }
+        .line-plot-1 path {
+          stroke: #5A4A38 !important;
+          stroke-width: 3px !important;
+          stroke-linecap: square;
+        }
+        .line-plot-2 path {
+          stroke: #8B7355 !important;
+          stroke-width: 3px !important;
+          stroke-linecap: square;
+        }
+        .bar-plot-0 rect {
+          fill: #F5F1E8 !important;
+          stroke: #2C2416 !important;
+          stroke-width: 2.5px !important;
+          rx: 1px !important;
+        }
+        .bar-plot-1 rect {
+          fill: #E8DCC8 !important;
+          stroke: #5A4A38 !important;
+          stroke-width: 2.5px !important;
+          rx: 1px !important;
+        }
+        .bar-plot-2 rect {
+          fill: #DFD3C3 !important;
+          stroke: #8B7355 !important;
+          stroke-width: 2.5px !important;
+          rx: 1px !important;
+        }
+        .ticks path {
+          stroke: #2C2416 !important;
+          opacity: 0.3;
+        }
+        .chart-title text {
+          fill: #1a1a1a !important;
+          font-weight: 700 !important;
+          font-size: 18px !important;
+          font-family: "Helvetica Neue", "Arial", "Noto Sans SC", sans-serif;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+        }
+        .left-axis .label text, .bottom-axis .label text {
+          fill: #1a1a1a !important;
+          font-size: 13px !important;
+          font-family: "Helvetica Neue", "Arial", "Noto Sans SC", sans-serif;
+          font-weight: 600;
+        }
+        .left-axis .title text, .bottom-axis .title text {
+          fill: #2C2416 !important;
+          font-size: 14px !important;
+          font-family: "Helvetica Neue", "Arial", "Noto Sans SC", sans-serif;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+        }
+        .legend text {
+          fill: #1a1a1a !important;
+          font-size: 13px !important;
+          font-family: "Helvetica Neue", "Arial", "Noto Sans SC", sans-serif;
+          font-weight: 600;
+        }
+      `
+    },
+    bgClass: 'bg-[#EDE8DC]',
+    bgStyle: {
+      backgroundColor: '#EDE8DC',
+      backgroundImage: `
+        repeating-linear-gradient(
+          0deg,
+          rgba(44, 36, 22, 0.02) 0px,
+          rgba(44, 36, 22, 0.02) 1px,
+          transparent 1px,
+          transparent 40px
+        ),
+        repeating-linear-gradient(
+          90deg,
+          rgba(44, 36, 22, 0.02) 0px,
+          rgba(44, 36, 22, 0.02) 1px,
+          transparent 1px,
+          transparent 40px
+        )
+      `,
+      backgroundSize: '40px 40px'
+    }
+  },
+  brutalist: {
+    name: 'Brutalist',
+    annotationColors: {
+      primary: '#FF6B35', // Bold orange
+      secondary: '#4ECDC4', // Bright teal
+      text: '#000000', // Pure black
+    },
+    mermaidConfig: {
+      theme: 'base',
+      themeVariables: {
+        background: '#f6f3e9', // Light warm beige
+        primaryColor: '#ffffff', // White for nodes
+        primaryTextColor: '#000000', // Black text
+        primaryBorderColor: '#000000', // Black border
+        lineColor: '#000000', // Black lines
+        secondaryColor: '#FFE66D', // Bright yellow
+        tertiaryColor: '#FF6B35', // Bold orange
+        fontFamily: '"Arial", "Helvetica", "Noto Sans SC", sans-serif',
+        fontSize: '16px',
+      },
+      themeCSS: `
+        /* Brutalist/Neobrutalism - Hard shadows and bold borders */
+        
+        /* Flowchart nodes - Hard shadow effect */
+        .node rect, .node polygon {
+          fill: #ffffff !important;
+          stroke: #000000 !important;
+          stroke-width: 3px !important;
+          rx: 4px !important;
+          ry: 4px !important;
+          /* Hard shadow simulation using double drop-shadow */
+          filter: 
+            drop-shadow(6px 6px 0px #000000);
+        }
+
+        .node circle {
+          fill: #ffffff !important;
+          stroke: #000000 !important;
+          stroke-width: 3px !important;
+          rx: 4px !important;
+          ry: 4px !important;
+        }
+        
+        .node .label {
+          font-family: "Arial", "Helvetica", "Noto Sans SC", sans-serif;
+          font-weight: 700;
+          fill: #000000 !important;
+          font-size: 16px;
+        }
+        
+        /* Connection lines - Bold and straight */
+        .edgePath .path {
+          stroke: #000000 !important;
+          stroke-width: 3px !important;
+          stroke-linecap: square;
+        }
+        
+        .arrowheadPath {
+          fill: #000000 !important;
+          stroke: #000000 !important;
+        }
+        
+        .edgeLabel {
+          background-color: #f6f3e9 !important;
+          color: #000000 !important;
+          font-family: "Arial", "Helvetica", "Noto Sans SC", sans-serif;
+          font-size: 14px;
+          font-weight: 700;
+        }
+        
+        /* Color accent nodes */
+        .node:nth-child(2n) rect,
+        .node:nth-child(2n) circle,
+        .node:nth-child(2n) polygon {
+          fill: #FFE66D !important;
+        }
+        
+        .node:nth-child(3n) rect,
+        .node:nth-child(3n) circle,
+        .node:nth-child(3n) polygon {
+          fill: #4ECDC4 !important;
+        }
+        
+        .node:nth-child(5n) rect,
+        .node:nth-child(5n) circle,
+        .node:nth-child(5n) polygon {
+          fill: #FF6B35 !important;
+        }
+        
+        /* Sequence Diagram - Brutalist style */
+        /* Actor boxes - Only shadow on rect, not text */
+        .actor rect {
+          fill: #ffffff !important;
+          stroke: #000000 !important;
+          stroke-width: 3px !important;
+          rx: 4px !important;
+          ry: 4px !important;
+          filter: drop-shadow(6px 6px 0px #000000);
+        }
+        
+        .actor {
+          fill: #ffffff !important;
+          stroke: #000000 !important;
+          stroke-width: 3px !important;
+          rx: 4px !important;
+          ry: 4px !important;
+        }
+        
+        .actor text {
+          fill: #000000 !important;
+          font-family: "Arial", "Helvetica", "Noto Sans SC", sans-serif;
+          font-weight: 700;
+        }
+        
+        .actor-line {
+          stroke: #000000 !important;
+          stroke-width: 3px !important;
+        }
+        
+        .activation0, .activation1, .activation2 {
+          fill: #FFE66D !important;
+          stroke: #000000 !important;
+          stroke-width: 3px !important;
+          filter: drop-shadow(5px 5px 0px #000000);
+        }
+        
+        .messageLine0, .messageLine1 {
+          stroke: #000000 !important;
+          stroke-width: 3px !important;
+          stroke-linecap: square;
+        }
+        
+        .messageText {
+          fill: #000000 !important;
+          font-family: "Arial", "Helvetica", "Noto Sans SC", sans-serif;
+          font-weight: 700;
+          font-size: 14px;
+        }
+        
+        #arrowhead path, .arrowheadPath {
+          fill: #000000 !important;
+          stroke: #000000 !important;
+        }
+        
+        /* Note boxes - Bright yellow with hard shadow */
+        .note {
+          fill: #FFE66D !important;
+          stroke: #000000 !important;
+          stroke-width: 3px !important;
+          rx: 4px !important;
+          ry: 4px !important;
+          filter: drop-shadow(6px 6px 0px #000000);
+        }
+        
+        .noteText {
+          fill: #000000 !important;
+          font-family: "Arial", "Helvetica", "Noto Sans SC", sans-serif;
+          font-weight: 700;
+        }
+        
+        /* Loop/Alt/Opt boxes - Orange accent */
+        .labelBox {
+          fill: #FF6B35 !important;
+          stroke: #000000 !important;
+          stroke-width: 3px !important;
+          rx: 4px !important;
+          ry: 4px !important;
+          filter: drop-shadow(6px 6px 0px #000000);
+        }
+        
+        .labelText, .loopText {
+          fill: #000000 !important;
+          font-family: "Arial", "Helvetica", "Noto Sans SC", sans-serif;
+          font-weight: 700;
+        }
+        
+        .loopLine {
+          stroke: #000000 !important;
+          stroke-width: 3px !important;
+        }
+        
+        /* Cluster/Subgraph styling */
+        .cluster rect {
+          fill: #4ECDC4 !important;
+          stroke: #000000 !important;
+          stroke-width: 3px !important;
+          rx: 4px !important;
+          ry: 4px !important;
+          filter: drop-shadow(8px 8px 0px #000000);
+        }
+        
+        .cluster text {
+          fill: #000000 !important;
+          font-family: "Arial", "Helvetica", "Noto Sans SC", sans-serif;
+          font-weight: 900;
+        }
+        
+        /* Class Diagram - Brutalist style with hard shadows */
+        .classGroup rect {
+          fill: #ffffff !important;
+          stroke: #000000 !important;
+          stroke-width: 3px !important;
+          rx: 4px !important;
+          ry: 4px !important;
+          filter: drop-shadow(6px 6px 0px #000000);
+        }
+        
+        .classLabel .label,
+        .classLabel text {
+          fill: #000000 !important;
+          font-family: "Arial", "Helvetica", "Noto Sans SC", sans-serif;
+          font-weight: 700;
+        }
+        
+        .relationshipLine {
+          stroke: #000000 !important;
+          stroke-width: 3px !important;
+        }
+        
+        .relationshipLabelBox {
+          fill: #FFE66D !important;
+          stroke: #000000 !important;
+          stroke-width: 2px !important;
+          filter: drop-shadow(4px 4px 0px #000000);
+        }
+        
+        /* State diagram - Brutalist style with hard shadows */
+        .statediagram-state rect,
+        .statediagram-state .state-inner {
+          fill: #ffffff !important;
+          stroke: #000000 !important;
+          stroke-width: 3px !important;
+          rx: 4px !important;
+          ry: 4px !important;
+          filter: drop-shadow(6px 6px 0px #000000);
+        }
+        
+        /* State diagram start/end circles - smaller shadow offset */
+        .start-state circle,
+        .end-state circle {
+          fill: #000000 !important;
+          stroke: #000000 !important;
+          stroke-width: 3px !important;
+          filter: drop-shadow(3px 3px 0px #000000) !important;
+        }
+        
+        .statediagram-state circle {
+          stroke: #000000 !important;
+          stroke-width: 3px !important;
+        }
+        
+        .stateLabel text,
+        .statediagram-state text {
+          fill: #000000 !important;
+          font-family: "Arial", "Helvetica", "Noto Sans SC", sans-serif;
+          font-weight: 700;
+        }
+        
+        .transition {
+          stroke: #000000 !important;
+          stroke-width: 3px !important;
+        }
+
+        .classDiagram .node.default {
+          filter: drop-shadow(6px 6px 0px #000000);
+        }
+        
+        /* ER Diagram - Brutalist style */
+        .er.entityBox {
+          fill: #ffffff !important;
+          stroke: #000000 !important;
+          stroke-width: 3px !important;
+          filter: drop-shadow(6px 6px 0px #000000);
+        }
+        
+        .er.relationshipLabelBox {
+          fill: #FFE66D !important;
+          stroke: #000000 !important;
+          stroke-width: 3px !important;
+          filter: drop-shadow(4px 4px 0px #000000);
+        }
+        
+        .er.entityLabel,
+        .er.relationshipLabel {
+          fill: #000000 !important;
+          font-family: "Arial", "Helvetica", "Noto Sans SC", sans-serif;
+          font-weight: 700;
+        }
+        
+        .er .relationshipLine {
+          stroke: #000000 !important;
+          stroke-width: 3px !important;
+        }
+        
+        /* Gantt chart */
+        .titleText {
+          fill: #000000 !important;
+          font-family: "Arial", "Helvetica", "Noto Sans SC", sans-serif;
+          font-weight: 900;
+        }
+        
+        .sectionTitle {
+          fill: #000000 !important;
+          font-family: "Arial", "Helvetica", "Noto Sans SC", sans-serif;
+          font-weight: 700;
+        }
+        
+        .taskText, .taskTextOutsideRight, .taskTextOutsideLeft {
+          fill: #000000 !important;
+          font-family: "Arial", "Helvetica", "Noto Sans SC", sans-serif;
+          font-weight: 700;
+        }
+        
+        .task0, .task1, .task2, .task3 {
+          stroke: #000000 !important;
+          stroke-width: 3px !important;
+          filter: drop-shadow(5px 5px 0px #000000);
+        }
+        
+        /* Pie chart */
+        .pieCircle {
+          stroke: #000000 !important;
+          stroke-width: 3px !important;
+        }
+        
+        .pieTitleText {
+          fill: #000000 !important;
+          font-family: "Arial", "Helvetica", "Noto Sans SC", sans-serif;
+          font-weight: 900;
+        }
+        
+        .slice {
+          stroke: #000000 !important;
+          stroke-width: 3px !important;
+        }
+        
+        .legendText {
+          fill: #000000 !important;
+          font-family: "Arial", "Helvetica", "Noto Sans SC", sans-serif;
+          font-weight: 700;
+        }
+        
+        /* XYChart styles - Bold brutalist colors */
+        .line-plot-0 path {
+          stroke: #000000 !important;
+          stroke-width: 4px !important;
+          stroke-linecap: square;
+        }
+        .line-plot-1 path {
+          stroke: #FF6B35 !important;
+          stroke-width: 4px !important;
+          stroke-linecap: square;
+        }
+        .line-plot-2 path {
+          stroke: #4ECDC4 !important;
+          stroke-width: 4px !important;
+          stroke-linecap: square;
+        }
+        .bar-plot-0 rect {
+          fill: #FFE66D !important;
+          stroke: #000000 !important;
+          stroke-width: 3px !important;
+          rx: 2px !important;
+          filter: drop-shadow(6px 6px 0px #000000);
+        }
+        .bar-plot-1 rect {
+          fill: #FF6B35 !important;
+          stroke: #000000 !important;
+          stroke-width: 3px !important;
+          rx: 2px !important;
+          filter: drop-shadow(6px 6px 0px #000000);
+        }
+        .bar-plot-2 rect {
+          fill: #4ECDC4 !important;
+          stroke: #000000 !important;
+          stroke-width: 3px !important;
+          rx: 2px !important;
+          filter: drop-shadow(6px 6px 0px #000000);
+        }
+        .ticks path {
+          stroke: #000000 !important;
+          stroke-width: 2px !important;
+        }
+        .chart-title text {
+          fill: #000000 !important;
+          font-weight: 900 !important;
+          font-size: 20px !important;
+          font-family: "Arial", "Helvetica", "Noto Sans SC", sans-serif;
+        }
+        .left-axis .label text, .bottom-axis .label text {
+          fill: #000000 !important;
+          font-size: 14px !important;
+          font-family: "Arial", "Helvetica", "Noto Sans SC", sans-serif;
+          font-weight: 700;
+        }
+        .left-axis .title text, .bottom-axis .title text {
+          fill: #000000 !important;
+          font-size: 16px !important;
+          font-family: "Arial", "Helvetica", "Noto Sans SC", sans-serif;
+          font-weight: 900;
+        }
+        .legend text {
+          fill: #000000 !important;
+          font-size: 14px !important;
+          font-family: "Arial", "Helvetica", "Noto Sans SC", sans-serif;
+          font-weight: 700;
+        }
+      `
+    },
+    bgClass: 'bg-[#f6f3e9]',
+    bgStyle: {
+      backgroundColor: '#f6f3e9',
+    }
+  },
+  glassmorphism: {
+    name: 'Glassmorphism',
+    annotationColors: {
+      primary: '#8B5CF6', // Purple
+      secondary: '#EC4899', // Pink
+      text: '#1F2937', // Dark gray
+    },
+    mermaidConfig: {
+      theme: 'base',
+      themeVariables: {
+        background: 'rgba(255, 255, 255, 0.1)', // Semi-transparent white
+        primaryColor: 'rgba(255, 255, 255, 0.25)', // Glass white
+        primaryTextColor: '#1F2937', // Dark gray text
+        primaryBorderColor: 'rgba(255, 255, 255, 0.4)', // Light border
+        lineColor: 'rgba(139, 92, 246, 0.6)', // Purple lines
+        secondaryColor: 'rgba(236, 72, 153, 0.2)', // Pink tint
+        tertiaryColor: 'rgba(59, 130, 246, 0.2)', // Blue tint
+        fontFamily: '"SF Pro Display", "Inter", "Noto Sans SC", -apple-system, sans-serif',
+        fontSize: '15px',
+      },
+      themeCSS: `
+        /* Glassmorphism - Modern glass effect */
+        
+        /* Flowchart nodes - Glass effect with backdrop blur */
+        .node rect, .node circle, .node polygon {
+          fill: rgba(255, 255, 255, 0.25) !important;
+          stroke: rgba(255, 255, 255, 0.4) !important;
+          stroke-width: 1.5px !important;
+          rx: 12px !important;
+          ry: 12px !important;
+          filter: drop-shadow(0 4px 16px rgba(139, 92, 246, 0.15)) 
+                  drop-shadow(0 8px 32px rgba(0, 0, 0, 0.1));
+          /* Note: backdrop-filter doesn't work in SVG, but we simulate the effect */
+        }
+        
+        .node .label {
+          font-family: "SF Pro Display", "Inter", "Noto Sans SC", sans-serif;
+          font-weight: 600;
+          fill: #1F2937 !important;
+          filter: drop-shadow(0 1px 2px rgba(255, 255, 255, 0.8));
+        }
+        
+        /* Connection lines - Gradient glass effect */
+        .edgePath .path {
+          stroke: rgba(139, 92, 246, 0.6) !important;
+          stroke-width: 2.5px !important;
+          stroke-linecap: round;
+          filter: drop-shadow(0 2px 8px rgba(139, 92, 246, 0.3));
+        }
+        
+        .arrowheadPath {
+          fill: rgba(139, 92, 246, 0.6) !important;
+          stroke: rgba(139, 92, 246, 0.6) !important;
+        }
+        
+        .edgeLabel {
+          color: #1F2937 !important;
+          font-family: "SF Pro Display", "Inter", "Noto Sans SC", sans-serif;
+          font-size: 13px;
+          font-weight: 500;
+        }
+        
+        .edgeLabel rect {
+          fill: rgba(255, 255, 255, 0.85) !important;
+          stroke: rgba(139, 92, 246, 0.2) !important;
+          stroke-width: 1px !important;
+          rx: 6px !important;
+          filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.08));
+        }
+        
+        .edgeLabel .label {
+          fill: #1F2937 !important;
+          font-weight: 500;
+        }
+        
+        /* Sequence Diagram - Glass panels */
+        .actor {
+          fill: rgba(255, 255, 255, 0.25) !important;
+          stroke: rgba(255, 255, 255, 0.4) !important;
+          stroke-width: 1.5px !important;
+          rx: 12px !important;
+          ry: 12px !important;
+          filter: drop-shadow(0 4px 16px rgba(139, 92, 246, 0.15)) 
+                  drop-shadow(0 8px 32px rgba(0, 0, 0, 0.1));
+        }
+        
+        .actor text {
+          fill: #1F2937 !important;
+          font-family: "SF Pro Display", "Inter", "Noto Sans SC", sans-serif;
+          font-weight: 600;
+          filter: drop-shadow(0 1px 2px rgba(255, 255, 255, 0.8));
+        }
+        
+        .actor-line {
+          stroke: rgba(139, 92, 246, 0.4) !important;
+          stroke-width: 2px !important;
+          stroke-dasharray: 8 4 !important;
+          stroke-linecap: round;
+        }
+        
+        .activation0, .activation1, .activation2 {
+          fill: rgba(139, 92, 246, 0.15) !important;
+          stroke: rgba(139, 92, 246, 0.5) !important;
+          stroke-width: 2px !important;
+          filter: drop-shadow(0 4px 12px rgba(139, 92, 246, 0.2));
+        }
+        
+        .messageLine0, .messageLine1 {
+          stroke: rgba(139, 92, 246, 0.6) !important;
+          stroke-width: 2.5px !important;
+          stroke-linecap: round;
+          filter: drop-shadow(0 2px 8px rgba(139, 92, 246, 0.3));
+        }
+        
+        .messageText {
+          fill: #1F2937 !important;
+          font-family: "SF Pro Display", "Inter", "Noto Sans SC", sans-serif;
+          font-weight: 500;
+          filter: drop-shadow(0 1px 2px rgba(255, 255, 255, 0.8));
+        }
+        
+        #arrowhead path, .arrowheadPath {
+          fill: rgba(139, 92, 246, 0.6) !important;
+          stroke: rgba(139, 92, 246, 0.6) !important;
+        }
+        
+        /* Note boxes - Pink glass accent */
+        .note {
+          fill: rgba(236, 72, 153, 0.2) !important;
+          stroke: rgba(236, 72, 153, 0.4) !important;
+          stroke-width: 1.5px !important;
+          rx: 12px !important;
+          ry: 12px !important;
+          filter: drop-shadow(0 4px 16px rgba(236, 72, 153, 0.15)) 
+                  drop-shadow(0 4px 24px rgba(0, 0, 0, 0.08));
+        }
+        
+        .noteText {
+          fill: #831843 !important;
+          font-family: "SF Pro Display", "Inter", "Noto Sans SC", sans-serif;
+          font-weight: 500;
+          filter: drop-shadow(0 1px 2px rgba(255, 255, 255, 0.6));
+        }
+        
+        /* Loop/Alt/Opt boxes - Blue glass accent */
+        .labelBox {
+          fill: rgba(59, 130, 246, 0.2) !important;
+          stroke: rgba(59, 130, 246, 0.4) !important;
+          stroke-width: 1.5px !important;
+          rx: 12px !important;
+          ry: 12px !important;
+          filter: drop-shadow(0 4px 12px rgba(59, 130, 246, 0.15));
+        }
+        
+        .labelText, .loopText {
+          fill: #1E40AF !important;
+          font-family: "SF Pro Display", "Inter", "Noto Sans SC", sans-serif;
+          font-weight: 600;
+          filter: drop-shadow(0 1px 2px rgba(255, 255, 255, 0.6));
+        }
+        
+        .loopLine {
+          stroke: rgba(59, 130, 246, 0.5) !important;
+          stroke-width: 1.5px !important;
+          stroke-dasharray: 8 4 !important;
+        }
+        
+        /* Cluster/Subgraph styling */
+        .cluster rect {
+          fill: rgba(255, 255, 255, 0.15) !important;
+          stroke: rgba(255, 255, 255, 0.3) !important;
+          stroke-width: 1.5px !important;
+          stroke-dasharray: 8 4 !important;
+          rx: 16px !important;
+          ry: 16px !important;
+          filter: drop-shadow(0 4px 24px rgba(0, 0, 0, 0.08));
+        }
+        
+        .cluster text {
+          fill: #374151 !important;
+          font-family: "SF Pro Display", "Inter", "Noto Sans SC", sans-serif;
+          font-weight: 700;
+          filter: drop-shadow(0 1px 2px rgba(255, 255, 255, 0.8));
+        }
+        
+        /* State diagram */
+        .statediagram-state rect,
+        .statediagram-state .state-inner {
+          fill: rgba(255, 255, 255, 0.25) !important;
+          stroke: rgba(255, 255, 255, 0.4) !important;
+          stroke-width: 1.5px !important;
+          rx: 12px !important;
+          filter: drop-shadow(0 4px 16px rgba(139, 92, 246, 0.15)) 
+                  drop-shadow(0 8px 32px rgba(0, 0, 0, 0.1));
+        }
+        
+        .stateLabel text {
+          fill: #1F2937 !important;
+          font-family: "SF Pro Display", "Inter", "Noto Sans SC", sans-serif;
+          font-weight: 600;
+          filter: drop-shadow(0 1px 2px rgba(255, 255, 255, 0.8));
+        }
+        
+        .transition {
+          stroke: rgba(139, 92, 246, 0.6) !important;
+          stroke-width: 2.5px !important;
+        }
+        
+        /* XYChart styles - Gradient glass palette */
+        .line-plot-0 path {
+          stroke: rgba(139, 92, 246, 0.8) !important;
+          stroke-width: 3px !important;
+          stroke-linecap: round;
+          filter: drop-shadow(0 2px 8px rgba(139, 92, 246, 0.4));
+        }
+        .line-plot-1 path {
+          stroke: rgba(236, 72, 153, 0.8) !important;
+          stroke-width: 3px !important;
+          stroke-linecap: round;
+          filter: drop-shadow(0 2px 8px rgba(236, 72, 153, 0.4));
+        }
+        .line-plot-2 path {
+          stroke: rgba(59, 130, 246, 0.8) !important;
+          stroke-width: 3px !important;
+          stroke-linecap: round;
+          filter: drop-shadow(0 2px 8px rgba(59, 130, 246, 0.4));
+        }
+        .bar-plot-0 rect {
+          fill: rgba(139, 92, 246, 0.25) !important;
+          stroke: rgba(139, 92, 246, 0.5) !important;
+          stroke-width: 1.5px !important;
+          rx: 8px !important;
+          filter: drop-shadow(0 4px 12px rgba(139, 92, 246, 0.2));
+        }
+        .bar-plot-1 rect {
+          fill: rgba(236, 72, 153, 0.25) !important;
+          stroke: rgba(236, 72, 153, 0.5) !important;
+          stroke-width: 1.5px !important;
+          rx: 8px !important;
+          filter: drop-shadow(0 4px 12px rgba(236, 72, 153, 0.2));
+        }
+        .bar-plot-2 rect {
+          fill: rgba(59, 130, 246, 0.25) !important;
+          stroke: rgba(59, 130, 246, 0.5) !important;
+          stroke-width: 1.5px !important;
+          rx: 8px !important;
+          filter: drop-shadow(0 4px 12px rgba(59, 130, 246, 0.2));
+        }
+        .ticks path {
+          stroke: rgba(255, 255, 255, 0.3) !important;
+        }
+        .chart-title text {
+          fill: #1F2937 !important;
+          font-weight: 700 !important;
+          font-size: 18px !important;
+          font-family: "SF Pro Display", "Inter", "Noto Sans SC", sans-serif;
+          filter: drop-shadow(0 2px 4px rgba(255, 255, 255, 0.8));
+        }
+        .left-axis .label text, .bottom-axis .label text {
+          fill: #374151 !important;
+          font-size: 13px !important;
+          font-family: "SF Pro Display", "Inter", "Noto Sans SC", sans-serif;
+          filter: drop-shadow(0 1px 2px rgba(255, 255, 255, 0.6));
+        }
+        .left-axis .title text, .bottom-axis .title text {
+          fill: #1F2937 !important;
+          font-size: 15px !important;
+          font-family: "SF Pro Display", "Inter", "Noto Sans SC", sans-serif;
+          font-weight: 600;
+          filter: drop-shadow(0 1px 2px rgba(255, 255, 255, 0.8));
+        }
+        .legend text {
+          fill: #1F2937 !important;
+          font-size: 13px !important;
+          font-family: "SF Pro Display", "Inter", "Noto Sans SC", sans-serif;
+          filter: drop-shadow(0 1px 2px rgba(255, 255, 255, 0.6));
+        }
+        
+        /* Class Diagram */
+        .classGroup rect {
+          fill: rgba(255, 255, 255, 0.25) !important;
+          stroke: rgba(255, 255, 255, 0.4) !important;
+          stroke-width: 1.5px !important;
+          rx: 12px !important;
+          filter: drop-shadow(0 4px 16px rgba(139, 92, 246, 0.15));
+        }
+        
+        .classLabel .label {
+          fill: #1F2937 !important;
+          font-family: "SF Pro Display", "Inter", "Noto Sans SC", sans-serif;
+          font-weight: 600;
+        }
+        
+        .relationshipLine {
+          stroke: rgba(139, 92, 246, 0.6) !important;
+          stroke-width: 2px !important;
+        }
+        
+        .relationshipLabelBox {
+          fill: rgba(255, 255, 255, 0.85) !important;
+          stroke: rgba(139, 92, 246, 0.3) !important;
+          stroke-width: 1px !important;
+          rx: 6px !important;
+        }
+        
+        /* ER Diagram */
+        .er.entityBox {
+          fill: rgba(255, 255, 255, 0.25) !important;
+          stroke: rgba(255, 255, 255, 0.4) !important;
+          stroke-width: 1.5px !important;
+          rx: 12px !important;
+          filter: drop-shadow(0 4px 16px rgba(139, 92, 246, 0.15));
+        }
+        
+        .er.relationshipLabelBox {
+          fill: rgba(255, 255, 255, 0.85) !important;
+          stroke: rgba(139, 92, 246, 0.3) !important;
+          stroke-width: 1px !important;
+          rx: 6px !important;
+        }
+        
+        .er.entityLabel,
+        .er.relationshipLabel {
+          fill: #1F2937 !important;
+          font-family: "SF Pro Display", "Inter", "Noto Sans SC", sans-serif;
+          font-weight: 600;
+        }
+        
+        .er .relationshipLine {
+          stroke: rgba(139, 92, 246, 0.6) !important;
+          stroke-width: 2px !important;
+        }
+        
+        /* Gantt Chart */
+        .titleText {
+          fill: #1F2937 !important;
+          font-family: "SF Pro Display", "Inter", "Noto Sans SC", sans-serif;
+          font-weight: 700;
+          filter: drop-shadow(0 2px 4px rgba(255, 255, 255, 0.8));
+        }
+        
+        .sectionTitle {
+          fill: #6B21A8 !important;
+          font-family: "SF Pro Display", "Inter", "Noto Sans SC", sans-serif;
+          font-weight: 600;
+        }
+        
+        .taskText, .taskTextOutsideRight, .taskTextOutsideLeft {
+          fill: #1F2937 !important;
+          font-family: "SF Pro Display", "Inter", "Noto Sans SC", sans-serif;
+          font-weight: 500;
+        }
+        
+        .task, .task0, .task1, .task2, .task3 {
+          fill: rgba(139, 92, 246, 0.3) !important;
+          stroke: rgba(139, 92, 246, 0.5) !important;
+          stroke-width: 1.5px !important;
+          rx: 8px !important;
+          filter: drop-shadow(0 2px 8px rgba(139, 92, 246, 0.2));
+        }
+        
+        .taskDone0, .taskDone1, .taskDone2, .taskDone3 {
+          fill: rgba(236, 72, 153, 0.3) !important;
+          stroke: rgba(236, 72, 153, 0.5) !important;
+        }
+        
+        /* Pie Chart */
+        .pieCircle {
+          stroke: rgba(255, 255, 255, 0.4) !important;
+          stroke-width: 2px !important;
+        }
+        
+        .pieTitleText {
+          fill: #1F2937 !important;
+          font-family: "SF Pro Display", "Inter", "Noto Sans SC", sans-serif;
+          font-weight: 700;
+          filter: drop-shadow(0 2px 4px rgba(255, 255, 255, 0.8));
+        }
+        
+        .slice {
+          stroke: rgba(255, 255, 255, 0.6) !important;
+          stroke-width: 2px !important;
+          filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.1));
+        }
+        
+        .legendText {
+          fill: #1F2937 !important;
+          font-family: "SF Pro Display", "Inter", "Noto Sans SC", sans-serif;
+          font-weight: 500;
+        }
+      `
+    },
+    bgClass: 'bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50',
+    bgStyle: {
+      background: 'linear-gradient(135deg, #F3E8FF 0%, #FCE7F3 30%, #DBEAFE 60%, #F3E8FF 100%)',
+      position: 'relative' as const,
     }
   },
   softPop: {
@@ -1734,706 +2833,5 @@ export const themes: Record<ThemeType, ThemeConfig> = {
       `,
             backgroundSize: '24px 24px'
         }
-    },
-  spotless: {
-    name: 'Spotless',
-    annotationColors: {
-      primary: '#2C2416', // Deep brown-black
-      secondary: '#5A4A38', // Medium brown
-      text: '#1a1a1a', // Pure black
-    },
-    mermaidConfig: {
-      theme: 'base',
-      themeVariables: {
-        background: '#EDE8DC', // Cream/beige background
-        primaryColor: '#F5F1E8', // Light cream for nodes
-        primaryTextColor: '#1a1a1a', // Black text
-        primaryBorderColor: '#2C2416', // Dark brown border
-        lineColor: '#2C2416', // Dark brown lines
-        secondaryColor: '#E8DCC8',
-        tertiaryColor: '#DFD3C3',
-        fontFamily: '"Helvetica Neue", "Arial", "Noto Sans SC", sans-serif',
-        fontSize: '15px',
-      },
-      themeCSS: `
-        /* Spotless - Vintage manual/instruction booklet style */
-        
-        /* Flowchart nodes - Clean rectangular boxes like manual diagrams */
-        .node rect, .node circle, .node polygon {
-          fill: #F5F1E8 !important;
-          stroke: #2C2416 !important;
-          stroke-width: 2.5px !important;
-          rx: 2px !important;
-          ry: 2px !important;
-        }
-        
-        .node .label {
-          font-family: "Helvetica Neue", "Arial", "Noto Sans SC", sans-serif;
-          font-weight: 700;
-          fill: #1a1a1a !important;
-          font-size: 15px;
-          text-transform: uppercase;
-          letter-spacing: 0.5px;
-        }
-        
-        /* Connection lines - Bold and clear like instruction diagrams */
-        .edgePath .path {
-          stroke: #2C2416 !important;
-          stroke-width: 2.5px !important;
-          stroke-linecap: square;
-        }
-        
-        .arrowheadPath {
-          fill: #2C2416 !important;
-          stroke: #2C2416 !important;
-        }
-        
-        .edgeLabel {
-          background-color: #EDE8DC !important;
-          color: #1a1a1a !important;
-          font-family: "Helvetica Neue", "Arial", "Noto Sans SC", sans-serif;
-          font-size: 13px;
-          font-weight: 600;
-          text-transform: uppercase;
-          letter-spacing: 0.3px;
-        }
-        
-        /* Sequence Diagram - Instruction manual style */
-        .actor {
-          fill: #F5F1E8 !important;
-          stroke: #2C2416 !important;
-          stroke-width: 2.5px !important;
-          rx: 2px !important;
-          ry: 2px !important;
-        }
-        
-        .actor text {
-          fill: #1a1a1a !important;
-          font-family: "Helvetica Neue", "Arial", "Noto Sans SC", sans-serif;
-          font-weight: 700;
-          text-transform: uppercase;
-          letter-spacing: 0.5px;
-        }
-        
-        .actor-line {
-          stroke: #2C2416 !important;
-          stroke-width: 2px !important;
-          stroke-dasharray: 6 3 !important;
-        }
-        
-        .activation0, .activation1, .activation2 {
-          fill: #E8DCC8 !important;
-          stroke: #2C2416 !important;
-          stroke-width: 2.5px !important;
-        }
-        
-        .messageLine0, .messageLine1 {
-          stroke: #2C2416 !important;
-          stroke-width: 2.5px !important;
-          stroke-linecap: square;
-        }
-        
-        .messageText {
-          fill: #1a1a1a !important;
-          font-family: "Helvetica Neue", "Arial", "Noto Sans SC", sans-serif;
-          font-weight: 600;
-          font-size: 13px;
-        }
-        
-        #arrowhead path, .arrowheadPath {
-          fill: #2C2416 !important;
-          stroke: #2C2416 !important;
-        }
-        
-        /* Note boxes - Warning/attention style */
-        .note {
-          fill: #FFF9E6 !important;
-          stroke: #2C2416 !important;
-          stroke-width: 2.5px !important;
-          rx: 2px !important;
-          ry: 2px !important;
-        }
-        
-        .noteText {
-          fill: #1a1a1a !important;
-          font-family: "Helvetica Neue", "Arial", "Noto Sans SC", sans-serif;
-          font-weight: 600;
-          font-size: 13px;
-        }
-        
-        /* Loop/Alt/Opt boxes */
-        .labelBox {
-          fill: #DFD3C3 !important;
-          stroke: #2C2416 !important;
-          stroke-width: 2.5px !important;
-          rx: 2px !important;
-          ry: 2px !important;
-        }
-        
-        .labelText, .loopText {
-          fill: #1a1a1a !important;
-          font-family: "Helvetica Neue", "Arial", "Noto Sans SC", sans-serif;
-          font-weight: 700;
-          text-transform: uppercase;
-          font-size: 12px;
-          letter-spacing: 0.5px;
-        }
-        
-        .loopLine {
-          stroke: #2C2416 !important;
-          stroke-width: 2.5px !important;
-        }
-        
-        /* Cluster/Subgraph styling */
-        .cluster rect {
-          fill: rgba(223, 211, 195, 0.3) !important;
-          stroke: #2C2416 !important;
-          stroke-width: 2px !important;
-          stroke-dasharray: 8 4 !important;
-          rx: 2px !important;
-          ry: 2px !important;
-        }
-        
-        .cluster text {
-          fill: #1a1a1a !important;
-          font-family: "Helvetica Neue", "Arial", "Noto Sans SC", sans-serif;
-          font-weight: 700;
-          text-transform: uppercase;
-          letter-spacing: 0.5px;
-        }
-        
-        /* State diagram */
-        .stateLabel text {
-          fill: #1a1a1a !important;
-          font-family: "Helvetica Neue", "Arial", "Noto Sans SC", sans-serif;
-          font-weight: 700;
-          text-transform: uppercase;
-        }
-        
-        /* Gantt chart */
-        .titleText {
-          fill: #1a1a1a !important;
-          font-family: "Helvetica Neue", "Arial", "Noto Sans SC", sans-serif;
-          font-weight: 700;
-          text-transform: uppercase;
-          letter-spacing: 0.5px;
-        }
-        
-        .sectionTitle {
-          fill: #1a1a1a !important;
-          font-family: "Helvetica Neue", "Arial", "Noto Sans SC", sans-serif;
-          font-weight: 700;
-          text-transform: uppercase;
-        }
-        
-        .taskText, .taskTextOutsideRight, .taskTextOutsideLeft {
-          fill: #1a1a1a !important;
-          font-family: "Helvetica Neue", "Arial", "Noto Sans SC", sans-serif;
-          font-weight: 600;
-        }
-        
-        /* XYChart styles - Technical manual data visualization */
-        .line-plot-0 path {
-          stroke: #2C2416 !important;
-          stroke-width: 3px !important;
-          stroke-linecap: square;
-        }
-        .line-plot-1 path {
-          stroke: #5A4A38 !important;
-          stroke-width: 3px !important;
-          stroke-linecap: square;
-        }
-        .line-plot-2 path {
-          stroke: #8B7355 !important;
-          stroke-width: 3px !important;
-          stroke-linecap: square;
-        }
-        .bar-plot-0 rect {
-          fill: #F5F1E8 !important;
-          stroke: #2C2416 !important;
-          stroke-width: 2.5px !important;
-          rx: 1px !important;
-        }
-        .bar-plot-1 rect {
-          fill: #E8DCC8 !important;
-          stroke: #5A4A38 !important;
-          stroke-width: 2.5px !important;
-          rx: 1px !important;
-        }
-        .bar-plot-2 rect {
-          fill: #DFD3C3 !important;
-          stroke: #8B7355 !important;
-          stroke-width: 2.5px !important;
-          rx: 1px !important;
-        }
-        .ticks path {
-          stroke: #2C2416 !important;
-          opacity: 0.3;
-        }
-        .chart-title text {
-          fill: #1a1a1a !important;
-          font-weight: 700 !important;
-          font-size: 18px !important;
-          font-family: "Helvetica Neue", "Arial", "Noto Sans SC", sans-serif;
-          text-transform: uppercase;
-          letter-spacing: 1px;
-        }
-        .left-axis .label text, .bottom-axis .label text {
-          fill: #1a1a1a !important;
-          font-size: 13px !important;
-          font-family: "Helvetica Neue", "Arial", "Noto Sans SC", sans-serif;
-          font-weight: 600;
-        }
-        .left-axis .title text, .bottom-axis .title text {
-          fill: #2C2416 !important;
-          font-size: 14px !important;
-          font-family: "Helvetica Neue", "Arial", "Noto Sans SC", sans-serif;
-          font-weight: 700;
-          text-transform: uppercase;
-          letter-spacing: 0.5px;
-        }
-        .legend text {
-          fill: #1a1a1a !important;
-          font-size: 13px !important;
-          font-family: "Helvetica Neue", "Arial", "Noto Sans SC", sans-serif;
-          font-weight: 600;
-        }
-      `
-    },
-    bgClass: 'bg-[#EDE8DC]',
-    bgStyle: {
-      backgroundColor: '#EDE8DC',
-      backgroundImage: `
-        repeating-linear-gradient(
-          0deg,
-          rgba(44, 36, 22, 0.02) 0px,
-          rgba(44, 36, 22, 0.02) 1px,
-          transparent 1px,
-          transparent 40px
-        ),
-        repeating-linear-gradient(
-          90deg,
-          rgba(44, 36, 22, 0.02) 0px,
-          rgba(44, 36, 22, 0.02) 1px,
-          transparent 1px,
-          transparent 40px
-        )
-      `,
-      backgroundSize: '40px 40px'
-    }
-  },
-  brutalist: {
-    name: 'Brutalist',
-    annotationColors: {
-      primary: '#FF6B35', // Bold orange
-      secondary: '#4ECDC4', // Bright teal
-      text: '#000000', // Pure black
-    },
-    mermaidConfig: {
-      theme: 'base',
-      themeVariables: {
-        background: '#f6f3e9', // Light warm beige
-        primaryColor: '#ffffff', // White for nodes
-        primaryTextColor: '#000000', // Black text
-        primaryBorderColor: '#000000', // Black border
-        lineColor: '#000000', // Black lines
-        secondaryColor: '#FFE66D', // Bright yellow
-        tertiaryColor: '#FF6B35', // Bold orange
-        fontFamily: '"Arial", "Helvetica", "Noto Sans SC", sans-serif',
-        fontSize: '16px',
-      },
-      themeCSS: `
-        /* Brutalist/Neobrutalism - Hard shadows and bold borders */
-        
-        /* Flowchart nodes - Hard shadow effect */
-        .node rect, .node polygon {
-          fill: #ffffff !important;
-          stroke: #000000 !important;
-          stroke-width: 3px !important;
-          rx: 4px !important;
-          ry: 4px !important;
-          /* Hard shadow simulation using double drop-shadow */
-          filter: 
-            drop-shadow(6px 6px 0px #000000);
-        }
-
-        .node circle {
-          fill: #ffffff !important;
-          stroke: #000000 !important;
-          stroke-width: 3px !important;
-          rx: 4px !important;
-          ry: 4px !important;
-        }
-        
-        .node .label {
-          font-family: "Arial", "Helvetica", "Noto Sans SC", sans-serif;
-          font-weight: 700;
-          fill: #000000 !important;
-          font-size: 16px;
-        }
-        
-        /* Connection lines - Bold and straight */
-        .edgePath .path {
-          stroke: #000000 !important;
-          stroke-width: 3px !important;
-          stroke-linecap: square;
-        }
-        
-        .arrowheadPath {
-          fill: #000000 !important;
-          stroke: #000000 !important;
-        }
-        
-        .edgeLabel {
-          background-color: #f6f3e9 !important;
-          color: #000000 !important;
-          font-family: "Arial", "Helvetica", "Noto Sans SC", sans-serif;
-          font-size: 14px;
-          font-weight: 700;
-        }
-        
-        /* Color accent nodes */
-        .node:nth-child(2n) rect,
-        .node:nth-child(2n) circle,
-        .node:nth-child(2n) polygon {
-          fill: #FFE66D !important;
-        }
-        
-        .node:nth-child(3n) rect,
-        .node:nth-child(3n) circle,
-        .node:nth-child(3n) polygon {
-          fill: #4ECDC4 !important;
-        }
-        
-        .node:nth-child(5n) rect,
-        .node:nth-child(5n) circle,
-        .node:nth-child(5n) polygon {
-          fill: #FF6B35 !important;
-        }
-        
-        /* Sequence Diagram - Brutalist style */
-        /* Actor boxes - Only shadow on rect, not text */
-        .actor rect {
-          fill: #ffffff !important;
-          stroke: #000000 !important;
-          stroke-width: 3px !important;
-          rx: 4px !important;
-          ry: 4px !important;
-          filter: drop-shadow(6px 6px 0px #000000);
-        }
-        
-        .actor {
-          fill: #ffffff !important;
-          stroke: #000000 !important;
-          stroke-width: 3px !important;
-          rx: 4px !important;
-          ry: 4px !important;
-        }
-        
-        .actor text {
-          fill: #000000 !important;
-          font-family: "Arial", "Helvetica", "Noto Sans SC", sans-serif;
-          font-weight: 700;
-        }
-        
-        .actor-line {
-          stroke: #000000 !important;
-          stroke-width: 3px !important;
-        }
-        
-        .activation0, .activation1, .activation2 {
-          fill: #FFE66D !important;
-          stroke: #000000 !important;
-          stroke-width: 3px !important;
-          filter: drop-shadow(5px 5px 0px #000000);
-        }
-        
-        .messageLine0, .messageLine1 {
-          stroke: #000000 !important;
-          stroke-width: 3px !important;
-          stroke-linecap: square;
-        }
-        
-        .messageText {
-          fill: #000000 !important;
-          font-family: "Arial", "Helvetica", "Noto Sans SC", sans-serif;
-          font-weight: 700;
-          font-size: 14px;
-        }
-        
-        #arrowhead path, .arrowheadPath {
-          fill: #000000 !important;
-          stroke: #000000 !important;
-        }
-        
-        /* Note boxes - Bright yellow with hard shadow */
-        .note {
-          fill: #FFE66D !important;
-          stroke: #000000 !important;
-          stroke-width: 3px !important;
-          rx: 4px !important;
-          ry: 4px !important;
-          filter: drop-shadow(6px 6px 0px #000000);
-        }
-        
-        .noteText {
-          fill: #000000 !important;
-          font-family: "Arial", "Helvetica", "Noto Sans SC", sans-serif;
-          font-weight: 700;
-        }
-        
-        /* Loop/Alt/Opt boxes - Orange accent */
-        .labelBox {
-          fill: #FF6B35 !important;
-          stroke: #000000 !important;
-          stroke-width: 3px !important;
-          rx: 4px !important;
-          ry: 4px !important;
-          filter: drop-shadow(6px 6px 0px #000000);
-        }
-        
-        .labelText, .loopText {
-          fill: #000000 !important;
-          font-family: "Arial", "Helvetica", "Noto Sans SC", sans-serif;
-          font-weight: 700;
-        }
-        
-        .loopLine {
-          stroke: #000000 !important;
-          stroke-width: 3px !important;
-        }
-        
-        /* Cluster/Subgraph styling */
-        .cluster rect {
-          fill: #4ECDC4 !important;
-          stroke: #000000 !important;
-          stroke-width: 3px !important;
-          rx: 4px !important;
-          ry: 4px !important;
-          filter: drop-shadow(8px 8px 0px #000000);
-        }
-        
-        .cluster text {
-          fill: #000000 !important;
-          font-family: "Arial", "Helvetica", "Noto Sans SC", sans-serif;
-          font-weight: 900;
-        }
-        
-        /* Class Diagram - Brutalist style with hard shadows */
-        .classGroup rect {
-          fill: #ffffff !important;
-          stroke: #000000 !important;
-          stroke-width: 3px !important;
-          rx: 4px !important;
-          ry: 4px !important;
-          filter: drop-shadow(6px 6px 0px #000000);
-        }
-        
-        .classLabel .label,
-        .classLabel text {
-          fill: #000000 !important;
-          font-family: "Arial", "Helvetica", "Noto Sans SC", sans-serif;
-          font-weight: 700;
-        }
-        
-        .relationshipLine {
-          stroke: #000000 !important;
-          stroke-width: 3px !important;
-        }
-        
-        .relationshipLabelBox {
-          fill: #FFE66D !important;
-          stroke: #000000 !important;
-          stroke-width: 2px !important;
-          filter: drop-shadow(4px 4px 0px #000000);
-        }
-        
-        /* State diagram - Brutalist style with hard shadows */
-        .statediagram-state rect,
-        .statediagram-state .state-inner {
-          fill: #ffffff !important;
-          stroke: #000000 !important;
-          stroke-width: 3px !important;
-          rx: 4px !important;
-          ry: 4px !important;
-          filter: drop-shadow(6px 6px 0px #000000);
-        }
-        
-        /* State diagram start/end circles - smaller shadow offset */
-        .start-state circle,
-        .end-state circle {
-          fill: #000000 !important;
-          stroke: #000000 !important;
-          stroke-width: 3px !important;
-          filter: drop-shadow(3px 3px 0px #000000) !important;
-        }
-        
-        .statediagram-state circle {
-          stroke: #000000 !important;
-          stroke-width: 3px !important;
-        }
-        
-        .stateLabel text,
-        .statediagram-state text {
-          fill: #000000 !important;
-          font-family: "Arial", "Helvetica", "Noto Sans SC", sans-serif;
-          font-weight: 700;
-        }
-        
-        .transition {
-          stroke: #000000 !important;
-          stroke-width: 3px !important;
-        }
-
-        .classDiagram .node.default {
-          filter: drop-shadow(6px 6px 0px #000000);
-        }
-        
-        /* ER Diagram - Brutalist style */
-        .er.entityBox {
-          fill: #ffffff !important;
-          stroke: #000000 !important;
-          stroke-width: 3px !important;
-          filter: drop-shadow(6px 6px 0px #000000);
-        }
-        
-        .er.relationshipLabelBox {
-          fill: #FFE66D !important;
-          stroke: #000000 !important;
-          stroke-width: 3px !important;
-          filter: drop-shadow(4px 4px 0px #000000);
-        }
-        
-        .er.entityLabel,
-        .er.relationshipLabel {
-          fill: #000000 !important;
-          font-family: "Arial", "Helvetica", "Noto Sans SC", sans-serif;
-          font-weight: 700;
-        }
-        
-        .er .relationshipLine {
-          stroke: #000000 !important;
-          stroke-width: 3px !important;
-        }
-        
-        /* Gantt chart */
-        .titleText {
-          fill: #000000 !important;
-          font-family: "Arial", "Helvetica", "Noto Sans SC", sans-serif;
-          font-weight: 900;
-        }
-        
-        .sectionTitle {
-          fill: #000000 !important;
-          font-family: "Arial", "Helvetica", "Noto Sans SC", sans-serif;
-          font-weight: 700;
-        }
-        
-        .taskText, .taskTextOutsideRight, .taskTextOutsideLeft {
-          fill: #000000 !important;
-          font-family: "Arial", "Helvetica", "Noto Sans SC", sans-serif;
-          font-weight: 700;
-        }
-        
-        .task0, .task1, .task2, .task3 {
-          stroke: #000000 !important;
-          stroke-width: 3px !important;
-          filter: drop-shadow(5px 5px 0px #000000);
-        }
-        
-        /* Pie chart */
-        .pieCircle {
-          stroke: #000000 !important;
-          stroke-width: 3px !important;
-        }
-        
-        .pieTitleText {
-          fill: #000000 !important;
-          font-family: "Arial", "Helvetica", "Noto Sans SC", sans-serif;
-          font-weight: 900;
-        }
-        
-        .slice {
-          stroke: #000000 !important;
-          stroke-width: 3px !important;
-        }
-        
-        .legendText {
-          fill: #000000 !important;
-          font-family: "Arial", "Helvetica", "Noto Sans SC", sans-serif;
-          font-weight: 700;
-        }
-        
-        /* XYChart styles - Bold brutalist colors */
-        .line-plot-0 path {
-          stroke: #000000 !important;
-          stroke-width: 4px !important;
-          stroke-linecap: square;
-        }
-        .line-plot-1 path {
-          stroke: #FF6B35 !important;
-          stroke-width: 4px !important;
-          stroke-linecap: square;
-        }
-        .line-plot-2 path {
-          stroke: #4ECDC4 !important;
-          stroke-width: 4px !important;
-          stroke-linecap: square;
-        }
-        .bar-plot-0 rect {
-          fill: #FFE66D !important;
-          stroke: #000000 !important;
-          stroke-width: 3px !important;
-          rx: 2px !important;
-          filter: drop-shadow(6px 6px 0px #000000);
-        }
-        .bar-plot-1 rect {
-          fill: #FF6B35 !important;
-          stroke: #000000 !important;
-          stroke-width: 3px !important;
-          rx: 2px !important;
-          filter: drop-shadow(6px 6px 0px #000000);
-        }
-        .bar-plot-2 rect {
-          fill: #4ECDC4 !important;
-          stroke: #000000 !important;
-          stroke-width: 3px !important;
-          rx: 2px !important;
-          filter: drop-shadow(6px 6px 0px #000000);
-        }
-        .ticks path {
-          stroke: #000000 !important;
-          stroke-width: 2px !important;
-        }
-        .chart-title text {
-          fill: #000000 !important;
-          font-weight: 900 !important;
-          font-size: 20px !important;
-          font-family: "Arial", "Helvetica", "Noto Sans SC", sans-serif;
-        }
-        .left-axis .label text, .bottom-axis .label text {
-          fill: #000000 !important;
-          font-size: 14px !important;
-          font-family: "Arial", "Helvetica", "Noto Sans SC", sans-serif;
-          font-weight: 700;
-        }
-        .left-axis .title text, .bottom-axis .title text {
-          fill: #000000 !important;
-          font-size: 16px !important;
-          font-family: "Arial", "Helvetica", "Noto Sans SC", sans-serif;
-          font-weight: 900;
-        }
-        .legend text {
-          fill: #000000 !important;
-          font-size: 14px !important;
-          font-family: "Arial", "Helvetica", "Noto Sans SC", sans-serif;
-          font-weight: 700;
-        }
-      `
-    },
-    bgClass: 'bg-[#f6f3e9]',
-    bgStyle: {
-      backgroundColor: '#f6f3e9',
-    }
   },
 };
