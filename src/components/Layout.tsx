@@ -14,6 +14,8 @@ import { fonts, type FontOption } from '../utils/fonts';
 import type { AnnotationType } from '../types/annotation';
 import { useLanguage } from '../contexts/LanguageContext';
 import { X, RefreshCw } from 'lucide-react';
+import { trackEvent } from './GoogleAnalytics';
+import { AnalyticsEvents } from '../hooks/useAnalytics';
 
 const Layout: React.FC = () => {
   const defaultCode = `graph TD
@@ -34,16 +36,39 @@ const Layout: React.FC = () => {
   const { t } = useLanguage();
 
   const handleDownload = (transparent: boolean) => {
+    // 追踪导出操作
+    trackEvent(AnalyticsEvents.EXPORT_IMAGE, {
+      format: transparent ? 'png' : 'jpg',
+      transparent: transparent,
+      theme: currentTheme,
+      has_annotations: annotationCount > 0,
+      annotation_count: annotationCount
+    });
+    
     if (previewRef.current) {
       previewRef.current.exportImage(transparent);
     }
   };
 
   const handleBackgroundChange = (bg: BackgroundStyle) => {
+    // 追踪背景更改
+    trackEvent(AnalyticsEvents.BACKGROUND_CHANGE, {
+      background_id: bg.id,
+      background_name: bg.name,
+      theme: currentTheme
+    });
+    
     setSelectedBackground(bg);
   };
 
   const handleFontChange = (font: FontOption) => {
+    // 追踪字体更改
+    trackEvent(AnalyticsEvents.FONT_CHANGE, {
+      font_id: font.id,
+      font_name: font.name,
+      theme: currentTheme
+    });
+    
     setSelectedFont(font);
   };
 
@@ -53,11 +78,22 @@ const Layout: React.FC = () => {
   };
 
   const confirmClearEditor = () => {
+    // 追踪清空编辑器操作
+    trackEvent(AnalyticsEvents.EDITOR_CLEAR, {
+      theme: currentTheme,
+      code_length: code.length
+    });
+    
     setCode('');
   };
 
   // 刷新预览（重新触发预览生成）
   const handleRefreshEditor = () => {
+    // 追踪刷新操作
+    trackEvent(AnalyticsEvents.EDITOR_REFRESH, {
+      theme: currentTheme
+    });
+    
     if (previewRef.current) {
       previewRef.current.refresh();
     }
@@ -65,11 +101,24 @@ const Layout: React.FC = () => {
 
   // 标注工具处理
   const handleSelectTool = (tool: AnnotationType | 'select') => {
+    // 追踪标注工具选择
+    trackEvent('annotation_tool_select', {
+      tool: tool,
+      previous_tool: selectedTool,
+      theme: currentTheme
+    });
+    
     setSelectedTool(tool);
   };
 
   const handleClearAnnotations = () => {
     if (annotationCount > 0 && confirm(t.confirmClearAnnotations || '确定要清空所有标注吗？')) {
+      // 追踪清空标注操作
+      trackEvent(AnalyticsEvents.ANNOTATION_CLEAR_ALL, {
+        annotation_count: annotationCount,
+        theme: currentTheme
+      });
+      
       // 这个会通过 Preview 的 ref 来处理
       if (previewRef.current && 'clearAnnotations' in previewRef.current) {
         (previewRef.current as any).clearAnnotations();
@@ -86,7 +135,37 @@ const Layout: React.FC = () => {
   };
 
   const handleToggleFullscreen = () => {
-    setIsFullscreen(!isFullscreen);
+    const newFullscreenState = !isFullscreen;
+    
+    // 追踪全屏切换
+    trackEvent(AnalyticsEvents.FULLSCREEN_TOGGLE, {
+      fullscreen: newFullscreenState,
+      theme: currentTheme
+    });
+    
+    setIsFullscreen(newFullscreenState);
+  };
+
+  // 主题更改处理
+  const handleThemeChange = (theme: ThemeType) => {
+    // 追踪主题更改
+    trackEvent(AnalyticsEvents.THEME_CHANGE, {
+      theme: theme,
+      previous_theme: currentTheme
+    });
+    
+    setCurrentTheme(theme);
+  };
+
+  // 示例选择处理
+  const handleExampleSelect = (exampleCode: string) => {
+    // 追踪示例选择
+    trackEvent(AnalyticsEvents.EXAMPLE_SELECT, {
+      code_length: exampleCode.length,
+      theme: currentTheme
+    });
+    
+    setCode(exampleCode);
   };
 
   // ESC 键退出全屏
@@ -120,7 +199,7 @@ const Layout: React.FC = () => {
            <div className="p-4 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 font-semibold text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wider flex items-center justify-between">
              <div className="flex items-center gap-3">
                <span>{t.editor}</span>
-               <ExampleSelector onSelectExample={setCode} />
+               <ExampleSelector onSelectExample={handleExampleSelect} />
                
                {/* 清空和刷新按钮 */}
                <div className="flex items-center gap-2">
@@ -157,7 +236,7 @@ const Layout: React.FC = () => {
            <div className="absolute top-4 right-4 z-10 flex items-start gap-2">
               <Toolbar 
                 currentTheme={currentTheme} 
-                onThemeChange={setCurrentTheme}
+                onThemeChange={handleThemeChange}
                 onDownload={handleDownload}
                 selectedBackground={selectedBackground.id}
                 onBackgroundChange={handleBackgroundChange}

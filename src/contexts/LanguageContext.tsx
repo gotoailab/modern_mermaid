@@ -1,6 +1,8 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import type { Language, Translation } from '../utils/i18n';
 import { getTranslation } from '../utils/i18n';
+import { trackEvent } from '../components/GoogleAnalytics';
+import { AnalyticsEvents } from '../hooks/useAnalytics';
 
 interface LanguageContextType {
   language: Language;
@@ -65,6 +67,12 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   }, [language]);
 
   const setLanguage = (lang: Language) => {
+    // 追踪语言切换
+    trackEvent(AnalyticsEvents.LANGUAGE_CHANGE, {
+      language: lang,
+      previous_language: language
+    });
+    
     setLanguageState(lang);
     localStorage.setItem('mermaid-language', lang);
     // 更新 URL 参数
