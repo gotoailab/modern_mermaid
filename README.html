@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>&#x2728; Features</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <p><a name="readme-top"></a></p>
+<p align="center">
+<p><img src="file:////root/code/mermaid_advanced/docs/images/banner.svg" alt="Modern Mermaid Banner"></p>
+<!-- 👆 请在此处添加项目横幅截图 -->
+<p><a href="https://modern-mermaid.live/"><img src="https://img.shields.io/badge/demo-online-brightgreen.svg" alt="Live Demo"></a>
+<a href="https://discord.gg/tGxevHhz"><img src="https://img.shields.io/discord/YOUR_DISCORD_ID?color=7289da&amp;label=Discord&amp;logo=discord&amp;logoColor=white" alt="Discord"></a>
+<a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License"></a>
+<a href="https://reactjs.org/"><img src="https://img.shields.io/badge/React-19.2-61dafb?logo=react" alt="React"></a>
+<a href="https://mermaid.js.org/"><img src="https://img.shields.io/badge/Mermaid-11.12-ff3670?logo=mermaid" alt="Mermaid"></a></p>
+<p><strong>A modern, powerful, and beautiful Mermaid.js diagram editor and previewer</strong></p>
+<p><a href="README.html">English</a> | <a href="README.zh-CN.html">简体中文</a> | <a href="README.ja.html">日本語</a> | <a href="README.es.html">Español</a> | <a href="README.pt.html">Português</a></p>
+<p><a href="#features">🎯 Features</a> • <a href="#quick-start">🚀 Quick Start</a> • <a href="#documentation">📖 Documentation</a> • <a href="#contributing">🤝 Contributing</a></p>
+</p>
+<hr>
+<p>Live Experience: <a href="https://modern-mermaid.live/">https://modern-mermaid.live/</a></p>
+<img src="file:////root/code/mermaid_advanced/docs/images/screenshot-merphis.png" width="100%" alt="merphis"/>
+<h2 id="-features">✨ Features</h2>
+<h3 id="-professional-themes">🎨 <strong>Professional Themes</strong></h3>
+<ul>
+<li><strong>10+ Beautiful Themes</strong>: Linear Light/Dark, Industrial, Hand Drawn, Studio Ghibli, Retro, and more</li>
+<li><strong>Custom Backgrounds</strong>: Gradient, solid colors, and patterns</li>
+<li><strong>Font Selection</strong>: Multiple professional fonts including Fira Code, JetBrains Mono, and more</li>
+<li><strong>Dark Mode</strong>: Full dark mode support with automatic theme switching</li>
+</ul>
+<h3 id="-powerful-editor">⚡ <strong>Powerful Editor</strong></h3>
+<ul>
+<li><strong>Syntax Highlighting</strong>: Real-time Mermaid syntax highlighting with color-coded keywords</li>
+<li><strong>Line Numbers</strong>: Clear line numbering for easy reference</li>
+<li><strong>Auto-completion</strong>: Smart suggestions for Mermaid syntax</li>
+<li><strong>Resizable Panels</strong>: Adjustable editor and preview pane sizes</li>
+</ul>
+<h3 id="️-advanced-export">🖼️ <strong>Advanced Export</strong></h3>
+<ul>
+<li><strong>High-Quality Export</strong>: Export diagrams in PNG (transparent) or JPG (with background)</li>
+<li><strong>Clipboard Copy</strong>: One-click copy diagrams to clipboard with/without background</li>
+<li><strong>Custom Resolution</strong>: Export at 3x resolution for crystal-clear images</li>
+<li><strong>Batch Export</strong>: Export multiple diagrams at once</li>
+</ul>
+<h3 id="-annotation-tools">🎯 <strong>Annotation Tools</strong></h3>
+<ul>
+<li><strong>Drawing Tools</strong>: Arrows, rectangles, circles, lines, and text annotations</li>
+<li><strong>Color Customization</strong>: Customize annotation colors to match your theme</li>
+<li><strong>Multi-language Support</strong>: Interface available in 6 languages</li>
+</ul>
+<h3 id="-interactive-features">🔧 <strong>Interactive Features</strong></h3>
+<ul>
+<li><strong>Live Preview</strong>: Real-time rendering as you type</li>
+<li><strong>Auto-scaling</strong>: Diagrams automatically scale to fit the viewport</li>
+<li><strong>Zoom &amp; Pan</strong>: Smooth zoom and pan controls with mouse/trackpad</li>
+<li><strong>Fullscreen Mode</strong>: Distraction-free editing experience</li>
+<li><strong>Node Coloring</strong>: Right-click on nodes to change colors</li>
+</ul>
+<h3 id="-supported-diagram-types">📊 <strong>Supported Diagram Types</strong></h3>
+<ul>
+<li>Flowcharts &amp; Flow Diagrams</li>
+<li>Sequence Diagrams</li>
+<li>Class Diagrams</li>
+<li>State Diagrams</li>
+<li>Entity Relationship Diagrams</li>
+<li>User Journey Diagrams</li>
+<li>Gantt Charts</li>
+<li>Pie Charts</li>
+<li>Git Graphs</li>
+<li>Mindmaps</li>
+<li>Timeline Diagrams</li>
+<li>Quadrant Charts</li>
+<li>XY Charts</li>
+<li>And more!</li>
+</ul>
+<hr>
+<h2 id="️-screenshots">🖼️ Screenshots</h2>
+<details>
+<summary>Click to expand screenshots</summary>
+<h3 id="main-interface">Main Interface</h3>
+<p><img src="file:////root/code/mermaid_advanced/docs/images/screenshot-main.png" alt="Main Interface"></p>
+<!-- 👆 请添加主界面截图 -->
+<h3 id="themes">Themes</h3>
+<br/>
+<table>
+  <tr>
+    <td width="33%"><a href="https://modern-mermaid.live/?c=OYJwhgDgFgBAKgEQFA1TAggbQBIFMA2%2BA9gLoprowC0VAfDAEKYCyRAJriAHZlqPV0YAYRacAtmACWbEkA&theme=brutalist&bg=default&font=default" target="_blank"><img src="file:////root/code/mermaid_advanced/docs/images/screenshot-brutalist.png" alt="brutalist"/></a><br/><b>Brutalist</b></td>
+    <td width="33%"><a target="_blank" href="https://modern-mermaid.live/?theme=cyberpunk&example=sequence-payment"><img src="file:////root/code/mermaid_advanced/docs/images/screenshot-cyberpunk.png" alt="cyberpunk"/></a><br/><b>Cyberpunk</b></td>
+    <td width="33%"><a target="_blank" href="https://modern-mermaid.live/?theme=ghibli&example=pie-market"><img src="file:////root/code/mermaid_advanced/docs/images/screenshot-ghibli.png" alt="ghibli"/></a><br/><b>Ghibli</b></td>
+  </tr>
+  <tr>
+    <td><a target="_blank" href="https://modern-mermaid.live/?theme=memphis&example=flowchart-simple"><img src="file:////root/code/mermaid_advanced/docs/images/screenshot-merphis.png" alt="merphis"/></a><br/><b>Merphis</b></td>
+    <td><a target="_blank" href="https://modern-mermaid.live/?theme=spotless&example=flowchart-simple"><img src="file:////root/code/mermaid_advanced/docs/images/screenshot-spotless.png" alt="spotless"/></a><br/><b>Spotless</b></td>
+    <td><a target="_blank" href="https://modern-mermaid.live/?theme=handDrawn&example=pie-market"><img src="file:////root/code/mermaid_advanced/docs/images/screenshot-handdrawn.png" alt="handdrawn"/></a><br/><b>HandDrawn</b></td>
+  </tr>
+</table>
+</details>
+<hr>
+<h2 id="-quick-start">🚀 Quick Start</h2>
+<h3 id="prerequisites">Prerequisites</h3>
+<ul>
+<li>Node.js 20.19+ or 22.12+</li>
+<li>npm, pnpm, or yarn</li>
+</ul>
+<h3 id="installation">Installation</h3>
+<pre><code class="language-bash"><span class="hljs-comment"># Clone the repository</span>
+git <span class="hljs-built_in">clone</span> https://github.com/gotoailab/modern_mermaid.git
+<span class="hljs-built_in">cd</span> modern_mermaid
+
+<span class="hljs-comment"># Install dependencies (using pnpm recommended)</span>
+pnpm install
+
+<span class="hljs-comment"># Or using npm</span>
+npm install
+
+<span class="hljs-comment"># Or using yarn</span>
+yarn install
+</code></pre>
+<h3 id="development">Development</h3>
+<pre><code class="language-bash"><span class="hljs-comment"># Start development server</span>
+pnpm dev
+
+<span class="hljs-comment"># The app will be available at http://localhost:5173</span>
+</code></pre>
+<h3 id="production-build">Production Build</h3>
+<pre><code class="language-bash"><span class="hljs-comment"># Build for production</span>
+pnpm build
+
+<span class="hljs-comment"># Preview production build</span>
+pnpm preview
+</code></pre>
+<hr>
+<h2 id="️-tech-stack">🛠️ Tech Stack</h2>
+<table>
+<thead>
+<tr>
+<th>Technology</th>
+<th>Version</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>React</strong></td>
+<td>19.2</td>
+<td>UI Framework</td>
+</tr>
+<tr>
+<td><strong>TypeScript</strong></td>
+<td>5.9</td>
+<td>Type Safety</td>
+</tr>
+<tr>
+<td><strong>Vite</strong></td>
+<td>7.2</td>
+<td>Build Tool</td>
+</tr>
+<tr>
+<td><strong>Tailwind CSS</strong></td>
+<td>4.1</td>
+<td>Styling</td>
+</tr>
+<tr>
+<td><strong>Mermaid.js</strong></td>
+<td>11.12</td>
+<td>Diagram Rendering</td>
+</tr>
+<tr>
+<td><strong>Lucide React</strong></td>
+<td>0.554</td>
+<td>Icons</td>
+</tr>
+<tr>
+<td><strong>html-to-image</strong></td>
+<td>1.11</td>
+<td>Image Export</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="-documentation">📖 Documentation</h2>
+<h3 id="basic-usage">Basic Usage</h3>
+<ol>
+<li><strong>Enter Mermaid Code</strong>: Type your Mermaid diagram code in the left editor panel</li>
+<li><strong>See Live Preview</strong>: The diagram renders in real-time on the right</li>
+<li><strong>Customize</strong>: Choose themes, backgrounds, and fonts from the toolbar</li>
+<li><strong>Annotate</strong>: Use annotation tools to highlight important parts</li>
+<li><strong>Export</strong>: Download or copy your diagram in your preferred format</li>
+</ol>
+<h3 id="keyboard-shortcuts">Keyboard Shortcuts</h3>
+<table>
+<thead>
+<tr>
+<th>Shortcut</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Ctrl/Cmd + S</code></td>
+<td>Download diagram</td>
+</tr>
+<tr>
+<td><code>Ctrl/Cmd + C</code></td>
+<td>Copy to clipboard</td>
+</tr>
+<tr>
+<td><code>Ctrl/Cmd + Z</code></td>
+<td>Undo</td>
+</tr>
+<tr>
+<td><code>Ctrl/Cmd + Y</code></td>
+<td>Redo</td>
+</tr>
+<tr>
+<td><code>Esc</code></td>
+<td>Exit fullscreen</td>
+</tr>
+</tbody>
+</table>
+<h3 id="example-diagrams">Example Diagrams</h3>
+<pre><code class="language-mermaid">graph TD
+    A[Start] --&gt; B{Is it working?}
+    B -- Yes --&gt; C[Great!]
+    B -- No --&gt; D[Debug]
+    D --&gt; A
+</code></pre>
+<p>More examples available in the <a href="src/utils/examples.ts">examples directory</a>.</p>
+<hr>
+<h2 id="-contributing">🤝 Contributing</h2>
+<p>We love contributions! Here's how you can help:</p>
+<h3 id="ways-to-contribute">Ways to Contribute</h3>
+<ul>
+<li>🐛 <strong>Report Bugs</strong>: Open an issue describing the bug</li>
+<li>💡 <strong>Suggest Features</strong>: Share your ideas for new features</li>
+<li>📝 <strong>Improve Documentation</strong>: Help us improve our docs</li>
+<li>🌍 <strong>Translations</strong>: Add support for more languages</li>
+<li>💻 <strong>Code Contributions</strong>: Submit pull requests</li>
+</ul>
+<h3 id="development-process">Development Process</h3>
+<ol>
+<li>Fork the repository</li>
+<li>Create your feature branch (<code>git checkout -b feature/AmazingFeature</code>)</li>
+<li>Commit your changes (<code>git commit -m 'Add some AmazingFeature'</code>)</li>
+<li>Push to the branch (<code>git push origin feature/AmazingFeature</code>)</li>
+<li>Open a Pull Request</li>
+</ol>
+<h3 id="code-style">Code Style</h3>
+<ul>
+<li>Follow the existing code style</li>
+<li>Run <code>pnpm lint</code> before committing</li>
+<li>Write meaningful commit messages</li>
+<li>Add tests for new features</li>
+</ul>
+<hr>
+<h2 id="-star-history">🌟 Star History</h2>
+<p><a href="https://star-history.com/#gotoailab/modern_mermaid&amp;Date"><img src="https://api.star-history.com/svg?repos=gotoailab/modern_mermaid&amp;type=Date" alt="Star History Chart"></a></p>
+<hr>
+<h2 id="-license">📄 License</h2>
+<p>This project is licensed under the MIT License - see the <a href="LICENSE">LICENSE</a> file for details.</p>
+<hr>
+<h2 id="-acknowledgments">🙏 Acknowledgments</h2>
+<ul>
+<li><a href="https://mermaid.js.org/">Mermaid.js</a> - Amazing diagram library</li>
+<li><a href="https://reactjs.org/">React</a> - UI framework</li>
+<li><a href="https://tailwindcss.com/">Tailwind CSS</a> - Styling framework</li>
+<li><a href="https://vitejs.dev/">Vite</a> - Build tool</li>
+<li>All our <a href="https://github.com/gotoailab/modern_mermaid/graphs/contributors">contributors</a></li>
+</ul>
+<hr>
+<h2 id="-contact--support">📞 Contact &amp; Support</h2>
+<ul>
+<li>🌐 <strong>Website</strong>: <a href="https://modern-mermaid.live/">modern-mermaid.live</a></li>
+<li>💬 <strong>Discord</strong>: <a href="https://discord.gg/tGxevHhz">Join our community</a></li>
+<li>🐛 <strong>Issues</strong>: <a href="https://github.com/gotoailab/modern_mermaid/issues">GitHub Issues</a></li>
+<li>📧 <strong>Email</strong>: <a href="mailto:support@gotoailab.com">support@gotoailab.com</a></li>
+</ul>
+<hr>
+<div align="center">
+<p><strong>Made with ❤️ by the Modern Mermaid Team</strong></p>
+<p><a href="#readme-top">⬆ Back to Top</a></p>
+</div>
+
+            
+            
+        </body>
+        </html>

@@ -1,6 +1,6 @@
 <a name="readme-top"></a>
 
-<p align="center">
+<div align="center">
 
 ![Modern Mermaid Banner](docs/images/banner.svg)
 <!-- 👆 请在此处添加项目横幅截图 -->
@@ -17,13 +17,15 @@
 
 [🎯 Features](#features) • [🚀 Quick Start](#quick-start) • [📖 Documentation](#documentation) • [🤝 Contributing](#contributing)
 
-</p>
+</div>
 
 ---
 
 Live Experience: [https://modern-mermaid.live/](https://modern-mermaid.live/)
 
 <img src="docs/images/screenshot-merphis.png" width="100%" alt="merphis"/>
+
+<a name="features"></a>
 
 ## ✨ Features
 
@@ -105,6 +107,8 @@ Live Experience: [https://modern-mermaid.live/](https://modern-mermaid.live/)
 
 ---
 
+<a name="quick-start"></a>
+
 ## 🚀 Quick Start
 
 ### Prerequisites
@@ -164,6 +168,8 @@ pnpm preview
 
 ---
 
+<a name="documentation"></a>
+
 ## 📖 Documentation
 
 ### Basic Usage
@@ -197,6 +203,8 @@ graph TD
 More examples available in the [examples directory](src/utils/examples.ts).
 
 ---
+
+<a name="contributing"></a>
 
 ## 🤝 Contributing
 
