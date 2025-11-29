@@ -1,6 +1,6 @@
 import type { MermaidConfig } from 'mermaid';
 
-export type ThemeType = 'linearLight' | 'linearDark' | 'notion' | 'ghibli' | 'spotless' | 'brutalist' | 'glassmorphism' | 'memphis' | 'softPop' | 'cyberpunk' | 'monochrome' | 'darkMinimal' | 'wireframe' | 'handDrawn' | 'grafana' | 'noir' | 'material' | 'aurora' | 'win95' | 'doodle' | 'organic';
+export type ThemeType = 'linearLight' | 'linearDark' | 'notion' | 'ghibli' | 'spotless' | 'brutalist' | 'glassmorphism' | 'memphis' | 'softPop' | 'cyberpunk' | 'monochrome' | 'darkMinimal' | 'wireframe' | 'handDrawn' | 'grafana' | 'noir' | 'material' | 'aurora' | 'win95' | 'doodle' | 'organic' | 'hightech';
 
 export interface ThemeConfig {
   name: string;
@@ -6747,6 +6747,560 @@ export const themes: Record<ThemeType, ThemeConfig> = {
     bgClass: 'bg-gradient-to-br from-[#c8d5b9] to-[#8ba888]',
     bgStyle: {
       background: 'linear-gradient(135deg, #c8d5b9 0%, #8ba888 100%)',
+    }
+  },
+  hightech: {
+    name: 'High Tech',
+    annotationColors: {
+      primary: '#00ff41',
+      secondary: '#00ffff',
+      text: '#00ff41',
+    },
+    mermaidConfig: {
+      theme: 'base',
+      themeVariables: {
+        darkMode: true,
+        background: '#0a0f1a',
+        primaryColor: '#0a0f1a',
+        primaryTextColor: '#00ff41',
+        primaryBorderColor: '#00ff41',
+        lineColor: '#00ff41',
+        secondaryColor: '#0a0f1a',
+        tertiaryColor: '#0a0f1a',
+        fontFamily: '"Courier New", "Noto Sans SC", monospace',
+        fontSize: '14px',
+        mainBkg: '#0a0f1a',
+        nodeBorder: '#00ff41',
+        clusterBkg: '#0a0f1a',
+        clusterBorder: '#00ff41',
+        edgeLabelBackground: '#0a0f1a',
+      },
+      themeCSS: `
+        /* 全局样式 - 科技感绿色主题 */
+        .node rect, .node circle, .node polygon, .node path {
+          stroke: #00ff41 !important;
+          stroke-width: 2px !important;
+          fill: rgba(10, 15, 26, 0.9) !important;
+          rx: 5px !important;
+          ry: 5px !important;
+          filter: drop-shadow(0 0 8px rgba(0, 255, 65, 0.4)) drop-shadow(0 0 15px rgba(0, 255, 65, 0.2));
+        }
+        
+        .edgePath .path {
+          stroke: #00ff41 !important;
+          stroke-width: 2px !important;
+          filter: drop-shadow(0 0 5px rgba(0, 255, 65, 0.5));
+        }
+        
+        .arrowheadPath {
+          fill: #00ff41 !important;
+          stroke: #00ff41 !important;
+        }
+        
+        .edgeLabel {
+          background-color: #0a0f1a !important;
+          color: #00ff41 !important;
+          font-weight: 700;
+          text-shadow: 0 0 8px rgba(0, 255, 65, 0.6);
+        }
+        
+        .label, .nodeLabel {
+          color: #00ff41 !important;
+          font-weight: 700;
+          text-shadow: 0 0 8px rgba(0, 255, 65, 0.6);
+        }
+        
+        /* 流程图节点样式 */
+        .flowchart-link {
+          stroke: #00ff41 !important;
+          stroke-width: 2px !important;
+        }
+        
+        /* 序列图样式 */
+        .actor {
+          fill: #0a0f1a !important;
+          stroke: #00ff41 !important;
+          stroke-width: 2px !important;
+          rx: 5px !important;
+          ry: 5px !important;
+          filter: drop-shadow(0 0 8px rgba(0, 255, 65, 0.4));
+        }
+        
+        .actor text {
+          fill: #00ff41 !important;
+          font-weight: 700;
+          text-shadow: 0 0 8px rgba(0, 255, 65, 0.6);
+        }
+        
+        .actor-line {
+          stroke: #00ff41 !important;
+          stroke-width: 2px !important;
+          stroke-dasharray: 4 4;
+          filter: drop-shadow(0 0 5px rgba(0, 255, 65, 0.4));
+        }
+        
+        .activation0, .activation1, .activation2 {
+          fill: rgba(0, 255, 65, 0.15) !important;
+          stroke: #00ff41 !important;
+          stroke-width: 2px !important;
+        }
+        
+        .messageLine0, .messageLine1 {
+          stroke: #00ff41 !important;
+          stroke-width: 2px !important;
+          filter: drop-shadow(0 0 5px rgba(0, 255, 65, 0.5));
+        }
+        
+        .note {
+          fill: rgba(10, 15, 26, 0.95) !important;
+          stroke: #00ffff !important;
+          stroke-width: 2px !important;
+          rx: 5px !important;
+          ry: 5px !important;
+          filter: drop-shadow(0 0 6px rgba(0, 255, 255, 0.4));
+        }
+        
+        .noteText {
+          fill: #00ffff !important;
+          font-weight: 700;
+          text-shadow: 0 0 6px rgba(0, 255, 255, 0.5);
+        }
+        
+        /* 类图样式 */
+        .classGroup rect {
+          fill: #0a0f1a !important;
+          stroke: #00ff41 !important;
+          stroke-width: 2px !important;
+          filter: drop-shadow(0 0 8px rgba(0, 255, 65, 0.4));
+        }
+        
+        .classGroup line {
+          stroke: #00ff41 !important;
+          stroke-width: 1.5px !important;
+        }
+        
+        .classGroup text {
+          fill: #00ff41 !important;
+          font-weight: 600;
+        }
+        
+        .classLabel .box {
+          fill: #0a0f1a !important;
+          stroke: #00ff41 !important;
+          stroke-width: 2px !important;
+        }
+        
+        .classLabel .label {
+          fill: #00ff41 !important;
+          font-weight: 700;
+        }
+        
+        .relation {
+          stroke: #00ff41 !important;
+          stroke-width: 2px !important;
+          filter: drop-shadow(0 0 5px rgba(0, 255, 65, 0.4));
+        }
+        
+        /* 状态图样式 */
+        .stateGroup rect {
+          fill: #0a0f1a !important;
+          stroke: #00ff41 !important;
+          stroke-width: 2px !important;
+          rx: 5px !important;
+          ry: 5px !important;
+          filter: drop-shadow(0 0 8px rgba(0, 255, 65, 0.4));
+        }
+        
+        .stateGroup text {
+          fill: #00ff41 !important;
+          font-weight: 600;
+        }
+        
+        .transition {
+          stroke: #00ff41 !important;
+          stroke-width: 2px !important;
+        }
+        
+        .stateLabel .box {
+          fill: #0a0f1a !important;
+          stroke: #00ff41 !important;
+        }
+        
+        .state-start circle, .state-end circle {
+          fill: #00ff41 !important;
+          stroke: #00ff41 !important;
+          filter: drop-shadow(0 0 10px rgba(0, 255, 65, 0.6));
+        }
+        
+        /* 甘特图样式 */
+        .grid .tick line {
+          stroke: rgba(0, 255, 65, 0.3) !important;
+          stroke-width: 1px !important;
+        }
+        
+        .grid .tick text {
+          fill: #00ff41 !important;
+          font-size: 12px !important;
+        }
+        
+        .taskText {
+          fill: #00ff41 !important;
+          font-weight: 600;
+          text-shadow: 0 0 5px rgba(0, 255, 65, 0.4);
+        }
+        
+        .taskTextOutsideRight, .taskTextOutsideLeft {
+          fill: #00ff41 !important;
+          font-weight: 600;
+        }
+        
+        .task {
+          fill: rgba(0, 255, 65, 0.2) !important;
+          stroke: #00ff41 !important;
+          stroke-width: 2px !important;
+          rx: 3px !important;
+          filter: drop-shadow(0 0 6px rgba(0, 255, 65, 0.3));
+        }
+        
+        .task0, .task1, .task2, .task3 {
+          fill: rgba(0, 255, 65, 0.2) !important;
+          stroke: #00ff41 !important;
+        }
+        
+        .taskDone0, .taskDone1, .taskDone2, .taskDone3 {
+          fill: rgba(0, 255, 65, 0.4) !important;
+          stroke: #00ff41 !important;
+          stroke-width: 2px !important;
+        }
+        
+        .activeTask0, .activeTask1, .activeTask2, .activeTask3 {
+          fill: rgba(0, 255, 255, 0.3) !important;
+          stroke: #00ffff !important;
+          stroke-width: 2px !important;
+        }
+        
+        .section0, .section1, .section2, .section3 {
+          fill: rgba(0, 255, 65, 0.1) !important;
+        }
+        
+        .sectionTitle {
+          fill: #00ff41 !important;
+          font-weight: 700;
+          font-size: 16px !important;
+        }
+        
+        .today {
+          stroke: #00ffff !important;
+          stroke-width: 2px !important;
+          stroke-dasharray: 4 4;
+          fill: rgba(0, 255, 255, 0.1) !important;
+        }
+        
+        /* 饼图样式 */
+        .pieCircle {
+          stroke: #00ff41 !important;
+          stroke-width: 2px !important;
+        }
+        
+        .pieTitleText {
+          fill: #00ff41 !important;
+          font-weight: 700;
+          font-size: 20px !important;
+          text-shadow: 0 0 10px rgba(0, 255, 65, 0.6);
+        }
+        
+        .slice {
+          stroke: #00ff41 !important;
+          stroke-width: 2px !important;
+          filter: drop-shadow(0 0 6px rgba(0, 255, 65, 0.3));
+        }
+        
+        .pieOuterCircle {
+          stroke: #00ff41 !important;
+          stroke-width: 2px !important;
+          fill: none !important;
+        }
+        
+        .legend text {
+          fill: #00ff41 !important;
+          font-size: 13px !important;
+          font-weight: 600;
+        }
+        
+        .legend rect {
+          stroke: #00ff41 !important;
+          stroke-width: 2px !important;
+          rx: 3px !important;
+        }
+        
+        /* XY图表样式 */
+        .line-plot-0 path {
+          stroke: #00ff41 !important;
+          stroke-width: 3px !important;
+          filter: drop-shadow(0 0 6px rgba(0, 255, 65, 0.5));
+        }
+        
+        .line-plot-1 path {
+          stroke: #00ffff !important;
+          stroke-width: 3px !important;
+          filter: drop-shadow(0 0 6px rgba(0, 255, 255, 0.5));
+        }
+        
+        .line-plot-2 path {
+          stroke: #ff00ff !important;
+          stroke-width: 3px !important;
+          filter: drop-shadow(0 0 6px rgba(255, 0, 255, 0.5));
+        }
+        
+        .bar-plot-0 rect {
+          fill: rgba(0, 255, 65, 0.3) !important;
+          stroke: #00ff41 !important;
+          stroke-width: 2px !important;
+          filter: drop-shadow(0 0 6px rgba(0, 255, 65, 0.3));
+        }
+        
+        .bar-plot-1 rect {
+          fill: rgba(0, 255, 255, 0.3) !important;
+          stroke: #00ffff !important;
+          stroke-width: 2px !important;
+          filter: drop-shadow(0 0 6px rgba(0, 255, 255, 0.3));
+        }
+        
+        .bar-plot-2 rect {
+          fill: rgba(255, 0, 255, 0.3) !important;
+          stroke: #ff00ff !important;
+          stroke-width: 2px !important;
+          filter: drop-shadow(0 0 6px rgba(255, 0, 255, 0.3));
+        }
+        
+        .chart-title text {
+          fill: #00ff41 !important;
+          font-weight: 700;
+          font-size: 20px !important;
+          text-shadow: 0 0 10px rgba(0, 255, 65, 0.6);
+        }
+        
+        .left-axis .label text,
+        .bottom-axis .label text {
+          fill: #00ff41 !important;
+          font-size: 13px !important;
+          font-weight: 600;
+        }
+        
+        .left-axis .title text,
+        .bottom-axis .title text {
+          fill: #00ff41 !important;
+          font-size: 15px !important;
+          font-weight: 700;
+        }
+        
+        .left-axis line,
+        .bottom-axis line {
+          stroke: rgba(0, 255, 65, 0.3) !important;
+        }
+        
+        .grid line {
+          stroke: rgba(0, 255, 65, 0.15) !important;
+        }
+        
+        /* Git Graph样式 */
+        .commit-id, .commit-msg, .branch-label {
+          fill: #00ff41 !important;
+          font-weight: 700;
+          text-shadow: 0 0 5px rgba(0, 255, 65, 0.5);
+        }
+        
+        .commit {
+          stroke: #00ff41 !important;
+          stroke-width: 2px !important;
+          filter: drop-shadow(0 0 8px rgba(0, 255, 65, 0.4));
+        }
+        
+        .commit0 {
+          fill: rgba(0, 255, 65, 0.3) !important;
+        }
+        
+        .commit1 {
+          fill: rgba(0, 255, 255, 0.3) !important;
+        }
+        
+        .commit2 {
+          fill: rgba(0, 255, 65, 0.2) !important;
+        }
+        
+        .commit3 {
+          fill: rgba(0, 255, 255, 0.2) !important;
+        }
+        
+        .commit-highlight-outer {
+          fill: #00ffff;
+          opacity: 0.3;
+        }
+        
+        .commit-highlight-inner {
+          fill: #00ffff;
+          opacity: 0.5;
+          stroke: #00ffff;
+        }
+        
+        .branch path {
+          stroke-width: 2.5px !important;
+          stroke-linecap: round;
+          stroke-linejoin: round;
+          filter: drop-shadow(0 0 5px rgba(0, 255, 65, 0.4));
+        }
+        
+        .branch.branch0 {
+          stroke: #00ff41 !important;
+        }
+        
+        .branch.branch1 {
+          stroke: #00ffff !important;
+        }
+        
+        .branch.branch2 {
+          stroke: #00ff88 !important;
+        }
+        
+        .branch.branch3 {
+          stroke: #88ffaa !important;
+        }
+        
+        /* Timeline样式 */
+        .timeline-event {
+          fill: rgba(10, 15, 26, 0.9) !important;
+          stroke: #00ff41 !important;
+          stroke-width: 2px !important;
+          rx: 5px !important;
+          filter: drop-shadow(0 0 8px rgba(0, 255, 65, 0.4));
+        }
+        
+        .timeline-event:nth-child(2n) {
+          stroke: #00ffff !important;
+          filter: drop-shadow(0 0 8px rgba(0, 255, 255, 0.4));
+        }
+        
+        .timeline-event:nth-child(3n) {
+          stroke: #00ff88 !important;
+          filter: drop-shadow(0 0 8px rgba(0, 255, 136, 0.4));
+        }
+        
+        .timeline-event-text {
+          fill: #00ff41 !important;
+          font-weight: 700;
+          text-shadow: 0 0 5px rgba(0, 255, 65, 0.5);
+        }
+        
+        /* ER图样式 */
+        .er.entityBox {
+          fill: #0a0f1a !important;
+          stroke: #00ff41 !important;
+          stroke-width: 2px !important;
+          filter: drop-shadow(0 0 8px rgba(0, 255, 65, 0.4));
+        }
+        
+        .er.entityLabel {
+          fill: #00ff41 !important;
+          font-weight: 700;
+        }
+        
+        .er.relationshipLine {
+          stroke: #00ff41 !important;
+          stroke-width: 2px !important;
+        }
+        
+        .er.relationshipLabelBox {
+          fill: #0a0f1a !important;
+          stroke: #00ff41 !important;
+        }
+        
+        .er.relationshipLabel {
+          fill: #00ff41 !important;
+        }
+        
+        .er.attributeBoxOdd {
+          fill: rgba(0, 255, 65, 0.05) !important;
+        }
+        
+        .er.attributeBoxEven {
+          fill: rgba(0, 255, 65, 0.1) !important;
+        }
+        
+        /* Journey图样式 */
+        .journey-section {
+          fill: rgba(0, 255, 65, 0.05) !important;
+        }
+        
+        .journey-task {
+          fill: #0a0f1a !important;
+          stroke: #00ff41 !important;
+          stroke-width: 2px !important;
+          filter: drop-shadow(0 0 6px rgba(0, 255, 65, 0.3));
+        }
+        
+        .journey-actor {
+          fill: #00ff41 !important;
+          stroke: #00ff41 !important;
+        }
+        
+        .journey-label {
+          fill: #00ff41 !important;
+          font-weight: 600;
+        }
+        
+        /* Mindmap样式 */
+        .mindmap-node {
+          fill: #0a0f1a !important;
+          stroke: #00ff41 !important;
+          stroke-width: 2px !important;
+          filter: drop-shadow(0 0 8px rgba(0, 255, 65, 0.4));
+        }
+        
+        .mindmap-node-text {
+          fill: #00ff41 !important;
+          font-weight: 600;
+        }
+        
+        .mindmap-edge {
+          stroke: #00ff41 !important;
+          stroke-width: 2px !important;
+        }
+        
+        /* 通用文本样式 */
+        text {
+          fill: #00ff41 !important;
+        }
+        
+        tspan {
+          fill: #00ff41 !important;
+        }
+        
+        /* Cluster/子图样式 */
+        .cluster rect {
+          fill: rgba(0, 255, 65, 0.05) !important;
+          stroke: #00ff41 !important;
+          stroke-width: 2px !important;
+          stroke-dasharray: 6 6;
+          rx: 5px !important;
+          ry: 5px !important;
+        }
+        
+        .cluster text {
+          fill: #00ff41 !important;
+          font-weight: 700;
+          text-shadow: 0 0 8px rgba(0, 255, 65, 0.6);
+        }
+        
+        .cluster-label {
+          fill: #00ff41 !important;
+          font-weight: 700;
+        }
+      `
+    },
+    bgClass: 'bg-[#0a0f1a]',
+    bgStyle: {
+      background: 'radial-gradient(circle at center, #0a0f1a, #000000)',
+      boxShadow: '0 0 20px rgba(0,255,65,0.3), inset 0 0 20px rgba(0,255,65,0.1)',
     }
   },  
 };
