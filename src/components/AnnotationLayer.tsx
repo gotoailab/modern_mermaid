@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { X, Edit2, Palette, Copy } from 'lucide-react';
+import { X, Edit2, Palette, Copy, Type, Minus, Bold } from 'lucide-react';
 import type { Annotation, Point, AnnotationType } from '../types/annotation';
 import { useLanguage } from '../contexts/LanguageContext';
 
@@ -36,6 +36,10 @@ const AnnotationLayer: React.FC<AnnotationLayerProps> = ({
   
   // 调整控制点类型
   const [resizingHandle, setResizingHandle] = useState<string | null>(null);
+  
+  // 下拉菜单状态
+  const [showFontSizeMenu, setShowFontSizeMenu] = useState(false);
+  const [showStrokeWidthMenu, setShowStrokeWidthMenu] = useState(false);
 
   // 选中标注
   const handleSelectAnnotation = (e: React.MouseEvent, id: string) => {
@@ -298,6 +302,19 @@ const AnnotationLayer: React.FC<AnnotationLayerProps> = ({
       setEditingTextId(null);
     }
   }, [selectedAnnotationId, editingTextId, editingText, onUpdateAnnotation]);
+
+  // 点击外部关闭下拉菜单
+  useEffect(() => {
+    const handleClickOutside = () => {
+      if (showFontSizeMenu) setShowFontSizeMenu(false);
+      if (showStrokeWidthMenu) setShowStrokeWidthMenu(false);
+    };
+
+    if (showFontSizeMenu || showStrokeWidthMenu) {
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => document.removeEventListener('mousedown', handleClickOutside);
+    }
+  }, [showFontSizeMenu, showStrokeWidthMenu]);
 
   // 渲染箭头
   const renderArrow = (annotation: Annotation) => {
@@ -614,7 +631,7 @@ const AnnotationLayer: React.FC<AnnotationLayerProps> = ({
     );
   };
 
-  // 渲染删除按钮
+  // 渲染工具栏按钮
   const renderDeleteButton = () => {
     if (!selectedAnnotationId) return null;
     
@@ -637,75 +654,202 @@ const AnnotationLayer: React.FC<AnnotationLayerProps> = ({
       buttonY = annotation.center.y - annotation.radius - 20;
     }
 
-    // 根据按钮数量计算宽度（文字标注有4个按钮，其他有3个）
-    const buttonCount = annotation.type === 'text' ? 4 : 3;
-    const toolbarWidth = buttonCount * 32 + (buttonCount - 1) * 4; // 每个按钮约32px，间距4px
+    // 计算按钮数量和宽度
+    let buttonCount = 3; // 基础：颜色、复制、删除
+    if (annotation.type === 'text') {
+      buttonCount += 3; // 编辑、字体大小、字体粗细
+    } else {
+      buttonCount += 1; // 线条宽度
+    }
+    const toolbarWidth = buttonCount * 32 + (buttonCount - 1) * 4;
+
+    // 字体大小选项
+    const fontSizes = [12, 14, 16, 20, 24, 28, 32];
+    // 线条宽度选项
+    const strokeWidths = [1, 2, 3, 4, 6, 8, 10];
 
     return (
-      <foreignObject
-        x={buttonX - toolbarWidth / 2}
-        y={buttonY - 15}
-        width={toolbarWidth}
-        height="30"
-        style={{ pointerEvents: 'auto' }}
-      >
-        <div className="flex gap-1 justify-center">
-          {/* 颜色选择按钮 */}
-          <button
-            onClick={(e) => {
-              const rect = (e.target as HTMLElement).getBoundingClientRect();
-              onShowColorPicker({
-                x: rect.left + rect.width / 2,
-                y: rect.top
-              });
-            }}
-            className="px-2 py-1 bg-white-600 hover:text-indigo-600 hover:bg-indigo-50 text-black rounded text-xs flex items-center gap-1 shadow-lg border border-gray-200 dark:border-gray-700 cursor-pointer"
-            title="修改颜色"
-          >
-            <Palette size={12} />
-          </button>
-          
-          {/* 编辑按钮（仅文字） */}
-          {annotation.type === 'text' && (
+      <>
+        <foreignObject
+          x={buttonX - toolbarWidth / 2}
+          y={buttonY - 15}
+          width={toolbarWidth}
+          height={showFontSizeMenu || showStrokeWidthMenu ? "250" : "30"}
+          style={{ pointerEvents: 'auto', overflow: 'visible' }}
+        >
+          <div className="flex gap-1 justify-center">
+            {/* 颜色选择按钮 */}
+            <button
+              onClick={(e) => {
+                const rect = (e.target as HTMLElement).getBoundingClientRect();
+                onShowColorPicker({
+                  x: rect.left + rect.width / 2,
+                  y: rect.top
+                });
+              }}
+              className="px-2 py-1 bg-white hover:text-indigo-600 hover:bg-indigo-50 text-black rounded text-xs flex items-center gap-1 shadow-lg border border-gray-200 dark:border-gray-700 cursor-pointer"
+              title={t.changeNodeColor}
+            >
+              <Palette size={12} />
+            </button>
+            
+            {/* 文字标注专用按钮 */}
+            {annotation.type === 'text' && (
+              <>
+                {/* 编辑按钮 */}
+                <button
+                  onClick={() => {
+                    setEditingTextId(annotation.id);
+                    setEditingText(annotation.text);
+                    setTimeout(() => textInputRef.current?.focus(), 0);
+                  }}
+                  className="px-2 py-1 bg-white hover:text-indigo-600 hover:bg-indigo-50 text-black rounded text-xs flex items-center gap-1 shadow-lg border border-gray-200 dark:border-gray-700 cursor-pointer"
+                  title={t.text}
+                >
+                  <Edit2 size={12} />
+                </button>
+                
+                {/* 字体大小按钮 */}
+                <div className="relative" style={{ zIndex: 10000 }}>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setShowFontSizeMenu(!showFontSizeMenu);
+                      setShowStrokeWidthMenu(false);
+                    }}
+                    className="px-2 py-1 bg-white hover:text-indigo-600 hover:bg-indigo-50 text-black rounded text-xs flex items-center gap-1 shadow-lg border border-gray-200 dark:border-gray-700 cursor-pointer"
+                    title={t.fontSize}
+                  >
+                    <Type size={12} />
+                    <span className="text-[10px]">{annotation.fontSize}</span>
+                  </button>
+                  {showFontSizeMenu && (
+                    <div 
+                      className="absolute top-full mt-1 left-0 bg-white dark:bg-gray-800 rounded shadow-xl border border-gray-200 dark:border-gray-700 py-1 min-w-[60px]"
+                      style={{ 
+                        zIndex: 10001,
+                        pointerEvents: 'auto',
+                        cursor: 'pointer'
+                      }}
+                      onMouseDown={(e) => e.stopPropagation()}
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      {fontSizes.map(size => (
+                        <button
+                          key={size}
+                          onMouseDown={(e) => {
+                            e.stopPropagation();
+                            e.preventDefault();
+                            onUpdateAnnotation(annotation.id, { fontSize: size });
+                            setShowFontSizeMenu(false);
+                          }}
+                          className={`w-full px-3 py-1 text-xs hover:bg-indigo-50 dark:hover:bg-gray-700 text-left flex items-center justify-between cursor-pointer ${
+                            annotation.fontSize === size ? 'text-indigo-600 font-semibold' : 'text-gray-700 dark:text-gray-300'
+                          }`}
+                          style={{ pointerEvents: 'auto' }}
+                        >
+                          <span>{size}</span>
+                          {annotation.fontSize === size && <span>✓</span>}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+                
+                {/* 字体粗细按钮 */}
+                <button
+                  onClick={() => {
+                    onUpdateAnnotation(annotation.id, { 
+                      fontWeight: annotation.fontWeight === 'bold' ? 'normal' : 'bold' 
+                    });
+                  }}
+                  className="px-2 py-1 bg-white hover:text-indigo-600 hover:bg-indigo-50 rounded text-xs flex items-center gap-1 shadow-lg border border-gray-200 dark:border-gray-700 cursor-pointer"
+                  title={t.fontWeight}
+                >
+                  <Bold 
+                    size={12} 
+                    className={annotation.fontWeight === 'bold' ? 'text-indigo-600' : 'text-gray-700 dark:text-gray-300'}
+                    strokeWidth={annotation.fontWeight === 'bold' ? 3 : 2}
+                  />
+                </button>
+              </>
+            )}
+            
+            {/* 图形标注专用按钮 */}
+            {(annotation.type === 'arrow' || annotation.type === 'line' || annotation.type === 'rect' || annotation.type === 'circle') && (
+              <div className="relative" style={{ zIndex: 10000 }}>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setShowStrokeWidthMenu(!showStrokeWidthMenu);
+                    setShowFontSizeMenu(false);
+                  }}
+                  className="px-2 py-1 bg-white hover:text-indigo-600 hover:bg-indigo-50 text-black rounded text-xs flex items-center gap-1 shadow-lg border border-gray-200 dark:border-gray-700 cursor-pointer"
+                  title={t.strokeWidth}
+                >
+                  <Minus size={12} />
+                  <span className="text-[10px]">{annotation.strokeWidth}</span>
+                </button>
+                {showStrokeWidthMenu && (
+                  <div 
+                    className="absolute top-full mt-1 left-0 bg-white dark:bg-gray-800 rounded shadow-xl border border-gray-200 dark:border-gray-700 py-1 min-w-[60px]"
+                    style={{ 
+                      zIndex: 10001,
+                      pointerEvents: 'auto',
+                      cursor: 'pointer'
+                    }}
+                    onMouseDown={(e) => e.stopPropagation()}
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    {strokeWidths.map(width => (
+                      <button
+                        key={width}
+                        onMouseDown={(e) => {
+                          e.stopPropagation();
+                          e.preventDefault();
+                          onUpdateAnnotation(annotation.id, { strokeWidth: width });
+                          setShowStrokeWidthMenu(false);
+                        }}
+                        className={`w-full px-3 py-1 text-xs hover:bg-indigo-50 dark:hover:bg-gray-700 text-left flex items-center justify-between cursor-pointer ${
+                          annotation.strokeWidth === width ? 'text-indigo-600 font-semibold' : 'text-gray-700 dark:text-gray-300'
+                        }`}
+                        style={{ pointerEvents: 'auto' }}
+                      >
+                        <span>{width}</span>
+                        {annotation.strokeWidth === width && <span>✓</span>}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
+            
+            {/* 复制按钮 */}
             <button
               onClick={() => {
-                setEditingTextId(annotation.id);
-                setEditingText(annotation.text);
-                // 添加 setTimeout 来确保输入框被渲染后再聚焦
-                setTimeout(() => textInputRef.current?.focus(), 0);
+                if (onCopyAnnotation) {
+                  onCopyAnnotation(annotation);
+                }
               }}
-              className="px-2 py-1 bg-white-600 hover:text-indigo-600 hover:bg-indigo-50 text-black rounded text-xs flex items-center gap-1 shadow-lg border border-gray-200 dark:border-gray-700 cursor-pointer"
-              title={t.text}
+              className="px-2 py-1 bg-white hover:text-green-600 hover:bg-green-50 text-black rounded text-xs flex items-center gap-1 shadow-lg border border-gray-200 dark:border-gray-700 cursor-pointer"
+              title={t.copyAnnotation}
             >
-              <Edit2 size={12} />
+              <Copy size={12} />
             </button>
-          )}
-          
-          {/* 复制按钮 */}
-          <button
-            onClick={() => {
-              if (onCopyAnnotation) {
-                onCopyAnnotation(annotation);
-              }
-            }}
-            className="px-2 py-1 bg-white-600 hover:text-green-600 hover:bg-green-50 text-black rounded text-xs flex items-center gap-1 shadow-lg border border-gray-200 dark:border-gray-700 cursor-pointer"
-            title={t.copyAnnotation}
-          >
-            <Copy size={12} />
-          </button>
-          
-          {/* 删除按钮 */}
-          <button
-            onClick={() => {
-              onDeleteAnnotation(selectedAnnotationId);
-              onSelectAnnotation(null);
-            }}
-            className="px-2 py-1 bg-white-600 hover:text-red-600 hover:bg-red-50 text-black rounded text-xs flex items-center gap-1 shadow-lg border border-gray-200 dark:border-gray-700 cursor-pointer"
-          >
-            <X size={12} />
-          </button>
-        </div>
-      </foreignObject>
+            
+            {/* 删除按钮 */}
+            <button
+              onClick={() => {
+                onDeleteAnnotation(selectedAnnotationId);
+                onSelectAnnotation(null);
+              }}
+              className="px-2 py-1 bg-white hover:text-red-600 hover:bg-red-50 text-black rounded text-xs flex items-center gap-1 shadow-lg border border-gray-200 dark:border-gray-700 cursor-pointer"
+            >
+              <X size={12} />
+            </button>
+          </div>
+        </foreignObject>
+      </>
     );
   };
 

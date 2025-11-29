@@ -73,6 +73,11 @@ export interface Translation {
   confirmClearAnnotations: string;
   doubleClickToEdit: string;
   copyAnnotation: string;
+  fontSize: string;
+  fontWeight: string;
+  normal: string;
+  bold: string;
+  strokeWidth: string;
   
   // Color Picker
   changeNodeColor: string;
@@ -191,6 +196,11 @@ export const translations: Record<Language, Translation> = {
     confirmClearAnnotations: 'Are you sure you want to clear all annotations?',
     doubleClickToEdit: 'Double-click to edit',
     copyAnnotation: 'Copy annotation',
+    fontSize: 'Font Size',
+    fontWeight: 'Font Weight',
+    normal: 'Normal',
+    bold: 'Bold',
+    strokeWidth: 'Stroke Width',
     
     // Fullscreen
     enterFullscreen: 'Enter Fullscreen',
@@ -293,6 +303,11 @@ export const translations: Record<Language, Translation> = {
     confirmClearAnnotations: '确定要清空所有标注吗？',
     doubleClickToEdit: '双击编辑',
     copyAnnotation: '复制标注',
+    fontSize: '字体大小',
+    fontWeight: '字体粗细',
+    normal: '正常',
+    bold: '粗体',
+    strokeWidth: '线条宽度',
     
     // Fullscreen
     enterFullscreen: '进入全屏',
@@ -395,6 +410,11 @@ export const translations: Record<Language, Translation> = {
     confirmClearAnnotations: '確定要清空所有標註嗎？',
     doubleClickToEdit: '雙擊編輯',
     copyAnnotation: '複製標註',
+    fontSize: '字體大小',
+    fontWeight: '字體粗細',
+    normal: '正常',
+    bold: '粗體',
+    strokeWidth: '線條寬度',
     
     // Fullscreen
     enterFullscreen: '進入全屏',
@@ -497,6 +517,11 @@ export const translations: Record<Language, Translation> = {
     confirmClearAnnotations: 'すべての注釈をクリアしますか？',
     doubleClickToEdit: 'ダブルクリックで編集',
     copyAnnotation: '注釈をコピー',
+    fontSize: 'フォントサイズ',
+    fontWeight: 'フォントの太さ',
+    normal: '標準',
+    bold: '太字',
+    strokeWidth: '線の太さ',
     
     // Fullscreen
     enterFullscreen: '全画面表示',
@@ -599,6 +624,11 @@ export const translations: Record<Language, Translation> = {
     confirmClearAnnotations: '¿Está seguro de que desea limpiar todas las anotaciones?',
     doubleClickToEdit: 'Doble clic para editar',
     copyAnnotation: 'Copiar anotación',
+    fontSize: 'Tamaño de fuente',
+    fontWeight: 'Grosor de fuente',
+    normal: 'Normal',
+    bold: 'Negrita',
+    strokeWidth: 'Grosor de línea',
     
     // Fullscreen
     enterFullscreen: 'Pantalla completa',
@@ -701,6 +731,11 @@ export const translations: Record<Language, Translation> = {
     confirmClearAnnotations: 'Tem certeza de que deseja limpar todas as anotações?',
     doubleClickToEdit: 'Clique duplo para editar',
     copyAnnotation: 'Copiar anotação',
+    fontSize: 'Tamanho da fonte',
+    fontWeight: 'Espessura da fonte',
+    normal: 'Normal',
+    bold: 'Negrito',
+    strokeWidth: 'Espessura da linha',
     
     // Fullscreen
     enterFullscreen: 'Tela cheia',
