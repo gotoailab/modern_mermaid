@@ -370,16 +370,18 @@ const Layout: React.FC = () => {
   }, [currentTheme, isInitialLoad, customStylesLoaded]);
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 flex flex-col font-sans transition-colors duration-200">
+    <div className="h-screen overflow-hidden bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 flex flex-col font-sans transition-colors duration-200">
       {!isFullscreen && <Header />}
-      <main className={`flex-1 flex flex-col md:flex-row overflow-hidden ${isFullscreen ? 'h-screen' : 'h-[calc(100vh-64px)]'}`}>
+      <main 
+        className={`flex-1 flex flex-col md:flex-row overflow-hidden ${isFullscreen ? '' : ''}`}
+      >
         {/* Left Pane: Editor */}
         {!isFullscreen && (
           <div 
             className="border-r border-gray-200 dark:border-gray-700 flex flex-col bg-white dark:bg-gray-800 shadow-sm z-10"
             style={{ width: `${leftPanelWidth}%` }}
           >
-           <div className="p-4 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 font-semibold text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wider flex items-center justify-between">
+           <div className="flex-shrink-0 p-4 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 font-semibold text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wider flex items-center justify-between">
              <div className="flex items-center gap-3">
                <span>{t.editor}</span>
                <ExampleSelector onSelectExample={handleExampleSelect} />
@@ -404,7 +406,9 @@ const Layout: React.FC = () => {
              </div>
              <span className="text-[10px] bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded text-gray-400 dark:text-gray-500">{t.editorSubtitle}</span>
            </div>
-           <Editor code={code} onChange={handleCodeChange} />
+           <div className="flex-1 overflow-hidden min-h-0">
+             <Editor code={code} onChange={handleCodeChange} />
+           </div>
         </div>
         )}
         
@@ -413,7 +417,7 @@ const Layout: React.FC = () => {
         
         {/* Right Pane: Preview */}
         <div 
-          className="bg-gray-50 dark:bg-gray-900 flex flex-col relative"
+          className="bg-gray-50 dark:bg-gray-900 flex flex-col relative flex-1"
           style={{ width: isFullscreen ? '100%' : `${100 - leftPanelWidth}%` }}
         >
            <div className="absolute top-4 right-4 z-10 flex items-start gap-2">

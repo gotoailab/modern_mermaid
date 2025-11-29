@@ -168,18 +168,17 @@ const Editor: React.FC<EditorProps> = ({ code, onChange }) => {
   };
 
   return (
-    <div className="flex-1 relative flex overflow-hidden">
+    <div className="h-full relative flex overflow-hidden">
       {/* 行号区域 */}
-      <div className="flex-shrink-0 w-12 bg-gray-50 dark:bg-gray-900 border-r border-gray-200 dark:border-gray-700 overflow-hidden relative">
+      <div className="flex-shrink-0 w-12 bg-gray-50 dark:bg-gray-900 border-r border-gray-200 dark:border-gray-700 overflow-hidden">
         <div 
           ref={lineNumberRef}
-          className="absolute inset-0 py-6 px-2 text-right text-xs leading-relaxed font-mono overflow-hidden"
+          className="h-full py-6 px-2 text-right text-sm leading-relaxed font-mono overflow-hidden"
         >
           {lineNumbers.map((lineNum) => (
             <div 
               key={lineNum} 
               className="text-gray-400 dark:text-gray-600 select-none"
-              style={{ height: '1.5rem' }}
             >
               {lineNum}
             </div>
@@ -188,7 +187,7 @@ const Editor: React.FC<EditorProps> = ({ code, onChange }) => {
       </div>
 
       {/* 编辑区域 */}
-      <div className="flex-1 relative overflow-hidden bg-white dark:bg-gray-800">
+      <div className="flex-1 relative bg-white dark:bg-gray-800 overflow-hidden">
         {/* 语法高亮层 - 在底层 */}
         <div
           ref={highlightRef}

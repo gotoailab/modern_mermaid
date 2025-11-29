@@ -1376,7 +1376,7 @@ const Preview = forwardRef<PreviewHandle, PreviewProps>(({ code, themeConfig, cu
 
   return (
     <div 
-        className={`flex-1 overflow-hidden flex relative transition-colors duration-300 ${actualBg}`} 
+        className={`flex-1 min-h-0 overflow-hidden flex relative transition-colors duration-300 ${actualBg}`} 
         style={actualBgStyle}
         ref={containerRef}
         onMouseDown={handleMouseDown}
