@@ -1,3 +1,5 @@
+<a name="readme-top"></a>
+
 <div align="center">
 
 ![Banner do Modern Mermaid](docs/images/banner.svg)
@@ -18,6 +20,13 @@
 </div>
 
 ---
+
+Experiência ao Vivo: [https://modern-mermaid.live/](https://modern-mermaid.live/)
+
+<img src="docs/images/screenshot-merphis.png" width="100%" alt="merphis"/>
+
+<a name="features"></a>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## ✨ Recursos
 
@@ -99,6 +108,9 @@
 
 ---
 
+<a name="quick-start"></a>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ## 🚀 Início Rápido
 
 ### Pré-requisitos
@@ -158,6 +170,9 @@ pnpm preview
 
 ---
 
+<a name="documentation"></a>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ## 📖 Documentação
 
 ### Uso Básico
@@ -191,6 +206,9 @@ graph TD
 Mais exemplos disponíveis no [diretório de exemplos](src/utils/examples.ts).
 
 ---
+
+<a name="contributing"></a>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## 🤝 Contribuir
 

@@ -26,6 +26,7 @@ Live Experience: [https://modern-mermaid.live/](https://modern-mermaid.live/)
 <img src="docs/images/screenshot-merphis.png" width="100%" alt="merphis"/>
 
 <a name="features"></a>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## ✨ Features
 
@@ -108,6 +109,7 @@ Live Experience: [https://modern-mermaid.live/](https://modern-mermaid.live/)
 ---
 
 <a name="quick-start"></a>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## 🚀 Quick Start
 
@@ -169,6 +171,7 @@ pnpm preview
 ---
 
 <a name="documentation"></a>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## 📖 Documentation
 
@@ -205,6 +208,7 @@ More examples available in the [examples directory](src/utils/examples.ts).
 ---
 
 <a name="contributing"></a>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## 🤝 Contributing
 

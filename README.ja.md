@@ -1,4 +1,5 @@
 <a name="readme-top"></a>
+
 <div align="center">
 
 ![Modern Mermaid バナー](docs/images/banner.svg)
@@ -19,6 +20,13 @@
 </div>
 
 ---
+
+ライブ体験: [https://modern-mermaid.live/](https://modern-mermaid.live/)
+
+<img src="docs/images/screenshot-merphis.png" width="100%" alt="merphis"/>
+
+<a name="features"></a>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## ✨ 機能
 
@@ -100,6 +108,9 @@
 
 ---
 
+<a name="quick-start"></a>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ## 🚀 クイックスタート
 
 ### 前提条件
@@ -159,6 +170,9 @@ pnpm preview
 
 ---
 
+<a name="documentation"></a>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ## 📖 ドキュメント
 
 ### 基本的な使用方法
@@ -192,6 +206,9 @@ graph TD
 その他の例は [examples ディレクトリ](src/utils/examples.ts) で利用可能です。
 
 ---
+
+<a name="contributing"></a>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## 🤝 コントリビューション
 

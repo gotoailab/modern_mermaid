@@ -1,4 +1,5 @@
 <a name="readme-top"></a>
+
 <div align="center">
 
 ![Modern Mermaid 横幅](docs/images/banner.svg)
@@ -19,6 +20,13 @@
 </div>
 
 ---
+
+在线体验: [https://modern-mermaid.live/](https://modern-mermaid.live/)
+
+<img src="docs/images/screenshot-merphis.png" width="100%" alt="merphis"/>
+
+<a name="features"></a>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## ✨ 特性
 
@@ -100,6 +108,9 @@
 
 ---
 
+<a name="quick-start"></a>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ## 🚀 快速开始
 
 ### 前置要求
@@ -159,6 +170,9 @@ pnpm preview
 
 ---
 
+<a name="documentation"></a>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ## 📖 文档
 
 ### 基本使用
@@ -192,6 +206,9 @@ graph TD
 更多示例请查看 [示例目录](src/utils/examples.ts)。
 
 ---
+
+<a name="contributing"></a>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## 🤝 贡献
 
