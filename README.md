@@ -17,6 +17,8 @@
 
 [🎯 Features](#features) • [🚀 Quick Start](#quick-start) • [📖 Documentation](#documentation) • [🤝 Contributing](#contributing)
 
+<a href="https://www.producthunt.com/products/modern-mermaid?embed=true&utm_source=badge-featured&utm_medium=badge&utm_source=badge-modern&#0045;mermaid" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1043548&theme=light&t=1764406966605" alt="Modern&#0032;Mermaid - Online&#0032;flowchart&#0032;&#0038;&#0032;diagram&#0032;editor | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
+
 </div>
 
 ---
