@@ -1,6 +1,6 @@
 import type { MermaidConfig } from 'mermaid';
 
-export type ThemeType = 'linearLight' | 'linearDark' | 'notion' | 'ghibli' | 'spotless' | 'brutalist' | 'glassmorphism' | 'memphis' | 'softPop' | 'cyberpunk' | 'monochrome' | 'darkMinimal' | 'wireframe' | 'handDrawn' | 'grafana' | 'noir' | 'material' | 'aurora' | 'win95';
+export type ThemeType = 'linearLight' | 'linearDark' | 'notion' | 'ghibli' | 'spotless' | 'brutalist' | 'glassmorphism' | 'memphis' | 'softPop' | 'cyberpunk' | 'monochrome' | 'darkMinimal' | 'wireframe' | 'handDrawn' | 'grafana' | 'noir' | 'material' | 'aurora' | 'win95' | 'doodle';
 
 export interface ThemeConfig {
   name: string;
@@ -5411,6 +5411,686 @@ export const themes: Record<ThemeType, ThemeConfig> = {
       `,
       backgroundSize: '2px 2px',
       backgroundPosition: '0 0, 0 1px, 1px -1px, -1px 0px',
+    }
+  },
+  doodle: {
+    name: 'Playful Doodle',
+    annotationColors: {
+      primary: '#9333ea', // Purple
+      secondary: '#ec4899', // Pink
+      text: '#000000', // Black
+    },
+    mermaidConfig: {
+      theme: 'base',
+      themeVariables: {
+        background: '#ffeef8',
+        primaryColor: '#ffdff6', // Light pink
+        primaryTextColor: '#000000',
+        primaryBorderColor: '#000000',
+        lineColor: '#000000',
+        secondaryColor: '#dff4ff', // Light blue
+        tertiaryColor: '#f0e7ff', // Light purple
+        fontFamily: '"Comic Neue", "Comic Sans MS", "Noto Sans SC", cursive, sans-serif',
+        fontSize: '15px',
+      },
+      themeCSS: `
+        /* Playful Doodle Style - Hand-drawn whimsical design */
+        
+        /* Flowchart nodes - Soft colors with hand-drawn borders */
+        .node rect, .node polygon {
+          fill: #ffdff6 !important;
+          stroke: #000000 !important;
+          stroke-width: 3px !important;
+          rx: 20px !important;
+          ry: 20px !important;
+          filter: drop-shadow(4px 4px 0px rgba(0,0,0,0.2));
+        }
+        
+        .node circle {
+          fill: #ffdff6 !important;
+          stroke: #000000 !important;
+          stroke-width: 3px !important;
+          filter: drop-shadow(3px 3px 0px rgba(0,0,0,0.15));
+        }
+        
+        .node .label {
+          font-family: "Comic Neue", "Comic Sans MS", "Noto Sans SC", cursive, sans-serif;
+          font-weight: 600;
+          fill: #000000 !important;
+          font-size: 15px;
+        }
+        
+        /* Alternate node colors - Doodle style palette */
+        .node:nth-child(2n) rect,
+        .node:nth-child(2n) circle,
+        .node:nth-child(2n) polygon {
+          fill: #dff4ff !important;
+        }
+        
+        .node:nth-child(3n) rect,
+        .node:nth-child(3n) circle,
+        .node:nth-child(3n) polygon {
+          fill: #f0e7ff !important;
+        }
+        
+        .node:nth-child(5n) rect,
+        .node:nth-child(5n) circle,
+        .node:nth-child(5n) polygon {
+          fill: #fff4e6 !important;
+        }
+        
+        .node:nth-child(7n) rect,
+        .node:nth-child(7n) circle,
+        .node:nth-child(7n) polygon {
+          fill: #e7f9f5 !important;
+        }
+        
+        /* Connection lines - Hand-drawn style */
+        .edgePath .path {
+          stroke: #000000 !important;
+          stroke-width: 3px !important;
+          stroke-linecap: round;
+          stroke-linejoin: round;
+        }
+        
+        .arrowheadPath {
+          fill: #000000 !important;
+          stroke: #000000 !important;
+          stroke-width: 2px !important;
+        }
+        
+        .edgeLabel {
+          color: #000000 !important;
+          font-family: "Comic Neue", "Comic Sans MS", "Noto Sans SC", cursive, sans-serif;
+          font-size: 14px;
+          font-weight: 600;
+        }
+        
+        .edgeLabel rect {
+          fill: #ffffff !important;
+          stroke: #000000 !important;
+          stroke-width: 2px !important;
+          rx: 12px !important;
+          filter: drop-shadow(2px 2px 0px rgba(0,0,0,0.1));
+        }
+        
+        /* Sequence Diagram - Doodle style */
+        .actor {
+          fill: #ffdff6 !important;
+          stroke: #000000 !important;
+          stroke-width: 3px !important;
+          rx: 20px !important;
+          ry: 20px !important;
+          filter: drop-shadow(4px 4px 0px rgba(0,0,0,0.2));
+        }
+        
+        .actor:nth-child(2n) {
+          fill: #dff4ff !important;
+        }
+        
+        .actor:nth-child(3n) {
+          fill: #f0e7ff !important;
+        }
+        
+        .actor:nth-child(4n) {
+          fill: #fff4e6 !important;
+        }
+        
+        .actor text {
+          fill: #000000 !important;
+          font-family: "Comic Neue", "Comic Sans MS", "Noto Sans SC", cursive, sans-serif;
+          font-weight: 700;
+        }
+        
+        .actor-line, g line.actor-line, g path.actor-line {
+          stroke: #000000 !important;
+          stroke-width: 2px !important;
+          stroke-dasharray: 6 3 !important;
+        }
+        
+        .activation0, .activation1, .activation2 {
+          fill: #f0e7ff !important;
+          stroke: #000000 !important;
+          stroke-width: 3px !important;
+          rx: 8px !important;
+          filter: drop-shadow(3px 3px 0px rgba(0,0,0,0.15));
+        }
+        
+        .messageLine0, .messageLine1 {
+          stroke: #000000 !important;
+          stroke-width: 3px !important;
+          stroke-linecap: round;
+        }
+        
+        .messageText {
+          fill: #000000 !important;
+          font-family: "Comic Neue", "Comic Sans MS", "Noto Sans SC", cursive, sans-serif;
+          font-weight: 600;
+          font-size: 14px;
+        }
+        
+        #arrowhead path, .arrowheadPath {
+          fill: #000000 !important;
+          stroke: #000000 !important;
+        }
+        
+        /* Note boxes - Soft yellow */
+        .note {
+          fill: #fff4e6 !important;
+          stroke: #000000 !important;
+          stroke-width: 3px !important;
+          rx: 15px !important;
+          ry: 15px !important;
+          filter: drop-shadow(4px 4px 0px rgba(0,0,0,0.2));
+        }
+        
+        .noteText {
+          fill: #000000 !important;
+          font-family: "Comic Neue", "Comic Sans MS", "Noto Sans SC", cursive, sans-serif;
+          font-weight: 600;
+        }
+        
+        /* Loop/Alt/Opt boxes - Soft purple */
+        .labelBox {
+          fill: #f0e7ff !important;
+          stroke: #000000 !important;
+          stroke-width: 3px !important;
+          rx: 15px !important;
+          ry: 15px !important;
+          filter: drop-shadow(4px 4px 0px rgba(0,0,0,0.2));
+        }
+        
+        .labelText, .loopText {
+          fill: #000000 !important;
+          font-family: "Comic Neue", "Comic Sans MS", "Noto Sans SC", cursive, sans-serif;
+          font-weight: 700;
+        }
+        
+        .loopLine {
+          stroke: #000000 !important;
+          stroke-width: 3px !important;
+          rx: 15px !important;
+        }
+        
+        /* Cluster/Subgraph styling - Soft blue */
+        .cluster rect {
+          fill: #dff4ff !important;
+          stroke: #000000 !important;
+          stroke-width: 3px !important;
+          rx: 25px !important;
+          ry: 25px !important;
+          filter: drop-shadow(5px 5px 0px rgba(0,0,0,0.15));
+        }
+        
+        .cluster text {
+          fill: #000000 !important;
+          font-family: "Comic Neue", "Comic Sans MS", "Noto Sans SC", cursive, sans-serif;
+          font-weight: 700;
+        }
+        
+        /* State diagram */
+        .statediagram-state rect,
+        .statediagram-state .state-inner {
+          fill: #ffdff6 !important;
+          stroke: #000000 !important;
+          stroke-width: 3px !important;
+          rx: 20px !important;
+          filter: drop-shadow(4px 4px 0px rgba(0,0,0,0.2));
+        }
+        
+        .statediagram-state:nth-child(2n) rect,
+        .statediagram-state:nth-child(2n) .state-inner {
+          fill: #dff4ff !important;
+        }
+        
+        .statediagram-state:nth-child(3n) rect,
+        .statediagram-state:nth-child(3n) .state-inner {
+          fill: #f0e7ff !important;
+        }
+        
+        .statediagram-state:nth-child(5n) rect,
+        .statediagram-state:nth-child(5n) .state-inner {
+          fill: #fff4e6 !important;
+        }
+        
+        .stateLabel text {
+          fill: #000000 !important;
+          font-family: "Comic Neue", "Comic Sans MS", "Noto Sans SC", cursive, sans-serif;
+          font-weight: 700;
+        }
+        
+        .transition {
+          stroke: #000000 !important;
+          stroke-width: 3px !important;
+        }
+        
+        /* Class Diagram */
+        .classGroup rect {
+          fill: #ffdff6 !important;
+          stroke: #000000 !important;
+          stroke-width: 3px !important;
+          rx: 20px !important;
+          filter: drop-shadow(4px 4px 0px rgba(0,0,0,0.2));
+        }
+        
+        .classGroup:nth-child(2n) rect {
+          fill: #dff4ff !important;
+        }
+        
+        .classGroup:nth-child(3n) rect {
+          fill: #f0e7ff !important;
+        }
+        
+        .classGroup line {
+          stroke: #000000 !important;
+          stroke-width: 2px !important;
+        }
+        
+        .classLabel .label {
+          fill: #000000 !important;
+          font-family: "Comic Neue", "Comic Sans MS", "Noto Sans SC", cursive, sans-serif;
+          font-weight: 700;
+        }
+        
+        .classLabel .box {
+          stroke: #000000 !important;
+          stroke-width: 3px !important;
+          rx: 20px !important;
+        }
+        
+        .relationshipLine {
+          stroke: #000000 !important;
+          stroke-width: 3px !important;
+        }
+        
+        .relationshipLabelBox {
+          fill: #ffffff !important;
+          stroke: #000000 !important;
+          stroke-width: 2px !important;
+          rx: 10px !important;
+        }
+        
+        /* ER Diagram */
+        .er.entityBox {
+          fill: #dff4ff !important;
+          stroke: #000000 !important;
+          stroke-width: 3px !important;
+          rx: 20px !important;
+          filter: drop-shadow(4px 4px 0px rgba(0,0,0,0.2));
+        }
+        
+        .er.entityBox:nth-child(2n) {
+          fill: #ffdff6 !important;
+        }
+        
+        .er.entityBox:nth-child(3n) {
+          fill: #f0e7ff !important;
+        }
+        
+        .er.entityLabel,
+        .er.relationshipLabel {
+          fill: #000000 !important;
+          font-family: "Comic Neue", "Comic Sans MS", "Noto Sans SC", cursive, sans-serif;
+          font-weight: 700;
+        }
+        
+        .er .relationshipLine {
+          stroke: #000000 !important;
+          stroke-width: 3px !important;
+        }
+        
+        .er .relationshipLabelBox {
+          fill: #ffffff !important;
+          stroke: #000000 !important;
+          stroke-width: 2px !important;
+          rx: 10px !important;
+        }
+        
+        /* Gantt Chart */
+        .titleText {
+          fill: #000000 !important;
+          font-family: "Comic Neue", "Comic Sans MS", "Noto Sans SC", cursive, sans-serif;
+          font-weight: 700;
+          font-size: 20px;
+        }
+        
+        .grid .tick text {
+          fill: #000000 !important;
+          font-family: "Comic Neue", "Comic Sans MS", "Noto Sans SC", cursive, sans-serif;
+          font-size: 13px;
+        }
+        
+        .grid line {
+          stroke: #e0e0e0 !important;
+          stroke-width: 1px !important;
+          opacity: 0.5;
+        }
+        
+        .taskText {
+          fill: #000000 !important;
+          font-family: "Comic Neue", "Comic Sans MS", "Noto Sans SC", cursive, sans-serif;
+          font-weight: 600;
+        }
+        
+        .taskTextOutsideRight,
+        .taskTextOutsideLeft {
+          fill: #000000 !important;
+          font-family: "Comic Neue", "Comic Sans MS", "Noto Sans SC", cursive, sans-serif;
+          font-weight: 600;
+        }
+        
+        .task0, .task1, .task2, .task3 {
+          stroke: #000000 !important;
+          stroke-width: 3px !important;
+          rx: 12px !important;
+        }
+        
+        .task0 {
+          fill: #ffdff6 !important;
+        }
+        
+        .task1 {
+          fill: #dff4ff !important;
+        }
+        
+        .task2 {
+          fill: #f0e7ff !important;
+        }
+        
+        .task3 {
+          fill: #fff4e6 !important;
+        }
+        
+        .section0, .section1, .section2, .section3 {
+          fill: #000000 !important;
+          font-family: "Comic Neue", "Comic Sans MS", "Noto Sans SC", cursive, sans-serif;
+          font-weight: 700;
+          font-size: 14px;
+        }
+        
+        .sectionTitle0, .sectionTitle1, .sectionTitle2, .sectionTitle3 {
+          fill: #ffffff !important;
+        }
+        
+        .done0, .done1, .done2, .done3 {
+          stroke: #22c55e !important;
+          stroke-width: 3px !important;
+          fill: #bbf7d0 !important;
+        }
+        
+        .active0, .active1, .active2, .active3 {
+          stroke: #3b82f6 !important;
+          stroke-width: 3px !important;
+          fill: #bfdbfe !important;
+        }
+        
+        .crit0, .crit1, .crit2, .crit3 {
+          stroke: #ef4444 !important;
+          stroke-width: 3px !important;
+          fill: #fecaca !important;
+        }
+        
+        .activeCrit0, .activeCrit1, .activeCrit2, .activeCrit3 {
+          stroke: #9333ea !important;
+          stroke-width: 3px !important;
+          fill: #e9d5ff !important;
+        }
+        
+        /* Pie Chart */
+        .pieCircle {
+          stroke: #000000 !important;
+          stroke-width: 3px !important;
+        }
+        
+        .pieTitleText {
+          fill: #000000 !important;
+          font-family: "Comic Neue", "Comic Sans MS", "Noto Sans SC", cursive, sans-serif;
+          font-weight: 700;
+          font-size: 20px;
+        }
+        
+        .slice {
+          stroke: #000000 !important;
+          stroke-width: 3px !important;
+          filter: drop-shadow(2px 2px 0px rgba(0,0,0,0.1));
+        }
+        
+        .slice:nth-child(1) {
+          fill: #ffdff6 !important;
+        }
+        
+        .slice:nth-child(2) {
+          fill: #dff4ff !important;
+        }
+        
+        .slice:nth-child(3) {
+          fill: #f0e7ff !important;
+        }
+        
+        .slice:nth-child(4) {
+          fill: #fff4e6 !important;
+        }
+        
+        .slice:nth-child(5) {
+          fill: #e7f9f5 !important;
+        }
+        
+        .slice:nth-child(6) {
+          fill: #fef3c7 !important;
+        }
+        
+        .pieOuterCircle {
+          stroke: #000000 !important;
+          stroke-width: 3px !important;
+          fill: none;
+        }
+        
+        .legend text {
+          fill: #000000 !important;
+          font-family: "Comic Neue", "Comic Sans MS", "Noto Sans SC", cursive, sans-serif;
+          font-weight: 600;
+          font-size: 14px;
+        }
+        
+        .legend rect {
+          stroke: #000000 !important;
+          stroke-width: 2px !important;
+          rx: 6px !important;
+        }
+        
+        /* Journey Diagram */
+        .journey-section {
+          stroke: #000000 !important;
+          stroke-width: 3px !important;
+          fill: #f0e7ff !important;
+          rx: 15px !important;
+        }
+        
+        .task-section {
+          fill: #ffdff6 !important;
+          stroke: #000000 !important;
+          stroke-width: 3px !important;
+          rx: 12px !important;
+        }
+        
+        .task-section:nth-child(2n) {
+          fill: #dff4ff !important;
+        }
+        
+        .task-section:nth-child(3n) {
+          fill: #fff4e6 !important;
+        }
+        
+        /* XYChart styles - Doodle theme colors */
+        .line-plot-0 path {
+          stroke: #ec4899 !important;
+          stroke-width: 4px !important;
+          stroke-linecap: round;
+          stroke-linejoin: round;
+        }
+        
+        .line-plot-1 path {
+          stroke: #3b82f6 !important;
+          stroke-width: 4px !important;
+          stroke-linecap: round;
+          stroke-linejoin: round;
+        }
+        
+        .line-plot-2 path {
+          stroke: #9333ea !important;
+          stroke-width: 4px !important;
+          stroke-linecap: round;
+          stroke-linejoin: round;
+        }
+        
+        .bar-plot-0 rect {
+          fill: #fce7f3 !important;
+          stroke: #ec4899 !important;
+          stroke-width: 3px !important;
+          rx: 8px !important;
+        }
+        
+        .bar-plot-1 rect {
+          fill: #dbeafe !important;
+          stroke: #3b82f6 !important;
+          stroke-width: 3px !important;
+          rx: 8px !important;
+        }
+        
+        .bar-plot-2 rect {
+          fill: #f3e8ff !important;
+          stroke: #9333ea !important;
+          stroke-width: 3px !important;
+          rx: 8px !important;
+        }
+        
+        .ticks path {
+          stroke: #000000 !important;
+          stroke-width: 2px !important;
+        }
+        
+        .chart-title text {
+          fill: #000000 !important;
+          font-weight: 700 !important;
+          font-size: 20px !important;
+          font-family: "Comic Neue", "Comic Sans MS", "Noto Sans SC", cursive, sans-serif;
+        }
+        
+        .left-axis .label text, .bottom-axis .label text {
+          fill: #000000 !important;
+          font-size: 14px !important;
+          font-family: "Comic Neue", "Comic Sans MS", "Noto Sans SC", cursive, sans-serif;
+          font-weight: 600;
+        }
+        
+        .left-axis .title text, .bottom-axis .title text {
+          fill: #000000 !important;
+          font-size: 16px !important;
+          font-family: "Comic Neue", "Comic Sans MS", "Noto Sans SC", cursive, sans-serif;
+          font-weight: 700;
+        }
+        
+        .legend text {
+          fill: #000000 !important;
+          font-size: 14px !important;
+          font-family: "Comic Neue", "Comic Sans MS", "Noto Sans SC", cursive, sans-serif;
+          font-weight: 600;
+        }
+        
+        .legend rect {
+          stroke: #000000 !important;
+          stroke-width: 2px !important;
+          rx: 6px !important;
+        }
+        
+        /* Git Graph */
+        .commit-id, .commit-msg, .branch-label {
+          fill: #000000 !important;
+          font-family: "Comic Neue", "Comic Sans MS", "Noto Sans SC", cursive, sans-serif;
+          font-weight: 600;
+        }
+        
+        .commit {
+          stroke: #000000 !important;
+          stroke-width: 3px !important;
+        }
+        
+        .commit0 {
+          fill: #ffdff6 !important;
+        }
+        
+        .commit1 {
+          fill: #dff4ff !important;
+        }
+        
+        .commit2 {
+          fill: #f0e7ff !important;
+        }
+        
+        .commit3 {
+          fill: #fff4e6 !important;
+        }
+        
+        .commit-highlight-outer {
+          fill: #fbbf24;
+          opacity: 0.3;
+        }
+        
+        .commit-highlight-inner {
+          fill: #fbbf24;
+          opacity: 0.5;
+          stroke: #f59e0b;
+        }
+        
+        .branch path {
+          stroke-width: 3px !important;
+          stroke-linecap: round;
+          stroke-linejoin: round;
+        }
+        
+        .branch.branch0 {
+          stroke: #ec4899 !important;
+        }
+        
+        .branch.branch1 {
+          stroke: #3b82f6 !important;
+        }
+        
+        .branch.branch2 {
+          stroke: #9333ea !important;
+        }
+        
+        .branch.branch3 {
+          stroke: #f59e0b !important;
+        }
+        
+        /* Timeline */
+        .timeline-event {
+          fill: #ffdff6 !important;
+          stroke: #000000 !important;
+          stroke-width: 3px !important;
+          rx: 15px !important;
+          filter: drop-shadow(3px 3px 0px rgba(0,0,0,0.15));
+        }
+        
+        .timeline-event:nth-child(2n) {
+          fill: #dff4ff !important;
+        }
+        
+        .timeline-event:nth-child(3n) {
+          fill: #f0e7ff !important;
+        }
+        
+        .timeline-event-text {
+          fill: #000000 !important;
+          font-family: "Comic Neue", "Comic Sans MS", "Noto Sans SC", cursive, sans-serif;
+          font-weight: 600;
+        }
+      `
+    },
+    bgClass: 'bg-gradient-to-br from-[#ffeef8] to-[#e0f7ff]',
+    bgStyle: {
+      background: 'linear-gradient(135deg, #ffeef8 0%, #e0f7ff 100%)',
     }
   },  
 };
