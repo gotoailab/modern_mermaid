@@ -268,7 +268,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - 🌐 **Website**: [modern-mermaid.live](https://modern-mermaid.live/)
 - 💬 **Discord**: [Join our community](https://discord.gg/tGxevHhz)
 - 🐛 **Issues**: [GitHub Issues](https://github.com/gotoailab/modern_mermaid/issues)
-- 📧 **Email**: support@gotoailab.com
+- 📧 **Email**: chg80333@gmail.com
+- 𝕏 **𝕏（Twitter）**: @chg80333
 
 ---
 
