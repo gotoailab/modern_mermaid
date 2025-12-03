@@ -1,11 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { X, Edit2, Palette } from 'lucide-react';
+import { X, Edit2, Palette, Copy } from 'lucide-react';
 import type { Annotation, Point, AnnotationType } from '../types/annotation';
+import { useLanguage } from '../contexts/LanguageContext';
 
 interface AnnotationLayerProps {
   annotations: Annotation[];
   onUpdateAnnotation: (id: string, updates: Partial<Annotation>) => void;
   onDeleteAnnotation: (id: string) => void;
+  onCopyAnnotation?: (annotation: Annotation) => void;
   selectedTool: AnnotationType | 'select' | null;
   scale: number;
   position: Point;
@@ -18,12 +20,14 @@ const AnnotationLayer: React.FC<AnnotationLayerProps> = ({
   annotations,
   onUpdateAnnotation,
   onDeleteAnnotation,
+  onCopyAnnotation,
   selectedTool,
   scale,
   selectedAnnotationId,
   onSelectAnnotation,
   onShowColorPicker
 }) => {
+  const { t } = useLanguage();
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState<Point>({ x: 0, y: 0 });
   const [editingTextId, setEditingTextId] = useState<string | null>(null);
@@ -210,11 +214,90 @@ const AnnotationLayer: React.FC<AnnotationLayerProps> = ({
 
   // 保存文字编辑
   const handleSaveText = () => {
-    if (editingTextId) {
+    if (editingTextId && editingText.trim()) {
       onUpdateAnnotation(editingTextId, { text: editingText });
+    }
+    setEditingTextId(null);
+  };
+
+  // 监听编辑状态，点击外部时保存
+  useEffect(() => {
+    if (!editingTextId) return;
+
+    const handleClickOutside = (e: MouseEvent | PointerEvent) => {
+      // 如果点击的不是输入框本身，保存并关闭编辑
+      if (textInputRef.current && !textInputRef.current.contains(e.target as Node)) {
+        if (editingText.trim()) {
+          onUpdateAnnotation(editingTextId, { text: editingText });
+        }
+        setEditingTextId(null);
+      }
+    };
+
+    // 延迟添加监听器，避免立即触发（等待输入框渲染和聚焦）
+    const timer = setTimeout(() => {
+      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener('pointerdown', handleClickOutside);
+    }, 100);
+
+    return () => {
+      clearTimeout(timer);
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('pointerdown', handleClickOutside);
+    };
+  }, [editingTextId, editingText, onUpdateAnnotation]);
+
+  // 键盘快捷键支持
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // 如果正在编辑文字，不处理快捷键
+      if (editingTextId) return;
+      
+      // 如果没有选中标注，不处理
+      if (!selectedAnnotationId) return;
+
+      // Delete 或 Backspace 删除选中的标注
+      if (e.key === 'Delete' || e.key === 'Backspace') {
+        e.preventDefault();
+        onDeleteAnnotation(selectedAnnotationId);
+        onSelectAnnotation(null);
+      }
+
+      // Ctrl/Cmd + C 复制选中的标注
+      if ((e.ctrlKey || e.metaKey) && e.key === 'c') {
+        const annotation = annotations.find(a => a.id === selectedAnnotationId);
+        if (annotation && onCopyAnnotation) {
+          e.preventDefault();
+          onCopyAnnotation(annotation);
+        }
+      }
+
+      // Ctrl/Cmd + D 复制选中的标注（另一个常用快捷键）
+      if ((e.ctrlKey || e.metaKey) && e.key === 'd') {
+        const annotation = annotations.find(a => a.id === selectedAnnotationId);
+        if (annotation && onCopyAnnotation) {
+          e.preventDefault();
+          onCopyAnnotation(annotation);
+        }
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [selectedAnnotationId, editingTextId, annotations, onDeleteAnnotation, onSelectAnnotation, onCopyAnnotation]);
+
+  // 当选中的标注改变时，如果之前在编辑，保存编辑
+  useEffect(() => {
+    if (editingTextId && selectedAnnotationId !== editingTextId) {
+      if (editingText.trim()) {
+        onUpdateAnnotation(editingTextId, { text: editingText });
+      }
       setEditingTextId(null);
     }
-  };
+  }, [selectedAnnotationId, editingTextId, editingText, onUpdateAnnotation]);
 
   // 渲染箭头
   const renderArrow = (annotation: Annotation) => {
@@ -554,11 +637,15 @@ const AnnotationLayer: React.FC<AnnotationLayerProps> = ({
       buttonY = annotation.center.y - annotation.radius - 20;
     }
 
+    // 根据按钮数量计算宽度（文字标注有4个按钮，其他有3个）
+    const buttonCount = annotation.type === 'text' ? 4 : 3;
+    const toolbarWidth = buttonCount * 32 + (buttonCount - 1) * 4; // 每个按钮约32px，间距4px
+
     return (
       <foreignObject
-        x={buttonX - 60}
+        x={buttonX - toolbarWidth / 2}
         y={buttonY - 15}
-        width="120"
+        width={toolbarWidth}
         height="30"
         style={{ pointerEvents: 'auto' }}
       >
@@ -584,12 +671,28 @@ const AnnotationLayer: React.FC<AnnotationLayerProps> = ({
               onClick={() => {
                 setEditingTextId(annotation.id);
                 setEditingText(annotation.text);
+                // 添加 setTimeout 来确保输入框被渲染后再聚焦
+                setTimeout(() => textInputRef.current?.focus(), 0);
               }}
               className="px-2 py-1 bg-white-600 hover:text-indigo-600 hover:bg-indigo-50 text-black rounded text-xs flex items-center gap-1 shadow-lg border border-gray-200 dark:border-gray-700 cursor-pointer"
+              title={t.text}
             >
               <Edit2 size={12} />
             </button>
           )}
+          
+          {/* 复制按钮 */}
+          <button
+            onClick={() => {
+              if (onCopyAnnotation) {
+                onCopyAnnotation(annotation);
+              }
+            }}
+            className="px-2 py-1 bg-white-600 hover:text-green-600 hover:bg-green-50 text-black rounded text-xs flex items-center gap-1 shadow-lg border border-gray-200 dark:border-gray-700 cursor-pointer"
+            title={t.copyAnnotation}
+          >
+            <Copy size={12} />
+          </button>
           
           {/* 删除按钮 */}
           <button

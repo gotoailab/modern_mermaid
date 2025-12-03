@@ -71,6 +71,8 @@ export interface Translation {
   clearAll: string;
   clearAnnotations: string;
   confirmClearAnnotations: string;
+  doubleClickToEdit: string;
+  copyAnnotation: string;
   
   // Color Picker
   changeNodeColor: string;
@@ -187,6 +189,8 @@ export const translations: Record<Language, Translation> = {
     clearAll: 'Clear All',
     clearAnnotations: 'Clear Annotations',
     confirmClearAnnotations: 'Are you sure you want to clear all annotations?',
+    doubleClickToEdit: 'Double-click to edit',
+    copyAnnotation: 'Copy annotation',
     
     // Fullscreen
     enterFullscreen: 'Enter Fullscreen',
@@ -287,6 +291,8 @@ export const translations: Record<Language, Translation> = {
     clearAll: '清空',
     clearAnnotations: '清空标注',
     confirmClearAnnotations: '确定要清空所有标注吗？',
+    doubleClickToEdit: '双击编辑',
+    copyAnnotation: '复制标注',
     
     // Fullscreen
     enterFullscreen: '进入全屏',
@@ -387,6 +393,8 @@ export const translations: Record<Language, Translation> = {
     clearAll: '清空',
     clearAnnotations: '清空標註',
     confirmClearAnnotations: '確定要清空所有標註嗎？',
+    doubleClickToEdit: '雙擊編輯',
+    copyAnnotation: '複製標註',
     
     // Fullscreen
     enterFullscreen: '進入全屏',
@@ -487,6 +495,8 @@ export const translations: Record<Language, Translation> = {
     clearAll: 'すべてクリア',
     clearAnnotations: '注釈をクリア',
     confirmClearAnnotations: 'すべての注釈をクリアしますか？',
+    doubleClickToEdit: 'ダブルクリックで編集',
+    copyAnnotation: '注釈をコピー',
     
     // Fullscreen
     enterFullscreen: '全画面表示',
@@ -587,6 +597,8 @@ export const translations: Record<Language, Translation> = {
     clearAll: 'Limpiar todo',
     clearAnnotations: 'Limpiar anotaciones',
     confirmClearAnnotations: '¿Está seguro de que desea limpiar todas las anotaciones?',
+    doubleClickToEdit: 'Doble clic para editar',
+    copyAnnotation: 'Copiar anotación',
     
     // Fullscreen
     enterFullscreen: 'Pantalla completa',
@@ -687,6 +699,8 @@ export const translations: Record<Language, Translation> = {
     clearAll: 'Limpar tudo',
     clearAnnotations: 'Limpar anotações',
     confirmClearAnnotations: 'Tem certeza de que deseja limpar todas as anotações?',
+    doubleClickToEdit: 'Clique duplo para editar',
+    copyAnnotation: 'Copiar anotação',
     
     // Fullscreen
     enterFullscreen: 'Tela cheia',

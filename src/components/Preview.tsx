@@ -237,7 +237,7 @@ const Preview = forwardRef<PreviewHandle, PreviewProps>(({ code, themeConfig, cu
         id: `annotation-${Date.now()}`,
         type: 'text',
         position: coords,
-        text: '双击编辑',
+        text: t.doubleClickToEdit,
         fontSize: 16,
         fontWeight: 'normal',
         color: themeConfig.annotationColors.text,
@@ -433,6 +433,81 @@ const Preview = forwardRef<PreviewHandle, PreviewProps>(({ code, themeConfig, cu
     }
     
     setAnnotations(prev => prev.filter(a => a.id !== id));
+  };
+
+  // 复制标注
+  const handleCopyAnnotation = (annotation: Annotation) => {
+    // 根据类型偏移位置，避免完全重叠
+    const offset = 20;
+    let newAnnotation: Annotation;
+    
+    if (annotation.type === 'arrow') {
+      newAnnotation = {
+        ...annotation,
+        id: `annotation-${Date.now()}`,
+        start: {
+          x: annotation.start.x + offset,
+          y: annotation.start.y + offset
+        },
+        end: {
+          x: annotation.end.x + offset,
+          y: annotation.end.y + offset
+        }
+      };
+    } else if (annotation.type === 'line') {
+      newAnnotation = {
+        ...annotation,
+        id: `annotation-${Date.now()}`,
+        start: {
+          x: annotation.start.x + offset,
+          y: annotation.start.y + offset
+        },
+        end: {
+          x: annotation.end.x + offset,
+          y: annotation.end.y + offset
+        }
+      };
+    } else if (annotation.type === 'text') {
+      newAnnotation = {
+        ...annotation,
+        id: `annotation-${Date.now()}`,
+        position: {
+          x: annotation.position.x + offset,
+          y: annotation.position.y + offset
+        }
+      };
+    } else if (annotation.type === 'rect') {
+      newAnnotation = {
+        ...annotation,
+        id: `annotation-${Date.now()}`,
+        position: {
+          x: annotation.position.x + offset,
+          y: annotation.position.y + offset
+        }
+      };
+    } else if (annotation.type === 'circle') {
+      newAnnotation = {
+        ...annotation,
+        id: `annotation-${Date.now()}`,
+        center: {
+          x: annotation.center.x + offset,
+          y: annotation.center.y + offset
+        }
+      };
+    } else {
+      return; // 未知类型，不复制
+    }
+    
+    // 追踪标注复制
+    trackEvent(AnalyticsEvents.ANNOTATION_CREATE, {
+      annotation_type: newAnnotation.type,
+      total_annotations: annotations.length + 1,
+      is_copy: true
+    });
+    
+    setAnnotations(prev => [...prev, newAnnotation]);
+    // 自动选中新复制的标注
+    setSelectedAnnotationId(newAnnotation.id);
   };
 
   // 显示标注颜色选择器
@@ -1355,7 +1430,7 @@ const Preview = forwardRef<PreviewHandle, PreviewProps>(({ code, themeConfig, cu
             pointerEvents: 'none',
           }}
         >
-          {/* 背景捕获层 - 只在绘制模式下捕获事件 */}
+          {/* 背景捕获层 - 在绘制模式下捕获绘制事件，在选择模式下捕获点击来取消选择 */}
           <rect
             x="0"
             y="0"
@@ -1363,9 +1438,17 @@ const Preview = forwardRef<PreviewHandle, PreviewProps>(({ code, themeConfig, cu
             height="100%"
             fill="transparent"
             style={{
-              pointerEvents: selectedTool && selectedTool !== 'select' ? 'auto' : 'none',
+              pointerEvents: selectedTool !== null ? 'auto' : 'none',
             }}
-            onMouseDown={handleAnnotationMouseDown}
+            onMouseDown={(e) => {
+              if (selectedTool === 'select') {
+                // 在选择模式下，点击背景取消选择
+                setSelectedAnnotationId(null);
+              } else if (selectedTool) {
+                // 在绘制模式下，处理绘制
+                handleAnnotationMouseDown(e);
+              }
+            }}
             onMouseMove={handleAnnotationMouseMove}
             onMouseUp={handleAnnotationMouseUp}
           />
@@ -1379,6 +1462,7 @@ const Preview = forwardRef<PreviewHandle, PreviewProps>(({ code, themeConfig, cu
                 annotations={annotations}
                 onUpdateAnnotation={handleUpdateAnnotation}
                 onDeleteAnnotation={handleDeleteAnnotation}
+                onCopyAnnotation={handleCopyAnnotation}
                 selectedTool={selectedTool}
                 scale={scale}
                 position={position}
