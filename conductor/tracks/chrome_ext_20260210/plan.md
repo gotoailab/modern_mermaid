@@ -15,11 +15,11 @@ This plan follows the project workflow.
 - [x] Task: Adapt Layout for Popup (5abb968)
     - [ ] Identify and apply CSS classes to handle narrow viewports in extension mode.
     - [ ] Test the editor in a fixed 400x600 container.
-- [x] Task: Implement "Open in New Tab" Behavior (ece6ed2)
+- [x] Task: Implement "Open in New Tab" Behavior (4eb5c35)
     - [ ] Remove `default_popup` from `manifest.json`.
     - [ ] Create a background service worker to handle `action.onClicked`.
     - [ ] Update `vite.config.ts` to include the background script in the build.
-- [~] Task: Conductor - User Manual Verification 'Popup UI Optimization' (Protocol in workflow.md)
+- [~] Task: Conductor - User Manual Verification 'Extension Behavior Optimization' (Protocol in workflow.md)
 
 ## Phase 3: Build and Validation
 - [ ] Task: Verify Extension Loading
