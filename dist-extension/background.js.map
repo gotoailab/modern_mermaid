@@ -1,1 +1,0 @@
-{"version":3,"file":"background.js","sources":["../src/background.ts"],"sourcesContent":["chrome.action.onClicked.addListener(() => {\n  chrome.tabs.create({\n    url: 'index.html'\n  });\n});\n"],"names":[],"mappings":"AAAA,OAAO,OAAO,UAAU,YAAY,IAAM,CACxC,OAAO,KAAK,OAAO,CACjB,IAAK,YAAA,CACN,CACH,CAAC"}
