@@ -12,7 +12,7 @@ This plan follows the project workflow.
 - [x] Task: Conductor - User Manual Verification 'Extension Scaffolding' (Protocol in workflow.md) (fc3833d)
 
 ## Phase 2: Popup UI Optimization
-- [ ] Task: Adapt Layout for Popup
+- [x] Task: Adapt Layout for Popup (5abb968)
     - [ ] Identify and apply CSS classes to handle narrow viewports in extension mode.
     - [ ] Test the editor in a fixed 400x600 container.
 - [ ] Task: Conductor - User Manual Verification 'Popup UI Optimization' (Protocol in workflow.md)
