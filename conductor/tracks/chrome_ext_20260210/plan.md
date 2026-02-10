@@ -11,15 +11,15 @@ This plan follows the project workflow.
     - [ ] Add a build script alias if needed.
 - [x] Task: Conductor - User Manual Verification 'Extension Scaffolding' (Protocol in workflow.md) (fc3833d)
 
-## Phase 2: Extension Behavior Optimization
+## Phase 2: Extension Behavior Optimization [checkpoint: 5731594]
 - [x] Task: Adapt Layout for Popup (5abb968)
     - [ ] Identify and apply CSS classes to handle narrow viewports in extension mode.
     - [ ] Test the editor in a fixed 400x600 container.
-- [x] Task: Implement "Open in New Tab" Behavior (4eb5c35)
+- [x] Task: Implement "Open in New Tab" Behavior (ece6ed2)
     - [ ] Remove `default_popup` from `manifest.json`.
     - [ ] Create a background service worker to handle `action.onClicked`.
     - [ ] Update `vite.config.ts` to include the background script in the build.
-- [x] Task: Conductor - User Manual Verification 'Extension Behavior Optimization' (Protocol in workflow.md) (4eb5c35)
+- [x] Task: Conductor - User Manual Verification 'Extension Behavior Optimization' (Protocol in workflow.md) (5731594)
 
 ## Phase 3: Build and Validation
 - [ ] Task: Verify Extension Loading
