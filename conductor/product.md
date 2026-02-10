@@ -12,7 +12,7 @@ To be the go-to open-source editor and browser extension for creating beautiful,
 - **Product Managers & Business Analysts:** Visualizing workflows, user journeys, and project timelines.
 
 ## Key Features
-- **Chrome Extension Support:** Quick access to the Mermaid editor directly from the browser toolbar.
+- **Chrome Extension Integration:** Seamless access to the Mermaid editor via a browser extension that opens in a dedicated tab.
 - **Professional Theming Engine:** Over 10+ handcrafted themes (Linear, Ghibli, Cyberpunk, etc.) with custom backgrounds and fonts.
 - **Real-time Interactive Editor:** Syntax highlighting, auto-completion, and instant preview rendering.
 - **Advanced Export Capabilities:** High-resolution PNG and JPG exports with customizable backgrounds and transparency.

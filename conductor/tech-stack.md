@@ -16,6 +16,7 @@
 - **Color Management:** Custom theme mapping for SVG elements.
 
 ## Infrastructure & State
+- **Browser Extension:** [Manifest V3](https://developer.chrome.com/docs/extensions/mv3/intro/) - Core extension architecture with background service workers.
 - **Testing Framework:** [Vitest](https://vitest.dev/) - A Vite-native testing framework.
 - **Progressive Web App:** [vite-plugin-pwa](https://vite-pwa-org.netlify.app/) - Offline support and app-like experience.
 - **Data Compression:** [lz-string](https://pieroxy.net/blog/pages/lz-string/index.html) - Compressing diagram code for URL-based sharing.
