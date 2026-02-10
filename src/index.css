@@ -24,10 +24,10 @@ body {
   min-height: 100vh;
 }
 
-/* Chrome Extension Popup Styles */
+/* Chrome Extension Styles */
 .extension-popup {
-  width: 800px;
-  height: 600px;
+  width: 100%;
+  height: 100vh;
   overflow: hidden;
 }
 

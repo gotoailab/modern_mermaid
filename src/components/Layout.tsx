@@ -280,7 +280,6 @@ const Layout: React.FC = () => {
     
     if (isExt) {
       document.body.classList.add('extension-popup');
-      setLeftPanelWidth(40); // 扩展模式下编辑器稍微宽一点
     }
 
     // 尝试解析分享参数（包含压缩的代码）
