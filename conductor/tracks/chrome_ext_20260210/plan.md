@@ -22,7 +22,7 @@ This plan follows the project workflow.
 - [x] Task: Conductor - User Manual Verification 'Extension Behavior Optimization' (Protocol in workflow.md) (5731594)
 
 ## Phase 3: Build and Validation
-- [ ] Task: Verify Extension Loading
+- [~] Task: Verify Extension Loading
     - [ ] Build the project.
     - [ ] Instructions: Load the `dist` folder into Chrome (Developer Mode) and verify the popup opens.
 - [ ] Task: Conductor - User Manual Verification 'Build and Validation' (Protocol in workflow.md)
