@@ -3,7 +3,7 @@
 This plan follows the project workflow.
 
 ## Phase 1: Extension Scaffolding
-- [ ] Task: Create Extension Manifest
+- [x] Task: Create Extension Manifest (9833493)
     - [ ] Create `public/manifest.json` with basic metadata, permissions, and `action` (popup).
     - [ ] Verify icons are correctly referenced.
 - [ ] Task: Configure Vite for Extension Output
