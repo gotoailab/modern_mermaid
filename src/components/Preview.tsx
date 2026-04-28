@@ -83,6 +83,74 @@ const Preview = forwardRef<PreviewHandle, PreviewProps>(({ code, themeConfig, cu
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
   const dragStartPos = useRef({ x: 0, y: 0 });
 
+  const getSvgDimensions = (svgElement: SVGSVGElement) => {
+    let svgWidth = 0;
+    let svgHeight = 0;
+    let graphicWidth = 0;
+    let graphicHeight = 0;
+
+    const widthAttr = svgElement.getAttribute('width');
+    const heightAttr = svgElement.getAttribute('height');
+
+    if (widthAttr && heightAttr) {
+      const parsedWidth = parseFloat(widthAttr);
+      const parsedHeight = parseFloat(heightAttr);
+      if (Number.isFinite(parsedWidth) && parsedWidth > 0 && Number.isFinite(parsedHeight) && parsedHeight > 0) {
+        svgWidth = parsedWidth;
+        svgHeight = parsedHeight;
+      }
+    }
+
+    if ((!svgWidth || !svgHeight) && svgElement.getAttribute('viewBox')) {
+      const viewBox = svgElement.getAttribute('viewBox');
+      const parts = viewBox!.split(/\s+/).map(Number);
+      if (parts.length === 4) {
+        const viewBoxWidth = parts[2];
+        const viewBoxHeight = parts[3];
+        if (Number.isFinite(viewBoxWidth) && viewBoxWidth > 0 && Number.isFinite(viewBoxHeight) && viewBoxHeight > 0) {
+          svgWidth = viewBoxWidth;
+          svgHeight = viewBoxHeight;
+        }
+      }
+    }
+
+    // getBBox 更接近实际图形边界，可规避 gantt 等图在某些情况下出现的超大虚拟画布尺寸
+    try {
+      const bbox = svgElement.getBBox();
+      if (bbox.width > 0 && bbox.height > 0) {
+        graphicWidth = bbox.width;
+        graphicHeight = bbox.height;
+      }
+    } catch {
+      // 某些浏览器/渲染时机下 getBBox 可能抛错，忽略即可
+    }
+
+    // 如果声明尺寸远大于真实图形尺寸，优先使用真实图形尺寸，避免自动缩放到极小
+    if (svgWidth > 0 && svgHeight > 0 && graphicWidth > 0 && graphicHeight > 0) {
+      const widthInflationRatio = svgWidth / graphicWidth;
+      const heightInflationRatio = svgHeight / graphicHeight;
+      if (widthInflationRatio > 2.5 || heightInflationRatio > 2.5) {
+        svgWidth = graphicWidth;
+        svgHeight = graphicHeight;
+      }
+    }
+
+    if ((!svgWidth || !svgHeight) && graphicWidth > 0 && graphicHeight > 0) {
+      svgWidth = graphicWidth;
+      svgHeight = graphicHeight;
+    }
+
+    if (!svgWidth || !svgHeight) {
+      const bbox = svgElement.getBoundingClientRect();
+      if (bbox.width > 0 && bbox.height > 0) {
+        svgWidth = bbox.width;
+        svgHeight = bbox.height;
+      }
+    }
+
+    return { svgWidth, svgHeight };
+  };
+
   // 缩放控制函数
   const handleZoomIn = () => {
     const newScale = Math.min(scale + 0.2, 5);
@@ -123,28 +191,7 @@ const Preview = forwardRef<PreviewHandle, PreviewProps>(({ code, themeConfig, cu
     }
 
     try {
-      // 获取 SVG 的原始尺寸
-      let svgWidth = 0;
-      let svgHeight = 0;
-
-      // 从 width/height 属性获取（Mermaid 生成的原始尺寸）
-      const widthAttr = svgElement.getAttribute('width');
-      const heightAttr = svgElement.getAttribute('height');
-
-      if (widthAttr && heightAttr) {
-        svgWidth = parseFloat(widthAttr);
-        svgHeight = parseFloat(heightAttr);
-      }
-
-      // 如果没有 width/height，从 viewBox 获取
-      if ((!svgWidth || !svgHeight) && svgElement.getAttribute('viewBox')) {
-        const viewBox = svgElement.getAttribute('viewBox');
-        const parts = viewBox!.split(/\s+/).map(Number);
-        if (parts.length === 4) {
-          svgWidth = parts[2];
-          svgHeight = parts[3];
-        }
-      }
+      const { svgWidth, svgHeight } = getSvgDimensions(svgElement);
 
       // 获取容器尺寸
       const containerWidth = container.clientWidth;
@@ -1208,7 +1255,7 @@ const Preview = forwardRef<PreviewHandle, PreviewProps>(({ code, themeConfig, cu
         if (themeConfig.mermaidConfig.themeVariables?.lineColor === '#ffffff' && 
             themeConfig.bgClass === 'bg-[#1a1a1a]') {
           // Dark Minimal theme - force dashed lines
-          processedSvg = renderedSvg.replace(
+          processedSvg = processedSvg.replace(
             /<path class="path"/g, 
             '<path class="path" stroke-dasharray="10,8"'
           );
@@ -1315,28 +1362,7 @@ const Preview = forwardRef<PreviewHandle, PreviewProps>(({ code, themeConfig, cu
       if (!svgElement) return;
 
       try {
-        // 获取 SVG 的原始尺寸
-        let svgWidth = 0;
-        let svgHeight = 0;
-
-        // 从 width/height 属性获取（Mermaid 生成的原始尺寸）
-        const widthAttr = svgElement.getAttribute('width');
-        const heightAttr = svgElement.getAttribute('height');
-
-        if (widthAttr && heightAttr) {
-          svgWidth = parseFloat(widthAttr);
-          svgHeight = parseFloat(heightAttr);
-        }
-
-        // 如果没有 width/height，从 viewBox 获取
-        if ((!svgWidth || !svgHeight) && svgElement.getAttribute('viewBox')) {
-          const viewBox = svgElement.getAttribute('viewBox');
-          const parts = viewBox!.split(/\s+/).map(Number);
-          if (parts.length === 4) {
-            svgWidth = parts[2];
-            svgHeight = parts[3];
-          }
-        }
+        const { svgWidth, svgHeight } = getSvgDimensions(svgElement);
 
         // 获取容器尺寸
         const containerWidth = container.clientWidth;
