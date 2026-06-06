@@ -149,11 +149,20 @@ pnpm dev
 ### Production Build
 
 ```bash
-# Build for production
+# Build for web production
 pnpm build
 
 # Preview production build
 pnpm preview
+```
+
+### Browser Extension
+
+```bash
+# Build as a Chrome Extension
+pnpm build:extension
+
+# The extension will be built in the dist-extension directory
 ```
 
 ---

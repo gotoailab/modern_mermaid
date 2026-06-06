@@ -36,6 +36,7 @@ const Layout: React.FC = () => {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [showClearDialog, setShowClearDialog] = useState(false);
   const [showClearAnnotationsDialog, setShowClearAnnotationsDialog] = useState(false);
+  const [isExtension, setIsExtension] = useState(false);
   const [loadedFromUrl, setLoadedFromUrl] = useState<boolean>(false); // 追踪是否从 URL 加载
   const [isInitialLoad, setIsInitialLoad] = useState<boolean>(true); // 追踪是否是初始加载
   const [customStylesLoaded, setCustomStylesLoaded] = useState<boolean>(false); // 追踪是否加载了自定义背景/字体
@@ -272,6 +273,15 @@ const Layout: React.FC = () => {
 
   // 初始化：从 URL 参数加载示例、主题和分享内容
   useEffect(() => {
+    // 检测是否为扩展模式
+    const urlParams = new URLSearchParams(window.location.search);
+    const isExt = urlParams.get('mode') === 'extension' || window.location.protocol === 'chrome-extension:';
+    setIsExtension(isExt);
+    
+    if (isExt) {
+      document.body.classList.add('extension-popup');
+    }
+
     // 尝试解析分享参数（包含压缩的代码）
     const shareParams = parseShareURL();
     
@@ -370,8 +380,8 @@ const Layout: React.FC = () => {
   }, [currentTheme, isInitialLoad, customStylesLoaded]);
 
   return (
-    <div className="h-screen overflow-hidden bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 flex flex-col font-sans transition-colors duration-200">
-      {!isFullscreen && <Header />}
+    <div className={`h-screen overflow-hidden bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 flex flex-col font-sans transition-colors duration-200 ${isExtension ? 'extension-popup' : ''}`}>
+      {!isFullscreen && !isExtension && <Header />}
       <main 
         className={`flex-1 flex flex-col md:flex-row overflow-hidden ${isFullscreen ? '' : ''}`}
       >

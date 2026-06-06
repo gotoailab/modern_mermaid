@@ -147,11 +147,20 @@ pnpm dev
 ### 生产构建
 
 ```bash
-# 构建生产版本
+# 构建 Web 生产版本
 pnpm build
 
 # 预览生产构建
 pnpm preview
+```
+
+### 浏览器扩展
+
+```bash
+# 构建为 Chrome 扩展程序
+pnpm build:extension
+
+# 扩展程序将生成在 dist-extension 目录中
 ```
 
 ---

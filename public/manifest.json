@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "Modern Mermaid",
+  "version": "1.0.0",
+  "description": "A modern, beautiful Mermaid.js editor with custom themes and high-quality export.",
+  "action": {
+    "default_icon": {
+      "16": "icon-192.png",
+      "48": "icon-192.png",
+      "128": "icon-512.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "16": "icon-192.png",
+    "48": "icon-192.png",
+    "128": "icon-512.png"
+  },
+  "permissions": [
+    "storage",
+    "clipboardWrite"
+  ]
+}
